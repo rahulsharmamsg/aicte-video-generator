@@ -10,7 +10,7 @@ function GenerateScript({hidePopup,setShowContent}) {
     };
   return (
     <>
-    <div className=''>
+    <div className='popupOutline2 generateScrptDiv2'>
        <div className='pop-up'>
             <span className='close-pupup' onClick={hidePopup}>X</span>
             {!showModal &&<>

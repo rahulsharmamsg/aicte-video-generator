@@ -2755,6 +2755,29 @@ footer center{
 .popupOutline.generateScrptDiv .popupRgtLnk ul li{width: auto;padding: 6px 9px; margin-right: 12px; border: 1px solid #e78200; background: transparent;}
 .popupOutline.generateScrptDiv .popupRgtLnk ul li:hover{background:#ffecdc;}
 
+.popupOutline.generateScrptDiv2 .popupRgtLnk ul li{width: auto;}
+.popupOutline.generateScrptDiv2 .popupTxtare textarea{height: 150px;}
+.popupOutline.generateScrptDiv2 .popupRgtLnk h2.workFlowHdng{width: 20%; float: left; font-size: 14px; padding: 0; margin:0; position: relative; top: 70px;}
+.popupOutline.generateScrptDiv2 .popupRgtLnk ul{width: 80%; float: left; margin-top: 10px; position: relative; top: 70px;}
+.popupOutline.generateScrptDiv2 .popupRgtLnk ul li{width: auto;padding: 6px 9px; margin-right: 12px; border: 1px solid #e78200; background: transparent;}
+.popupOutline.generateScrptDiv2 .popupRgtLnk ul li:hover{background:#ffecdc;}
+
+
+
+.popupOutline2.generateScrptDiv .pop-up{height: 450px;}
+.popupOutline2.generateScrptDiv .popupRgtLnk ul li{width: auto;}
+.popupOutline2.generateScrptDiv .popupTxtare textarea{height: 150px;}
+.popupOutline2.generateScrptDiv .popupRgtLnk h2.workFlowHdng{width: 20%; float: left; font-size: 14px; padding: 0; margin:0; position: relative; top: 70px;}
+.popupOutline2.generateScrptDiv .popupRgtLnk ul{width: 80%; float: left; margin-top: 10px; position: relative; top: 70px;}
+.popupOutline2.generateScrptDiv .popupRgtLnk ul li{width: auto;padding: 6px 9px; margin-right: 12px; border: 1px solid #e78200; background: transparent;}
+.popupOutline2.generateScrptDiv .popupRgtLnk ul li:hover{background:#ffecdc;}
+
+.popupOutline2.generateScrptDiv2 .popupRgtLnk ul li{width: auto;}
+.popupOutline2.generateScrptDiv2 .popupTxtare textarea{height: 150px;}
+.popupOutline2.generateScrptDiv2 .popupRgtLnk h2.workFlowHdng{width: 20%; float: left; font-size: 14px; padding: 0; margin:0; position: relative; top: 70px;}
+.popupOutline2.generateScrptDiv2 .popupRgtLnk ul{width: 80%; float: left; margin-top: 10px; position: relative; top: 70px;}
+.popupOutline2.generateScrptDiv2 .popupRgtLnk ul li{width: auto;padding: 6px 9px; margin-right: 12px; border: 1px solid #e78200; background: transparent;}
+.popupOutline2.generateScrptDiv2 .popupRgtLnk ul li:hover{background:#ffecdc;}
 
 
 
