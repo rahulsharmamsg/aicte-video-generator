@@ -47,7 +47,7 @@ function GenerateScript({hidePopup}) {
             <div className='col-12 newPopCntOne'>
             <div className='row'>
                 <div className='col-3 newpopCntIn'>
-                    Audience
+                  <p> Audience </p>
                 </div>
                 <div className='col-9 newpopCntIn'>
                     <ul>
@@ -61,13 +61,13 @@ function GenerateScript({hidePopup}) {
             <div className='col-12 newPopCntOne'>
             <div className='row'>
                 <div className='col-3 newpopCntIn'>
-                Look and Feel
+                <p>Look and Feel</p>
                 </div>
                 <div className='col-9 newpopCntIn'>
                     <ul>
-                        <li>Political Enthusiasts</li>
-                        <li>Tamil Speakers</li>
-                        <li>Indian Citizens</li>
+                        <li>Bright</li>
+                        <li>Inspiring</li>
+                        <li>Clean</li>
                     </ul>
                 </div>
                 </div>
@@ -75,18 +75,21 @@ function GenerateScript({hidePopup}) {
             <div className='col-12 newPopCntOne'>
             <div className='row'>
                 <div className='col-3 newpopCntIn'>
-                Platform
+                <p>Platform</p>
                 </div>
                 <div className='col-9 newpopCntIn'>
                     <ul>
-                        <li>Political Enthusiasts</li>
-                        <li>Tamil Speakers</li>
-                        <li>Indian Citizens</li>
+                        <li>Youtube</li>
+                        <li>Facebook</li>
+                        <li>Instagram</li>
                     </ul>
                 </div>
                 </div>
                 </div>
-            
+                <div className='btmBtmDiv'>
+                <button className='btn button contBtn' >Continue</button>
+                <button className='btn button edtPrmpt' >Edit Prompt</button>
+                </div>
           </div>
           </div>
         </div></>}
