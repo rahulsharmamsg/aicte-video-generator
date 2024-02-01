@@ -1,0 +1,161 @@
+.newHeader{padding: 7px 0;}
+.landingSrch{align-items: center; display: flex; justify-content: center; margin: 0; overflow: hidden; position: relative; width: 100%; padding: 25px 0; box-shadow: 0 0 20px #eee; background: #fff;}
+.sabkaSathTxt{font-size: 28px; color: #767676}
+.sabkaSathTxt h2{margin-top: 0;}
+.sabkaSathTxt .sabkaTx2{color: #e66f1d;}
+.topSrchDiv{width: 100%;}
+.topSrchDiv select{appearance: auto;}
+.newsSrchSec{width: 100%;}
+.listNewsSec{width: 100%; padding: 25px 0;}
+.topSrchDiv{background: #fff; border-radius: 10px; box-shadow: 0 -1px 20px 10px #eee; padding: 1.5rem 2.0rem; text-align: left;}
+.catListingDivIn { width: 100%; float: left; background: #fff; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; position: relative;  -webkit-border-top-left-radius: 0px;
+    -moz-border-top-left-radius: 0px; border-top-left-radius: 0px; -webkit-border-top-right-radius: 0px;
+    -moz-border-top-right-radius: 0px; border-top-right-radius: 0px; background: #fffefa; border-radius: 10px;
+    box-shadow: 0 -1px 20px 10px #eee;}
+.catListingDivIn a { color: #434343; text-decoration: none; }
+.catListImg { width: 100%; float: left; position: relative;}
+.catListImg img{display: block; width: 100%;}
+.catListCnt { width: 100%; float: left;  margin-top: 20px; padding-bottom: 26px; padding-left: 15px;   padding-right: 15px;}
+.dateTmDiv { width: 100%; float: left; padding-bottom: 7px;}
+.dIn { width: 48%; float: left; color: #000; font-weight: 500; font-size: 13px;}
+.dIn span { color: #ff754c;}
+.tIn { width: 48%; float: right; color: #000; font-weight: 500; font-size: 15px; text-align: right;}
+.tIn i { font-size: 15px;}
+.tIn span { color: #ff754c;}
+.dateTmDiv { width: 100%; float: left; padding-bottom: 7px;}
+.dIn { width: 48%;  float: left;  color: #000;  font-weight: 500;  font-size: 15px; text-align: left;}
+.dIn span { color: #ff754c;}
+.catListCnt h2 { font-size: 18px; line-height: 1.33333; font-weight: 400; text-align: left; color: #b48800;}
+.catListCnt p {font-size: 15px; color: #4f4f4f; margin-bottom: 5px; padding-top: 0px; text-align: left;
+    margin-top: 0; line-height: 26px;}
+.lstHsTg { width: 100%; float: left;}
+.lstHsTg ul {padding: 0; margin: 0; list-style-type: none;}
+.lstHsTg ul li {width: auto; float: left; border: 1px solid #292929; padding: 3px 6px;
+    -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; font-size: 13px;
+    margin-right: 4px; font-weight: 300; margin-top: 8px; color: #12300d; background: #bef1b6;}
+.catListingDiv{margin-bottom: 25px;}
+.hdrPag ul{padding: 25px 0; margin: 0; list-style-type: none;}
+.hdrPag ul li{display: inline-block;}
+.hdrPag ul li a{color: #000; background: #feffff; border: 1px solid #b1b1b1; padding: 5px 15px; display: inline-block; border-radius: 4px; margin-right: 5px;}
+.hdrPag ul li a.prvtBtn{background: #ffffff; color: #e66f1d; border-color: #e66f1d;}
+.hdrPag ul li a.nextBtn{background: #ffffff; color: #1a9438;border-color: #1a9438;}
+.hdrPag ul li a.pagactive{background: #80b987; color: #fff;border-color: #1a9438;}
+.posNegLine{width: 100%; margin-bottom: 70px; }
+.positiveRtng{width: 80%; height: 12px; background: #1a9438; border-top-left-radius: 8px; border-bottom-left-radius: 8px; float: left;}
+.negtvRtng{width: 20%; height: 12px; background: #e27564; border-top-right-radius: 8px; border-bottom-right-radius: 8px; float: left;}
+.positiveRtng span{position: relative; top: 20px; text-align: left; display: block;color: #1a9438;}
+.positiveRtng span b{display: block;text-align: left;}
+.negtvRtng span{position: relative; top: 20px;text-align: left;color:#d2361e;}
+.negtvRtng span b{display: block;text-align: left; }
+.paperSource{width: 100%; float: left; padding: 8px 0;}
+.paperSourceName{width: 80%; float: left; text-align: left; padding-left: 8px; padding-top: 6px;}
+.paperLang{width: 20%; float: left; text-align: right; padding-right: 8px;}
+.paperLang span{background: #f3f1ec; padding: 4px 6px; display: inline-block; border-radius: 6px;}
+.topSrchDiv .form-control{border-color:#feba9d}
+.landingSlider{width: 100%;}
+.logoOne{width: 28%; float: right;}
+.landingSrch{width: 100%; display: inline-block; margin-top: -24px;}
+.landingSrch img{width: 100%;}
+.landingSrch{position: relative;}
+.magicEyeTtl{position: absolute; top: 85px; left: 100px;}
+.magicEyeTtl img{width: 200px;}
+.magicEyeTtl span{position: relative; top: 61px; font-size: 65px; color: #29dabd; font-weight: 600; left: 16px;}
+.newsHdng{font-size: 35px; text-align: left; position: relative;}
+.newsStatsBx{width: 100%; float: left; margin-top: 65px;}
+.statsBx1In{width: 100%; float: left; background: #ffefe1; color: #fd8725; font-size: 28px; padding-bottom: 35px;}
+.wrtKeywrds{position: relative;}
+.voiceCl{position: absolute; top: 10px; right: 27px; color: #b48800;}
+.lstngFltr{width: 100%; float: left; padding: 35px 0 18px; background: #f9f9f9; margin-bottom: 45px; border-radius:6px;}
+.fltrInpt{width: 150px; float: left;}
+.fromDate{width: 234px; margin-left: 0px;}
+.fromDate span{width: 96px; float: left;}
+.dtIcnn{width: 30px; float: left; color: #f4cda6; position: relative; top: -4px;margin-left: -35px;}
+.inptClndr{width: 135px!important; float: left!important; height: 40px!important; position: relative; top: -7px;
+    border-color: #4e7b49!important;}
+.srchBtnn{ width: 100px; float: left; background: linear-gradient(to right, #01d5f5, #52df84);
+    color: #fff; padding: 9px 10px; border-radius: 6px; border: none;
+    outline: none;  position: relative; top: -6px; margin-left: 26px;}
+.slctLang{width: 210px; margin-top: -11px; margin-left: 17px;}
+.slctLang select{appearance: auto; border-color: #4e7b49;}
+.todate{margin-left: 0px;}
+.statsBx1 span{display: block;}
+.postvNws .statsBx1In{background:#e1ffe5}
+.neturalNws .statsBx1In{background:#e1ffe5}
+.postvNws .statsBx1In h2{color:#2f9a3d}
+.negNws .statsBx1In h2{color:#ff4343}
+.neturalNws .statsBx1In h2{color:#4b6fb0}
+.negNws .statsBx1In{background:#ffe3e3}
+.neturalNws .statsBx1In{background:#e3edff}
+.postvNws .statsBx1In h2 span{font-weight: 400;}
+.negNws .statsBx1In h2 span{font-weight: 400;}
+.totalNews .statsBx1In h2 span{font-weight: 400;}
+.statsBx1In{position: relative;}
+.newsIcnCat{position: absolute; top: 0; right: 10px;}
+.nwsGrphIcn img{width: 100px;}
+.newsDshbrdFltrDiv{margin:55px 0}
+.tblGrphBtm{width: 100%; float: left;}
+.tblDivIn{width: 100%; float: left;}
+.tblSbHdng{text-align: left; margin-bottom: 12px;}
+.dashnwsTbl thead th{background: #e7e7e7; text-align: left; text-transform: uppercase; padding: 12px 10px; font-weight: 600;}
+table.dashnwsTbl tr{border: 3px solid #fff; text-align: left; }
+table.dashnwsTbl tr td{padding: 8px 12px;border-bottom: 1px solid #ccc!important;}
+ table.dashnwsTbl tr td:nth-child(1) { background: #f6f6f7;}
+ table.dashnwsTbl tbody tr:nth-child(even) { background: #f6f6f7!important; border-bottom: 1px solid #ccc!important;} 
+ table.dashnwsTbl{border: 1px solid #e0e0e0; width: 100%; display: block;}
+ .grphDivIn{width: 100%; float: left;}
+ .tblSbHdng{font-weight: 600;}
+ .grphDivIn .tblSbHdng{font-weight: 600;}
+ .totalnewsin{margin-bottom: 25px; background: #fff9f3; padding: 0 15px;}
+ .positivenewsin{margin-bottom: 25px; background: #f0f6ff; padding: 0 15px;}
+ .negativenewsin{margin-bottom: 25px; background: #fff2f2; padding: 0 15px;}
+ .postvNws span{color: #2f9a3d;}
+ .negNws span{color: #ff4343;}
+ .neturalNws span{color: #4b6fb0;}
+ .fltrInpt span{font-weight: 600;}
+ .lstUpdate span{float: right; position: relative; top: -20px; font-weight: 600;}
+ .statsBx1{margin-bottom: 20px;}
+ .dashbrdKeywordnews{margin-bottom: 25px; width: 100%; float: left; padding-left: 15px; margin-top: 15px;}
+ .dashbrdKeywordnews ul li:nth-child(2n+1){background: #ffd0a1;}
+ .dashbrdKeywordnews ul li:nth-child(2n+2){background: #adf4a6;}
+ .dashbrdKeywordnews ul li:nth-child(2n+3){background: #fef69e;}
+ .dashbrdKeywordnews ul li:nth-child(2n+4){background: #bdffdd;}
+
+ @media only screen and (max-width:767px){
+    .sabkaSathTxt{display: none;}
+    .newHeader .menu-mobile-button{display: none!important;}
+    .landingSrch{float: left; margin-top: 80px;}
+    .magicEyeTtl{top: 0; left: 0;}
+    .magicEyeTtl span{font-size: 28px; top: 46px;}
+    .newsSrchSec .topSrchDiv{ padding: 1.5rem 0.5rem;}
+    .newsSrchSec .topSrchDiv .wrtKeywrds{margin-bottom: 8px;}
+    .newsSrchSec .button.green.btn-login-signup{margin-top: 10px;}
+     .fltrInpt{ width: 50%; float: left; text-align: left; margin-bottom: 8px;}
+   .lstngFltr{padding: 10px 15px;}
+    .fltrInpt.fromDate{width: 100%; margin-top: 15px;}
+   .inptClndr{width: 68%!important;}
+    .srchBtnn{margin-left: 0;}
+    .topSrchDiv .form-group.col-md-1.col-xs-12{text-align: center;}
+    .paperLang{width: 27%;}
+    .paperSourceName{width: 71%;}
+    .hdrPag ul li{margin-bottom: 10px;}
+    .newsDshbrdFltrDiv{margin-top: 0; margin-bottom: 0;}
+    .newsHdng{width: 100%; float: left; margin: 5px 0 0 0; padding-left: 15px;}
+    .col-md-12.lstUpdate{text-align: left; width: 100%; float: left;}
+    .lstUpdate span{float: left; top: 0; padding-left: 15px;}
+    .newsStatsBx{margin-top: 25px;}
+    
+ }
+ @media only screen and (min-width:768px) and (max-width:1024px){
+    .landingSrch{margin-top: 60px;}
+    .magicEyeTtl{top: 0; left: 15px;}
+    .magicEyeTtl span{font-size: 48px;}
+    .newHeader .menu-mobile-button{display: none;}
+    .fromDate{margin-top: 25px;}
+    .srchBtnn{top: 19px;}
+    .fltrInpt{text-align: left; width: 32%;}
+    .catListingDiv{width: 50%!important;}
+    .fromDate{width: 50%!important;}
+    .fromDate .form-control{width:67%!important ;}
+ }
+
+ 

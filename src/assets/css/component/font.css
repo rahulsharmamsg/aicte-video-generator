@@ -1,0 +1,18 @@
+
+.font-component-sec .font-box .font-list select {
+    height: 73vh;
+    border:none;
+    padding: 0;
+    box-shadow: none;
+}
+.font-component-sec .font-box .font-list select option {
+    padding: 15px;
+    font-size: 17px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+.font-component-sec .font-box .font-list select option:hover {
+    background-color: #f5f5f5;
+    border: 1px solid #fff;
+}

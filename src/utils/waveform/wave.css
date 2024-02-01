@@ -1,0 +1,55 @@
+
+  
+  .Wavesample {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .orangePlay{
+    background-color: #ff754e!important;
+    background: linear-gradient(to right, #fe8b6b, #ff754e);
+  }
+ 
+  button {
+    background: #fe8b6b;
+    color: rgb(247, 247, 247);
+    border: none;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    outline: none;
+    text-transform: uppercase;
+    transition: ease-in-out;
+    transition-duration: 0.15s;
+    
+  }
+  
+  button:hover {
+
+    scale: 1.1;
+  }
+  
+  .playlist {
+    text-align: left;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .playlist-item {
+    color: #444;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    padding: 1em;
+  }
+  
+  .playlist-item.selected {
+    font-weight: bold;
+  }
+  
+  .playlist-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .controls {
+    text-align: left;
+    padding: 1em;
+  }
+  

@@ -1,0 +1,56 @@
+.color-component-sec .color-palette-box {
+    margin-bottom: 40px;
+}
+.color-component-sec .color-palette-box .heading {
+    font-size: 12px;
+    margin:10px 0;
+}
+.color-component-sec .color-palette-box .color-picker {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(5,1fr);
+    grid-row-gap: 12px;
+    grid-column-gap: 12px;
+}
+.color-component-sec .color-palette-box .color-picker .color-item {
+    cursor: pointer;    
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 45px;
+}
+
+.color-component-sec .color-palette-box .custom-color-btn {
+    position: relative;
+    background-image: url(../../images/icon-gradient-color.webp);
+    background-size: 100% 100%;
+    height: 100%;
+    width:100%;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgba(57,76,96,0.15);
+    display: block;
+}
+/* .color-component-sec .color-palette-box .custom-color-btn .eJVJ1Q {
+    background-image: url(../../images/icon-gradient-color.webp);
+    background-size: 100% 100%;
+    height: 100%;
+    width:100%;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgba(57,76,96,0.15);
+} */
+.color-component-sec .color-palette-box .custom-color-btn .icon {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0d1216;
+}
+.color-component-sec .color-palette-box .custom-color-btn .icon svg {
+    width: 24px;
+    height: 24px;
+}
