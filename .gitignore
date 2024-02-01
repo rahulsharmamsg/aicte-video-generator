@@ -3,3 +3,6 @@
 .idea
 yarn.lock
 package-lock.json
+misc
+build
+*.zip
