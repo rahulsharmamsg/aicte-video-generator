@@ -2704,7 +2704,7 @@ footer center{
 .dashbrdMenu li a{font-size: 17px;}
 .dashBrdLftRgt .videoRgtBtmDivLftIn ul li{cursor: pointer;}
 .popupOutline{width: 100%; height: 100%;  position: absolute; top: 0; left: 0; z-index: 9999; background: rgba(0,0,0,0.4);}
-.pop-up{width: 750px; height: 500px; position: fixed;top: 0; bottom: 0; left: 0; right: 0; margin: auto;   background: #fff; box-shadow:0px 8px 20px rgb(0 0 0 / 6%); border:solid thin #dbe3e9; z-index: 999; border-radius: 12px; padding: 25px; border:0px solid #a6a8a7}
+.pop-up{width: 750px; height: 500px; position: fixed;top: 0; bottom: 0; left: 0; right: 0; margin: auto;   background: #fff; box-shadow:0px 8px 20px rgb(0 0 0 / 6%); border:solid thin #dbe3e9; z-index: 1; border-radius: 12px; padding: 25px; border:0px solid #a6a8a7}
 .close-pupup{position: absolute; top: 10px; right: 10px; cursor: pointer; z-index: 9;}
 .popupContentDiv{width: 100%; float: left;}
 .popupContentDivMain{width: 100%; float: left; margin-top: 12px; background: rgb(255,249,244);
