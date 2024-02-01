@@ -19,6 +19,8 @@ import Popup from '../Components/Popup';
 import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
 import GenerateScript from '../Components/GenerateScript';
+import zIndex from '@mui/material/styles/zIndex';
+
 
 function CreatelandscapeVideo() {
   const[text,setText]=useState(false)
@@ -27,6 +29,151 @@ function CreatelandscapeVideo() {
   const[textcontent,setTextcontent]=useState("")
   const[AItextcontent,setAITextcontent]=useState("")
   const[GenerateScriptcnt,setGenerateScriptcnt]=useState("")
+  const [showContent, setShowContent] = useState('');
+  const youtubeExplainerContent = (
+    <div className='popupOutline generateScrptDiv  youtubeScriptvideoDiv'>
+      <div className='pop-up'>
+        <div className='close-pupup' onClick={() => setShowContent("")}>X</div>
+        <div className='popupContentDiv'>
+          <h1 style={{color:"black"}}>Youtube Explainer - Create a Prompt</h1>
+          <div className='popupContentDivMain'>
+            <div className='row' style={{ width: "1000px", height: "300px" }}>
+              {/* Your content goes here */}
+              <div className='col-12 popupTxtare'>
+                <span>Create a</span>
+                <select>
+                  <option value="15">15 seconds</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select>
+                <span>youtube video about</span>
+                <div>
+
+                <input type="text" placeholder="Enter your topic" />
+                <br />
+                <input type="text" placeholder="Enter your topic2" />
+                </div>
+                <button>Make Background Music</button>
+                <input type="text" placeholder="Enter your music URL" />
+                <p>Settings:</p>
+                <div>
+                <span >1. Use any voice</span>
+                <select>
+                  <option value="15">any value</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select>
+                <select>
+                  <option value="15">any Voice</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select>
+                </div>
+                <div><span>2. Add subtitles</span>
+                <select>
+                  <option value="15">any Subtitle</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select>
+                </div>
+                <div><span>3. Use watermark text</span><select>
+                  <option value="15">name</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select></div>
+                <div>
+                  <span>4. </span>
+                <select>
+                  <option value="15">Use iStock</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select></div>
+              </div>
+            </div>
+          </div>
+          <button style={{color:"red"}}>Continue</button>
+        </div>
+      </div>
+    </div>
+  );
+  const scriptToVideoContent = (
+    <div className='popupOutline generateScrptDiv'  style={{zIndex:99}}>
+      <div className='pop-up'>
+        <div className='close-pupup' onClick={() => setShowContent("")}>X</div>
+        <div className='popupContentDiv'>
+          <h1 style={{color:"black"}}>Script to Video - Create a Prompt</h1>
+          <div className='popupContentDivMain'>
+            <div className='row' style={{ width: "1000px", height: "300px" }}>
+              {/* Your content goes here */}
+              <div className='col-12 popupTxtare'>
+                <span>Create a</span>
+                <select>
+                  <option value="15">15 seconds</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select>
+                <span>youtube video about</span>
+              </div>
+            </div>
+          </div>
+          <button style={{color:"red"}}>Continue</button>
+        </div>
+      </div>
+    </div>
+  );
+  const youtubeShortsContent = (
+    <div className='popupOutline generateScrptDiv' style={{zIndex:999}}>
+      <div className='pop-up'>
+        <div className='close-pupup' onClick={() => setShowContent("")}>X</div>
+        <div className='popupContentDiv'>
+          <h1 style={{color:"black"}}>Youtube Shorts - Create a Prompt</h1>
+          <div className='popupContentDivMain'>
+            <div className='row' style={{ width: "1000px", height: "300px" }}>
+              {/* Your content goes here */}
+              <div className='col-12 popupTxtare'>
+                <span>Create a</span>
+                <select>
+                  <option value="15">15 seconds</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select>
+                <span>youtube video about</span>
+              </div>
+            </div>
+          </div>
+          <button style={{color:"red"}}>Continue</button>
+        </div>
+      </div>
+    </div>
+  );
+  const exploreAllContent = (
+    <div className='popupOutline generateScrptDiv'>
+      <div className='pop-up'>
+        <div className='close-pupup' onClick={() => setShowContent("")}>X</div>
+        <div className='popupContentDiv'>
+          <h1 style={{color:"black"}}>Explore All - Create a Prompt</h1>
+          <div className='popupContentDivMain'>
+            <div className='row' style={{ width: "1000px", height: "300px" }}>
+              {/* Your content goes here */}
+              <div className='col-12 popupTxtare'>
+                <span>Create a</span>
+                <select>
+                  <option value="15">15 seconds</option>
+                  <option value="20">20 seconds</option>
+                  <option value="25">25 seconds</option>
+                </select>
+                <span>youtube video about</span>
+              </div>
+            </div>
+          </div>
+          <button style={{color:"red"}}>Continue</button>
+        </div>
+      </div>
+    </div>
+  );
+
+  
+  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -69,6 +216,20 @@ function CreatelandscapeVideo() {
 
   return (
     <>
+    {
+        
+        showContent === 'Youtube_Explainer' && youtubeExplainerContent
+      
+      }
+      {
+        showContent === 'Script_to_Video' && scriptToVideoContent
+      }
+      {
+        showContent === 'Youtube_Shorts' && youtubeShortsContent
+      }
+      {
+        showContent === 'Explore_all' && exploreAllContent
+      }
       <section className="dashboardSec createVideoDashbrdSec">
         <div className="dashBrdLft">
            <div className="dashBrdLftInScndLayer">
@@ -175,7 +336,7 @@ function CreatelandscapeVideo() {
          
         </div>
         {text?<Popup hidePopup={closePopup}/>:null}    
-        {scriptText?<GenerateScript hidePopup={closePopupScrpt}/>:null}    
+        {scriptText?<GenerateScript hidePopup={closePopupScrpt} setShowContent={setShowContent} />:null}    
             {textAi?<AiTranslation hidePopup={closePopupAi}/>:null}  
         <div className="dashBrdLft dashBrdLftRgt">
            <div className="dashBrdLftInScndLayer">
@@ -233,7 +394,11 @@ function CreatelandscapeVideo() {
   );
 }
 function MyVerticallyCenteredModal(props) {
+  
+
     return (
+      <>
+      
       <Modal className='langVoiceOver'
         {...props}
         size="lg"
@@ -336,6 +501,7 @@ function MyVerticallyCenteredModal(props) {
           <Button onClick={props.onHide} className='button green btn-login-signup'>OK</Button>
         </Modal.Footer>
       </Modal>
+      </>
     );
   }
 export default CreatelandscapeVideo;

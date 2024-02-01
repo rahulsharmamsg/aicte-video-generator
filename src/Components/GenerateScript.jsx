@@ -1,6 +1,6 @@
 import { Plus } from 'phosphor-react';
 import React, { useState } from 'react';
-function GenerateScript({hidePopup}) {
+function GenerateScript({hidePopup,setShowContent}) {
     const [showModal, setShowModal] = useState(false);
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -10,7 +10,7 @@ function GenerateScript({hidePopup}) {
     };
   return (
     <>
-    <div className='popupOutline generateScrptDiv'>
+    <div className=''>
        <div className='pop-up'>
             <span className='close-pupup' onClick={hidePopup}>X</span>
             {!showModal &&<>
@@ -29,10 +29,10 @@ function GenerateScript({hidePopup}) {
             <div className='col-12 popupRgtLnk popupWorkflow'>
                     <h2 className='workFlowHdng'>Workflows:</h2>
                     <ul>
-                        <li>Youtube Explainer</li>
-                        <li>Script to Video</li>
-                        <li>Youtube Shorts</li>
-                        <li>Explore all <Plus size={15} /></li>
+                        <li onClick={()=>setShowContent("Youtube_Explainer")}>Youtube Explainer</li>
+                        <li onClick={()=>setShowContent("Script_to_Video")}>Script to Video</li>
+                        <li onClick={()=>setShowContent("Youtube Shorts")}>Youtube Shorts</li>
+                        <li onClick={()=>setShowContent("Explore all")}>Explore all <Plus size={15} /></li>
                     </ul>
                     </div>
             </>}
