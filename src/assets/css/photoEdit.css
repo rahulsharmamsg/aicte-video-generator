@@ -2754,6 +2754,15 @@ footer center{
 .popupOutline.generateScrptDiv .popupRgtLnk ul{width: 80%; float: left; margin-top: 10px; position: relative; top: 70px;}
 .popupOutline.generateScrptDiv .popupRgtLnk ul li{width: auto;padding: 6px 9px; margin-right: 12px; border: 1px solid #e78200; background: transparent;}
 .popupOutline.generateScrptDiv .popupRgtLnk ul li:hover{background:#ffecdc;}
+.newpopCntIn{text-align: left; padding: 5px 0;}
+.newpopCntIn p{padding: 0; margin: 0; font-size: 14px; color: #333333;}
+.newpopCntIn ul{padding: 0; margin: 0; list-style-type: none;}
+.newpopCntIn ul li{display: inline-block; font-size: 14px; border:1px solid #ccc; padding: 3px 4px; margin-right: 8px; border-radius: 8px; cursor: pointer;}
+.newPopCnt{padding: 0 15px;}
+.newpopCntIn ul li{padding: 3px 6px; background: #fff3f3; border-radius: 5px;}
+.btn.button.contBtn{font-size: 14px; padding: 5px 7px; border-radius: 4px; margin-left: 8px; float: right; background: #ef851c; color: #fff;}
+.btn.button.edtPrmpt{font-size: 14px; padding: 5px 7px; border-radius: 4px; float: right; background: #ecd301; color: #5f5500;}
+.btmBtmDiv{width: 100%; float: left; position: relative; top: 185px;}
 
 .popupOutline.generateScrptDiv2 .popupRgtLnk ul li{width: auto;}
 .popupOutline.generateScrptDiv2 .popupTxtare textarea{height: 150px;}
