@@ -32,8 +32,7 @@ function GenerateScript({hidePopup,setShowContent}) {
                         <li onClick={()=>setShowContent("Youtube_Explainer")}>Youtube Explainer</li>
                         <li onClick={()=>setShowContent("Script_to_Video")}>Script to Video</li>
                         <li onClick={()=>setShowContent("Youtube_Shorts")}>Youtube Shorts</li>
-                        <li >Explore all <Plus size={15} /></li>
-                        {/* <li onClick={()=>setShowContent("Explore_all")}>Explore all <Plus size={15} /></li> */}
+                        <li onClick={()=>setShowContent("Explore_all")}>Explore all <Plus size={15} /></li>
                     </ul>
                     </div>
             </>}
