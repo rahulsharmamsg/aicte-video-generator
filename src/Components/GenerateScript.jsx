@@ -31,8 +31,9 @@ function GenerateScript({hidePopup,setShowContent}) {
                     <ul>
                         <li onClick={()=>setShowContent("Youtube_Explainer")}>Youtube Explainer</li>
                         <li onClick={()=>setShowContent("Script_to_Video")}>Script to Video</li>
-                        <li onClick={()=>setShowContent("Youtube Shorts")}>Youtube Shorts</li>
-                        <li onClick={()=>setShowContent("Explore all")}>Explore all <Plus size={15} /></li>
+                        <li onClick={()=>setShowContent("Youtube_Shorts")}>Youtube Shorts</li>
+                        <li >Explore all <Plus size={15} /></li>
+                        {/* <li onClick={()=>setShowContent("Explore_all")}>Explore all <Plus size={15} /></li> */}
                     </ul>
                     </div>
             </>}
@@ -40,10 +41,19 @@ function GenerateScript({hidePopup,setShowContent}) {
         <div className="modal newpopupdiv">
           <div className="modal-content">
           <div className='newpopTitle'>
-            <h2>Modi Ji's Inspiring Speech for Kashi in Tamil</h2>
+            <h2>Generate Script</h2>
           </div>
           <div className='newPopCnt'>
-           
+          <div className='col-12 newPopCntOne'>
+            <div className='row'>
+                <div className='col-3 newpopCntIn titleDivnew'>
+                  <p> Title </p>
+                </div>
+                <div className='col-9 newpopCntIn titleDivnew'>
+                <h2>Modi Ji's Inspiring Speech for Kashi in Tamil</h2>
+                </div>
+            </div>
+            </div>
             <div className='col-12 newPopCntOne'>
             <div className='row'>
                 <div className='col-3 newpopCntIn'>

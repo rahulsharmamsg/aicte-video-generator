@@ -2598,14 +2598,14 @@ footer center{
 .crtVdeoIcn{position: absolute; bottom: 18px; right: -13px;}
 .crtVdeoIcn img{width: 80%;}
 /*createVideo*/
-.createVideoDashbrdSec .dashBrdLft{width: 20%;}
+.createVideoDashbrdSec .dashBrdLft{width: 20%; float: left;}
 .createVideoDashbrdSec .dashBrdLft .dashBrdLftIn{width: 28%;}
 .createVideoDashbrdSec .dashBrdLft .dashBrdLftInScndLayer{width: 100%;background: #fff;
     box-shadow: 0 4px 12px #0000001c; height: 100vh; float: left; padding: 15px;}
 
 .createVideoDashbrdSec .dashBrdLft .dashBrdLftIn .menuIcn{display: block; width: 100%; text-align: center;}
 .createVideoDashbrdSec .dashBrdLft .dashBrdLftIn .dashbrdMenu li a{text-align: center;}
-.createVideoDashbrdSec .dashBrdRgt{width: 60%;}
+.createVideoDashbrdSec .dashBrdRgt{width: 60%; float: left;}
 .scndryHdng{text-align: left; margin-bottom: 15px; font-size: 20px; font-weight: 600;}
 .srchAiAvatars{width: 100%; height: 35px; padding: 6px; border-radius: 6px;border:1px solid #bfbdbd; font-size: 13px; padding-left: 30px; background: #fff5f5;}
 .srchAiAvatar{position: relative;}
@@ -2704,6 +2704,7 @@ footer center{
 .dashbrdMenu li a{font-size: 17px;}
 .dashBrdLftRgt .videoRgtBtmDivLftIn ul li{cursor: pointer;}
 .popupOutline{width: 100%; height: 100%;  position: absolute; top: 0; left: 0; z-index: 9999; background: rgba(0,0,0,0.4);}
+.popupOutline2{width: 100%; height: 100%;  position: absolute; top: 0; left: 0; z-index: 1; background: rgba(0,0,0,0.4);}
 .pop-up{width: 750px; height: 500px; position: fixed;top: 0; bottom: 0; left: 0; right: 0; margin: auto;   background: #fff; box-shadow:0px 8px 20px rgb(0 0 0 / 6%); border:solid thin #dbe3e9; z-index: 1; border-radius: 12px; padding: 25px; border:0px solid #a6a8a7}
 .close-pupup{position: absolute; top: 10px; right: 10px; cursor: pointer; z-index: 9;}
 .popupContentDiv{width: 100%; float: left;}
@@ -2745,9 +2746,9 @@ footer center{
 .newpopupdiv{position: absolute; top: 0; left: 0; width: 100%; display: inline-block;
     margin: 0px auto; right: 0; bottom: 0; z-index: 1;}
 .newpopupdiv .modal-content{width: 100%; float: left;}
-.newpopTitle{width: 100%; float: left; background: #d5d5d5; padding: 3px 12px; text-align: left;}
-.newpopTitle h2{padding: 0; margin: 0; font-size: 16px;}
-.newPopCnt{width: 100%; float: left; margin-top: 20px;}
+.newpopTitle{width: 100%; float: left; padding: 3px 12px; text-align: left;}
+.newpopTitle h2{padding: 0; margin: 0; font-size: 22px;}
+.newPopCnt{width: 100%; float: left;}
 .popupOutline.generateScrptDiv .popupRgtLnk ul li{width: auto;}
 .popupOutline.generateScrptDiv .popupTxtare textarea{height: 150px;}
 .popupOutline.generateScrptDiv .popupRgtLnk h2.workFlowHdng{width: 20%; float: left; font-size: 14px; padding: 0; margin:0; position: relative; top: 70px;}
@@ -2758,13 +2759,13 @@ footer center{
 .newpopCntIn p{padding: 0; margin: 0; font-size: 14px; color: #333333;}
 .newpopCntIn ul{padding: 0; margin: 0; list-style-type: none;}
 .newpopCntIn ul li{display: inline-block; font-size: 14px; border:1px solid #ccc; padding: 3px 4px; margin-right: 8px; border-radius: 8px; cursor: pointer;}
-.newPopCnt{padding: 0 15px;}
+.newPopCnt{padding: 0 15px; background: linear-gradient(174deg, rgba(255,249,244,1) 0%, rgba(255,255,255,1) 100%);}
 .newpopCntIn ul li{padding: 3px 6px; background: #fff3f3; border-radius: 5px;}
 .btn.button.contBtn{font-size: 14px; padding: 5px 7px; border-radius: 4px; margin-left: 8px; float: right; background: #ef851c; color: #fff;}
 .btn.button.edtPrmpt{font-size: 14px; padding: 5px 7px; border-radius: 4px; float: right; background: #ecd301; color: #5f5500;}
 .btmBtmDiv{width: 100%; float: left; position: relative; top: 185px;}
 
-.popupOutline.generateScrptDiv2 .popupRgtLnk ul li{width: auto;}
+.popupOutline.generateScrptDiv2 .popupRgtLnk ul li{width: auto; }
 .popupOutline.generateScrptDiv2 .popupTxtare textarea{height: 150px;}
 .popupOutline.generateScrptDiv2 .popupRgtLnk h2.workFlowHdng{width: 20%; float: left; font-size: 14px; padding: 0; margin:0; position: relative; top: 70px;}
 .popupOutline.generateScrptDiv2 .popupRgtLnk ul{width: 80%; float: left; margin-top: 10px; position: relative; top: 70px;}
@@ -2787,6 +2788,46 @@ footer center{
 .popupOutline2.generateScrptDiv2 .popupRgtLnk ul{width: 80%; float: left; margin-top: 10px; position: relative; top: 70px;}
 .popupOutline2.generateScrptDiv2 .popupRgtLnk ul li{width: auto;padding: 6px 9px; margin-right: 12px; border: 1px solid #e78200; background: transparent;}
 .popupOutline2.generateScrptDiv2 .popupRgtLnk ul li:hover{background:#ffecdc;}
+.titleDivnew h2{font-size: 16px; font-weight: 500; padding: 0; margin: 0;}
+
+.popupOutline.generateScrptDiv.youtubeScriptvideoDiv .pop-up{height: 500px;}
+.youtubeScriptvideoDiv .popupContentDivMain{text-align: left;}
+.hdngNewnew{text-align: left; font-size: 22px;}
+.textArea1 select{padding: 2px 2px; border-radius: 6px; display: inline-block; margin: 0 8px; background: #ffead9;}
+.popupOutline.generateScrptDiv .popupTxtare .textArea2 textarea{height:50px; margin: 10px 0 0px; border-radius: 6px; border-color: #d6ab00; box-shadow: none; font-size: 14px; padding: 5px;}
+.makeBckMsc .darkInpt{margin: 10px 0; border-radius: 6px; border: 1px solid #d6ab00; box-shadow: none; width: 70%; font-size: 14px;  padding-left: 10px;}
+.makeBckMsc{color: #404040; font-weight: 500; font-size: 15px; padding: 0; margin: 0;}
+.textArea1{font-size: 15px;}
+.setngsTxt{width: 100%; float: left; font-size: 16px; font-weight: 600; padding: 0; margin: 0;}
+.textArea3{width: 100%; float: left;}
+.textArea3 span{float: left; margin-top: 5px;}
+.textArea3 select{width: 44%; float: left; margin-left: 12px; border-radius: 4px; padding: 2px 2px; border:1px solid #d6ab00; font-size: 14px;}
+
+.textArea4{width: 100%; float: left; margin-top: 8px;}
+.textArea4 span{float: left; margin-top: 5px;}
+.textArea4 select{width: 44%; float: left; margin-left: 12px; border-radius: 4px; padding: 2px 2px; border:1px solid #d6ab00; font-size: 14px;}
+
+.textArea5{width: 100%; float: left; margin-top: 8px;}
+.textArea5 span{float: left; margin-top: 5px;}
+.textArea5 select{width: 44%; float: left; margin-left: 12px; border-radius: 4px; padding: 2px 2px; border:1px solid #d6ab00; font-size: 14px;}
+
+.textArea6{width: 100%; float: left; margin-top: 8px;}
+.textArea6 span{float: left; margin-top: 5px;}
+.textArea6 select{width: 44%; float: left; margin-left: 12px; border-radius: 4px; padding: 2px 2px; border:1px solid #d6ab00; font-size: 14px;}
+.youtubeExplnr{padding: 10px;}
+.btn.btnCntnu{padding: 5px 8px; font-size: 14px; background:linear-gradient(to right, #01d5f5, #52df84); color: #fff;}
+
+.scriptToVideoDiv{text-align: left;}
+.scriptToVideoDiv.popupOutline.generateScrptDiv .popupTxtare .textArea2 textarea{height: 200px;}
+.scriptToVideoDiv .hdngNewnew{padding-bottom: 20px;}
+.scriptToVideoDiv.popupOutline.generateScrptDiv .pop-up{height: 520px;}
+.scriptVdBtn{float: right; margin-top: 25px; margin-right: 15px;}
+.utubeVdoBtn{float: right; margin-top: 10px; margin-right: 15px;}
+.youtubeShrtsDiv{text-align: left;}
+.youtubeShrtsDiv.popupOutline.generateScrptDiv .popupTxtare .textArea2 textarea{height: 160px;}
+.youtubeShrtsDiv.popupOutline.generateScrptDiv .pop-up{height: 520px;}
+.newpopCntIn p{font-weight: 500;}
+.newpopCntIn ul li:hover{background: #f9aa5c; color: #fff;}
 
 
 
