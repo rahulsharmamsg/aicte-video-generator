@@ -2509,7 +2509,7 @@ footer center{
     }   
 }
 /*AI video project*/
-.homeSliderSec img{width: 100%;}
+.homeSliderSec img{width: 100%; position: relative;}
 .homeClntSec{width: 100%;}
 .clientListL{padding: 0; margin: 0; list-style-type: none;}
 .clientListL li{width: 18%; float: left; height: 120px; background: #fff6f1; margin-right: 15px; line-height: 120px;}
@@ -2828,7 +2828,23 @@ footer center{
 .youtubeShrtsDiv.popupOutline.generateScrptDiv .pop-up{height: 520px;}
 .newpopCntIn p{font-weight: 500;}
 .newpopCntIn ul li:hover{background: #f9aa5c; color: #fff;}
+.sliderLink{position: absolute; bottom: 66px; left: 73px; z-index: 2; width: 54%;}
+.sliderLink .videoBtn{ margin-right: 20px; margin-bottom: 20px; height: 40px;}
+.sliderLink .videoBtn span{font-size: 17px;}
+.sliderLink .videoBtn.sBtn1{width: 246px;}
+.sliderLink .videoBtn.sBtn2{width: 246px;}
+.sliderLink .videoBtn.sBtn3{width: 246px;}
+.sliderLink .videoBtn span{position: relative; top: -3px;}
+.lnkIcn{position: relative; top: -2px;}
 
+@media only screen and (min-width:1025px) and (max-width:1280px){
+    .sliderLink{bottom: 124px;}
+    .sliderLink .videoBtn{width: 282px;}
+    .sliderLink .videoBtn.sBtn1{width: 201px;}
+    .sliderLink .videoBtn.sBtn2{width: 201px;}
+    .sliderLink .videoBtn.sBtn3{width: 201px;}  
+    
+}
 
 
 
