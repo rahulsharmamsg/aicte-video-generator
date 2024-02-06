@@ -18,8 +18,8 @@ function HomepageSlider() {
          <img src={homeSliderImg} alt="" />
          </Link>
          <div className="sliderLink">
-          <Link className="videoBtn sBtn1"><span><Notebook className="lnkIcn" size={24} /> Create a Book</span></Link>
-          <Link className="videoBtn sBtn2"><span><Note className="lnkIcn" size={24} /> Create Notes</span></Link>
+          <Link to='https://translation.aicte-india.org/translation-independent/Text-Editor/' target="_blank" className="videoBtn sBtn1"><span><Notebook className="lnkIcn" size={24} /> Create a Book</span></Link>
+          <Link to='https://anuvadini.aicte-india.org/dictation-tool/' target="_blank" className="videoBtn sBtn2"><span><Note className="lnkIcn" size={24} /> Create Notes</span></Link>
           <Link className="videoBtn sBtn3"><span><ChalkboardTeacher className="lnkIcn" size={24} /> Create a Course</span></Link>
           <Link className="videoBtn sBtn4"><span><CheckSquare className="lnkIcn" size={24} /> Create an Assessment</span></Link>
           <Link className="videoBtn sBtn5"><span><Question className="lnkIcn" size={24} /> Create Question & Answer Paper</span></Link>

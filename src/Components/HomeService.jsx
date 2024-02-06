@@ -67,7 +67,7 @@ function HomeServices() {
                     <div className="hmSrvcSecLIn">
                         <h2 className="titleTxt"><span>Diversify</span> videos with 300+ Avatars & 300+ Voices!</h2>
                         <p className="sbTitleTxt">Choose virtual realistic avatars, settings, languages and accents to create unique and tailored video content.</p>
-                        <Link to='' className="videoBtn"><span><MonitorPlay size={30} /> Generate AI Video Online</span></Link>
+                        <Link to='/dashboard' className="videoBtn"><span><MonitorPlay size={30} /> Generate AI Video Online</span></Link>
                     </div>
                 </div>
             </div>

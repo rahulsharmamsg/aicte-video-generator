@@ -22,7 +22,7 @@ function HomeThirdsec() {
                 <div className="thirdSecCntDiv">
                     <h2>Generate High-Quality Videos Rapidly</h2>
                     <p>Harness the power of AI to generate professional video scripts. Amplify the impact of your avatar videos effortlessly with 180+ customizable templates.</p>
-                    <Link to='' className="videoBtn"><span><MonitorPlay size={30} /> Generate AI Video Online</span></Link>
+                    <Link to='/dashboard' className="videoBtn"><span><MonitorPlay size={30} /> Generate AI Video Online</span></Link>
                 </div>
               </div>
              </div>
