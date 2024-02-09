@@ -11,6 +11,10 @@ import CreateAimusic from './Pages/AiMusic';
 import CreateBackground from './Pages/CreateBackground';
 import CreateSticker from './Pages/CreateSticker';
 import CreateTemplate from './Pages/CreateTemplate';
+import AssessmentCategories from './Components/AssessmentCategories';
+import AssessmentCategoryListing from './Components/AssessmentCategoryListing';
+import AssessmentCategoryDetail from './Components/AssessmentCategoryDetail';
+import LandingPage from './Pages/LandingPage';
 
 function RoutingPage() {
   return (
@@ -19,7 +23,14 @@ function RoutingPage() {
         <Route path="/" element={<OutletRoute />}>
           <Route index element={<HomePage />} />
           <Route path="login" element={<Login />} />
+          <Route path="/assessmentCategories" element={<AssessmentCategories />} />
+          <Route path="/AssessmentCategoryListing" element={<AssessmentCategoryListing />} />
+          <Route path="/AssessmentCategoryDetail" element={<AssessmentCategoryDetail />} />
+          <Route path="*" element={<LandingPage  />} />
         </Route>
+
+
+
 
         <Route path="/dashboard" element={<OutletDashboard />}>
           <Route index element={<Dashboard />} />

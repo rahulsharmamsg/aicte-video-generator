@@ -3,14 +3,19 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 import { PaperPlaneRight, Password,FileText, FileVideo, FolderNotchPlus, Chalkboard, User, SelectionBackground, TextAa, SmileySticker, Headphones, DownloadSimple, MagnifyingGlass, TextT, ArrowsClockwise, ClockClockwise, Headset, SelectionPlus, Translate, ArrowsLeftRight, PlayCircle} from "phosphor-react";
-import fe01 from '../assets/images/fe01.jpg';
-import fe02 from '../assets/images/fe02.jpg';
-import fe03 from '../assets/images/fe03.jpg';
-import fe04 from '../assets/images/fe04.jpg';
-import ma01 from '../assets/images/ma01.jpg';
-import ma02 from '../assets/images/ma02.jpg';
-import ma03 from '../assets/images/ma03.jpg';
-import ma04 from '../assets/images/ma04.jpg';
+import fe01 from '../assets/images/fe01.jpeg';
+import fe02 from '../assets/images/fe02.jpeg';
+import fe03 from '../assets/images/fe03.jpeg';
+import fe04 from '../assets/images/fe04.jpeg';
+import ma01 from '../assets/images/ma01.jpeg';
+import ma02 from '../assets/images/ma02.jpeg';
+import ma03 from '../assets/images/ma03.jpeg';
+import ma04 from '../assets/images/ma04.jpeg';
+import po01 from '../assets/images/po01.jpeg';
+import po02 from '../assets/images/po02.jpeg';
+import po03 from '../assets/images/po03.jpeg';
+import po04 from '../assets/images/po04.jpeg';
+import po05 from '../assets/images/po05.jpeg';
 import aiVidoe1 from '../assets/images/avatarVideoBg.jpg';
 import flagInd from '../assets/images/flag/ind.jpg';
 import Tab from 'react-bootstrap/Tab';
@@ -369,22 +374,22 @@ function CreatelandscapeVideo() {
       <Tab eventKey="longer-tab" title="Education">
       <div className="femaleCntDiv educatCantDiv">
             <ul>
-                <li><img src={fe01} alt="" />
+                <li><img src={po01} alt="" />
                 <div className="avatarsName">Avatar - One</div>
                 </li>
-                <li><img src={ma02} alt="" />
+                <li><img src={po02} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={fe03} alt="" />
+                <li><img src={po03} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
-                <li><img src={ma04} alt="" />
+                <li><img src={po04} alt="" />
                 <div className="avatarsName">Avatar - Four</div>
                 </li>
-                <li><img src={ma02} alt="" />
+                <li><img src={po05} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={fe03} alt="" />
+                <li><img src={po01} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
             </ul>
