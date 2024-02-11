@@ -27,9 +27,7 @@ export default function useOnClickOutside(
   handler: Handler | null,
   { document = currentDocument } = {}
 ) {
-  if (typeof document === "undefined") {
-    return
-  }
+  
 
   const handlerRef = useLatest(handler)
 
@@ -44,6 +42,9 @@ export default function useOnClickOutside(
       }
 
       handlerRef.current(event)
+    }
+    if (typeof document === "undefined") {
+      return
     }
 
     events.forEach((event) => {

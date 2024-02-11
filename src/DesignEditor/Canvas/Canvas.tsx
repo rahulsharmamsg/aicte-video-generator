@@ -2,14 +2,14 @@ import React from "react"
 import { Canvas } from "@layerhub-io/react"
 import Playback from "../Playback/Playback.tsx"
 import useDesignEditorContext from "../../hooks/useDesignEditorContext.ts"
-// import ContextMenu from "../ContextMenu"
+import ContextMenu from "../ContextMenu/ContextMenu.tsx"
 
 const CanvasEditor=()=> {
   const { displayPlayback } = useDesignEditorContext()
   return (
     <div style={{ flex: 1, display: "flex", position: "relative",height:"70vh",width:"120vh" }}>
       {displayPlayback && <Playback />}
-      {/* <ContextMenu /> */}
+      <ContextMenu />
       <Canvas
         config={{
           background: "#FFF",
@@ -25,6 +25,7 @@ const CanvasEditor=()=> {
           frameMargin: 0,
         }}
       />
+      
     </div>
   )
 }

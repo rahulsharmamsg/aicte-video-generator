@@ -1,4 +1,4 @@
-import { AppContext } from "~/contexts/AppContext"
+import { AppContext } from "../contexts/AppContext.tsx"
 import { useContext } from "react"
 
 function useIsMobile() {

@@ -26,6 +26,9 @@ import BottomMenu from './BottomMenu';
 import GenerateScript from '../Components/GenerateScript';
 import zIndex from '@mui/material/styles/zIndex';
 import CanvasEditor from '../DesignEditor/Canvas/Canvas.tsx'
+import Footer from "../DesignEditor/Footer/Footer.tsx"
+
+import  useEditor  from "../hooks/useEditorType.tsx"
 
 
 function CreatelandscapeVideo() {
@@ -36,6 +39,23 @@ function CreatelandscapeVideo() {
   const[AItextcontent,setAITextcontent]=useState("")
   const[GenerateScriptcnt,setGenerateScriptcnt]=useState("")
   const [showContent, setShowContent] = useState('');
+
+  const editor = useEditor()
+
+  const addObject = React.useCallback(
+    (url) => {
+      if (editor) {
+        console.log(editor,"editor")
+        const options = {
+          type: "StaticImage",
+          src: url,
+        }
+
+        editor.objects.add(options)
+      }
+    },
+    [editor]
+  )
   const youtubeExplainerContent = (
     <div className='popupOutline generateScrptDiv youtubeScriptvideoDiv'>
       <div className='pop-up'>
@@ -327,7 +347,7 @@ function CreatelandscapeVideo() {
       <Tab eventKey="home" title="Female">
         <div className="femaleCntDiv">
             <ul>
-                <li><img src={fe01} alt="" />
+                <li><img src={fe01} alt=""  onClick={() => addObject(fe01)} />
                 <div className="avatarsName">Avatar - One</div>
                 </li>
                 <li><img src={fe02} alt="" />
@@ -406,7 +426,7 @@ function CreatelandscapeVideo() {
             <CanvasEditor />
             </div>
             <div className="audioplayerDiv">
-            <audio src="path/to/your/audio/file.mp3" controls={true} autoPlay={false} />
+            <Footer />
             </div>
 
             </div>
