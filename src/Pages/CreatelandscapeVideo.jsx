@@ -25,6 +25,7 @@ import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
 import GenerateScript from '../Components/GenerateScript';
 import zIndex from '@mui/material/styles/zIndex';
+import CanvasEditor from '../DesignEditor/Canvas/Canvas.tsx'
 
 
 function CreatelandscapeVideo() {
@@ -400,9 +401,9 @@ function CreatelandscapeVideo() {
             </div>
         </div>
         <div className="dashBrdRgt">
-            <div className="dashBrdRgtIn">
-           <div className="avatarVideoDiv">
-            <img src={aiVidoe1} alt="" />
+            <div className="">
+           <div className="" >
+            <CanvasEditor />
             </div>
             <div className="audioplayerDiv">
             <audio src="path/to/your/audio/file.mp3" controls={true} autoPlay={false} />
