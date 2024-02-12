@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
@@ -18,12 +18,16 @@ import Tabs from 'react-bootstrap/Tabs';
 import Popup from '../Components/Popup';
 import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
-
+import MyVerticallyCenteredModal from '../Components/LanguageCode';
 function CreatelandscapeText() {
     const[text,setText]=useState(false)
     const[textAi,setAiText]=useState(false)
     const[textcontent,setTextcontent]=useState("")
     const[AItextcontent,setAITextcontent]=useState("")
+   
+
+
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -213,110 +217,5 @@ function CreatelandscapeText() {
     </>
   );
 }
-function MyVerticallyCenteredModal(props) {
-    return (
-      <Modal className='langVoiceOver'
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-      </Modal.Header>
-        <Modal.Body>
-        <div className="avatarsTab">
-            <Tabs
-      defaultActiveKey="all"
-      id="fill-tab-example"
-      className="mb-3"
-      fill
-    >
-      <Tab eventKey="all" title="All">
-        <div className='engLngDiv'>
-        <ul>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Ireland) <br />Pure accent丨Universal</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Ireland) <br />Fluent丨Universal</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Australia) <br />Magnetic丨Clear丨Explanation</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Australia) <br />Fluent丨Universal</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Australia) <br />Composed丨Explanation</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Australia) <br />Energetic丨Marketing</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Australia) <br />Gentle丨Universal</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-          <li>
-          <div className='voiceOverPpup'>
-        <div className='voiceOverInpt'>
-        <div className='flgTxt' variant="primary"><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>English (Australia) <br />Gentle丨Universal</span></div> 
-        <PlayCircle size={24} className='arrowLftRgt' /> 
-        </div>  
-            </div> 
-          </li>
-        </ul> 
-        </div>
-      </Tab>
-      <Tab eventKey="custom" title="Custom">
-      <div className='customvoiceDiv'>
-        <form action="">
-            <label htmlFor="">Drag & Drop <span>Or</span> Browse</label>
-            <input type="file"  />
-        </form>
-      </div>
-      </Tab>
-    </Tabs>
-            </div>
-        </Modal.Body>
-        <Modal.Footer className='modlFtrDiv'>
-          <Button onClick={props.onHide} className='button green btn-login-signup cancleBtn'>Cancle</Button>
-          <Button onClick={props.onHide} className='button green btn-login-signup'>OK</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
+
 export default CreatelandscapeText;
