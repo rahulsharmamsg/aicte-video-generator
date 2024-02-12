@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
@@ -28,7 +28,9 @@ import zIndex from '@mui/material/styles/zIndex';
 import CanvasEditor from '../DesignEditor/Canvas/Canvas.tsx'
 import Footer from "../DesignEditor/Footer/Footer.tsx"
 
-import  useEditor  from "../hooks/useEditorType.tsx"
+import  {useEditor}  from "@layerhub-io/react"
+import  useDesignEditorContext  from "../hooks/useDesignEditorContext.ts"
+import Toolbox from '../DesignEditor/Toolbox.tsx';
 
 
 function CreatelandscapeVideo() {
@@ -39,6 +41,13 @@ function CreatelandscapeVideo() {
   const[AItextcontent,setAITextcontent]=useState("")
   const[GenerateScriptcnt,setGenerateScriptcnt]=useState("")
   const [showContent, setShowContent] = useState('');
+
+  const selectedEditor = "VIDEO";
+  const { setEditorType } = useDesignEditorContext()
+
+  useEffect(() => {
+    setEditorType(selectedEditor)
+  }, [selectedEditor, setEditorType])
 
   const editor = useEditor()
 
@@ -423,6 +432,8 @@ function CreatelandscapeVideo() {
         <div className="dashBrdRgt">
             <div className="">
            <div className="" >
+            {/* <Toolbox /> */}
+
             <CanvasEditor />
             </div>
             <div className="audioplayerDiv">

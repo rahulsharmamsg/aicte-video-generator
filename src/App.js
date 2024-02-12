@@ -2,7 +2,7 @@ import "./App.css";
 import React, {useState} from 'react';
 import RoutingPage from "./RoutingPage";
 import { AppContext } from "./context.js";
-import { Provider } from "react-redux";
+import Provider from "./Provider.tsx";
 import store from "./store/store.jsx";
 
 
@@ -12,7 +12,7 @@ function App() {
 
 
   return (
-    <Provider store={store}>
+    <Provider>
       <div className="App">
         <AppContext.Provider value={{ fieldName,setFieldName,videoData,setVideoData}}>
           <RoutingPage />
