@@ -1,5 +1,3 @@
-import React from "react";
-
 function TextColor({ size, color = "#000000" }: { size: number; color: string }) {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>

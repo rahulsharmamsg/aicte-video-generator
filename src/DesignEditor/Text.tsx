@@ -1,5 +1,7 @@
 import React from "react"
-import { useActiveObject, useEditor } from "@layerhub-io/react"
+// import { useActiveObject, useEditor } from "@layerhub-io/react"
+import { useActiveObject } from "@layerhub-io/react"
+import { useEditor } from "@layerhub-io/react"
 // import getSelectionType from "~/utils/get-selection-type"
 import { Input } from "baseui/input"
 import { Block } from "baseui/block"

@@ -95,6 +95,21 @@ function GenerateScript({hidePopup,setShowContent}) {
                 </div>
                 </div>
                 </div>
+                <div className='col-12 newPopCntOne'>
+            <div className='row'>
+                <div className='col-3 newpopCntIn'>
+                <p>Voice Tone</p>
+                </div>
+                <div className='col-9 newpopCntIn'>
+                    <ul>
+                        <li>Angry</li>
+                        <li>Light</li>
+                        <li>Heavy</li>
+                        <li>Motivational</li>
+                    </ul>
+                </div>
+                </div>
+                </div>
                 <div className='btmBtmDiv'>
                 <button className='btn button contBtn' >Continue</button>
                 <button className='btn button edtPrmpt' >Edit Prompt</button>

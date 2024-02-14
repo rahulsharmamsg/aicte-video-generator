@@ -6,12 +6,12 @@ import { ILayer } from "@layerhub-io/types"
 import { StatefulPopover, PLACEMENT } from "baseui/popover"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
 import { Button, SIZE, KIND } from "baseui/button"
-import OpacityIcon from "~/components/Icons/Opacity."
+import OpacityIcon from "../components/Icons/Opacity..tsx"
 
 export default function () {
   const editor = useEditor()
   const [state, setState] = React.useState({ opacity: 1 })
-  const activeObject = useActiveObject() as Required<ILayer>
+  const activeObject = useActiveObject()
 
   React.useEffect(() => {
     if (activeObject) {
@@ -20,7 +20,7 @@ export default function () {
   }, [activeObject])
 
   const onChange = React.useCallback(
-    (value: number) => {
+    (value) => {
       setState({ opacity: value })
       editor.objects.update({ opacity: value / 100 })
     },
