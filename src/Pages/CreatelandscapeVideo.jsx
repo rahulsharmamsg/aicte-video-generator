@@ -34,9 +34,7 @@ function CreatelandscapeVideo() {
   const[AItextcontent,setAITextcontent]=useState("")
   const[GenerateScriptcnt,setGenerateScriptcnt]=useState("")
   const [showContent, setShowContent] = useState('');
-
-
-
+  const [getLanguageCode,seLanguageCode] = useState("");
 
  
  
@@ -416,7 +414,7 @@ function CreatelandscapeVideo() {
             </div>
          
         </div>
-        {text?<Popup hidePopup={closePopup}/>:null}    
+        {text?<Popup hidePopup={closePopup} language={getLanguageCode}/>:null}    
         {scriptText?<GenerateScript hidePopup={closePopupScrpt} setShowContent={setShowContent} />:null}    
             {textAi?<AiTranslation hidePopup={closePopupAi}/>:null}  
         <div className="dashBrdLft dashBrdLftRgt">
@@ -470,6 +468,7 @@ function CreatelandscapeVideo() {
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        seLanguageCode={seLanguageCode}
       />
     </>
   );

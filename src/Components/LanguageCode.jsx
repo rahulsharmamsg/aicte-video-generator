@@ -6,14 +6,18 @@ import Tabs from 'react-bootstrap/Tabs';
 import flagInd from '../assets/images/flag/ind.jpg';
 import LanguageVoice from "../../src/languageVoice/LanguageVoiceCode.json"
 import { PaperPlaneRight, Password,FileText, FileVideo, FolderNotchPlus, Chalkboard, User, SelectionBackground, TextAa, SmileySticker, Headphones, DownloadSimple, MagnifyingGlass, TextT, ArrowsClockwise, ClockClockwise, Headset, SelectionPlus, Translate, ArrowsLeftRight, PlayCircle} from "phosphor-react";
-const MyVerticallyCenteredModal = (props)=>{
-    
-    const [getLanguageCode,seLanguageCode] = useState("");
+import styled from "styled-components";
 
+
+
+const MyVerticallyCenteredModal = (props)=>{
+    const [getEnable,setEnable] = useState("");
    
-    const selectLanguage = (lcode)=>{
-        seLanguageCode(lcode);
+    const selectLanguage = (lcode,index)=>{
+        props.seLanguageCode(lcode);
+        setEnable(index)
     }
+
     return (
         <>
         
@@ -42,8 +46,8 @@ const MyVerticallyCenteredModal = (props)=>{
   
   <li key={i}>
             <div className='voiceOverPpup'>
-          <div className='voiceOverInpt'>
-          <div className='flgTxt' variant="primary"  onClick={(e)=>selectLanguage(res[0])}><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>{res[1]}</span></div> 
+          <div className='voiceOverInpt' style={{ backgroundColor: getEnable === i ? '#4cde8c' : '' }}>
+          <div className='flgTxt' variant="primary"  onClick={(e)=>selectLanguage(res[0],i)}  ><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>{res[1]}</span></div> 
           <PlayCircle size={24} className='arrowLftRgt' /> 
           </div>  
               </div> 

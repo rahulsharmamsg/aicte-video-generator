@@ -1,11 +1,32 @@
 import React, { useState } from 'react'
 import Speech from 'react-speech';
-
+import axios from 'axios';
 function Popup({hidePopup,language}) {
 
     const [getVideoScript,setVideoScript] = useState("");
 const reWrite = ()=>{
     setVideoScript("");
+}
+const shortenText = async()=>{
+    try {
+        const data = {text:getVideoScript}
+        console.log(data)
+        const response = await axios.post("http://localhost:8000/chatgbt", data, {
+            headers: {
+              "Content-Type": "application/json",
+            }, 
+            body: JSON.stringify({
+                model: 'text-davinci-003', // You can use a different model if needed
+                prompt: getVideoScript,
+                max_tokens: 30 // You can adjust the number of tokens to control the length of the shortened text
+              })      
+          });
+          
+      // Extract and set the shortened text from the API response
+        console.log(response,'chatgbt response')
+    } catch (error) {
+        console.log(error);
+    }
 }
   return (
     <div className='popupOutline'>
@@ -21,7 +42,7 @@ const reWrite = ()=>{
                     <div className='col-3 popupRgtLnk'>
                     <h2>Smart Optimization</h2>
                     <ul>
-                        <li>Shorten</li>
+                        <li onClick={shortenText}>Shorten</li>
                         <li>Expand</li>
                         <li>Professional</li>
                         <li>Engaging</li>
