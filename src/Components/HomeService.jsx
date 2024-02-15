@@ -20,12 +20,12 @@ function HomeServices() {
         <div className="container">
             <div className="row">
               
-                <div className="col-6 hmSrvcSecR">
+            <div className="col-6 hmSrvcSecR">
                     <div className="row">
                     <div className="col-6 hmSrvcSecRL">
                         <div className="col-12 hmSrvcSecR_1">
                             <div className="hmSrvcSecR_1In">
-                              <h4>  Multi-National AI Avatar</h4>
+                              <h4>  Multi-Language AI Avatar</h4>
                                 <img src={MultiNational} alt="" />
                                 <p>Where It All Begins</p>
                             </div>
@@ -42,20 +42,20 @@ function HomeServices() {
                     <div className="col-12 hmSrvcSecR_1 rgt1">
                             <div className="hmSrvcSecR_1In">
                             <img src={RoyaltyIcn} alt="" />
-                            <h4> Royalty-Free Assets & Templates</h4>
-                            <p>Where It All Begins</p>
+                            <h4> Create a Book, Craft AI Narratives</h4>
+                            <p>AI Avatar.</p>
                             </div>
                         </div>
                         <div className="col-12 hmSrvcSecR_1 rgt2 crsPltfrm">
                             <div className="hmSrvcSecR_1In">
-                            <h4> Cross-Platform Support</h4>
+                            <h4> Course Creation, Reinvented</h4>
                             <p>Where It All Begins</p>
                             <img src={CrossPltfrm} alt="" />
                             </div>
                         </div>
                         <div className="col-12 hmSrvcSecR_1  rgt3">
                             <div className="hmSrvcSecR_1In">
-                            <h4> Royalty-Free Assets & Templates</h4>
+                            <h4> From Q&A to Quizzes</h4>
                             <p>Where It All Begins</p>
                             <img src={RoyaltyIcn} alt="" />
                             </div>
