@@ -14,6 +14,11 @@ import Tabs from 'react-bootstrap/Tabs';
 import Popup from '../Components/Popup';
 import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
+import CanvasEditor from '../DesignEditor/Canvas/Canvas.tsx'
+import Footer from "../DesignEditor/Footer/Footer.tsx"
+import { useEditor } from "@layerhub-io/react"
+
+
 
 function CreateBackground() {
   const[text,setText]=useState(false)
@@ -27,6 +32,22 @@ function CreateBackground() {
     });
   };
   scrollToTop();
+
+  const editor = useEditor()
+ 
+
+  const addObject = React.useCallback(
+    (url) => {
+      if (editor) {
+        const options = {
+          type: "StaticVector",
+          src: url,
+        }
+        editor.objects.add(options)
+      }
+    },
+    [editor]
+  )
 
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -72,7 +93,7 @@ function CreateBackground() {
       <Tab eventKey="home" title="Basic">
         <div className="femaleCntDiv videoBackgroundLst">
             <ul>
-                <li><img src={bac01} alt="" /></li>
+                <li><img src={bac01} onClick={()=>{addObject(bac01)}} alt="" /></li>
                 <li><img src={bac02} alt="" /></li>
                 <li><img src={bac03} alt="" /></li>
                 <li><img src={bac04} alt="" /></li>
@@ -147,11 +168,9 @@ function CreateBackground() {
         </div>
         <div className="dashBrdRgt">
             <div className="dashBrdRgtIn">
-           <div className="avatarVideoDiv">
-            <img src={aiVidoe1} alt="" />
-            </div>
+            <CanvasEditor />
             <div className="audioplayerDiv">
-            <audio src="path/to/your/audio/file.mp3" controls={true} autoPlay={false} />
+            <Footer />
             </div>
 
             </div>

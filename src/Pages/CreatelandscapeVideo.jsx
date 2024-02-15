@@ -3,19 +3,23 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 import { PaperPlaneRight, Password,FileText, FileVideo, FolderNotchPlus, Chalkboard, User, SelectionBackground, TextAa, SmileySticker, Headphones, DownloadSimple, MagnifyingGlass, TextT, ArrowsClockwise, ClockClockwise, Headset, SelectionPlus, Translate, ArrowsLeftRight, PlayCircle} from "phosphor-react";
-import fe01 from '../assets/images/fe01.jpeg';
-import fe02 from '../assets/images/fe02.jpeg';
-import fe03 from '../assets/images/fe03.jpeg';
-import fe04 from '../assets/images/fe04.jpeg';
-import ma01 from '../assets/images/ma01.jpeg';
-import ma02 from '../assets/images/ma02.jpeg';
-import ma03 from '../assets/images/ma03.jpeg';
-import ma04 from '../assets/images/ma04.jpeg';
+import fe01 from '../assets/images/fe01.png';
+import fe02 from '../assets/images/fe02.png';
+import fe03 from '../assets/images/fe03.png';
+import fe04 from '../assets/images/fe04.png';
+import fe05 from '../assets/images/fe05.png';
+import fe06 from '../assets/images/fe06.png';
+import fe07 from '../assets/images/fe07.png';
+import ma01 from '../assets/images/ma01.png';
+import ma02 from '../assets/images/ma02.png';
+import ma03 from '../assets/images/ma03.png';
+import ma04 from '../assets/images/ma04.png';
+import ma05 from '../assets/images/ma05.png';
 import po01 from '../assets/images/po01.jpeg';
 import po02 from '../assets/images/po02.jpeg';
-import po03 from '../assets/images/po03.jpeg';
+import po03 from '../assets/images/po01.png';
 import po04 from '../assets/images/po04.jpeg';
-import po05 from '../assets/images/po05.jpeg';
+import po05 from '../assets/images/po02.png';
 import aiVidoe1 from '../assets/images/avatarVideoBg.jpg';
 import flagInd from '../assets/images/flag/ind.jpg';
 import Tab from 'react-bootstrap/Tab';
@@ -356,22 +360,22 @@ function CreatelandscapeVideo() {
       <Tab eventKey="home" title="Female">
         <div className="femaleCntDiv">
             <ul>
-                <li><img src={fe01} alt=""  onClick={() => addObject(fe01)} />
+                <li><img src={fe07} alt=""  onClick={() => addObject(fe07)} />
                 <div className="avatarsName">Avatar - One</div>
                 </li>
-                <li><img src={fe02} alt="" />
+                <li><img src={fe06} onClick={() => addObject(fe06)} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={fe03} alt="" />
+                <li><img src={fe05} onClick={() => addObject(fe05)} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
-                <li><img src={fe04} alt="" />
+                <li><img src={fe04} onClick={() => addObject(fe04)} alt="" />
                 <div className="avatarsName">Avatar - Four</div>
                 </li>
-                <li><img src={fe02} alt="" />
+                <li><img src={fe03} onClick={() => addObject(fe03)} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={fe03} alt="" />
+                <li><img src={fe02} onClick={() => addObject(fe02)} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
             </ul>
@@ -380,22 +384,22 @@ function CreatelandscapeVideo() {
       <Tab eventKey="profile" title="Male">
       <div className="femaleCntDiv maleDivCnt">
             <ul>
-                <li><img src={ma01} alt="" />
+                <li><img src={ma01} onClick={() => addObject(ma01)} alt="" />
                 <div className="avatarsName">Avatar - One</div>
                 </li>
-                <li><img src={ma02} alt="" />
+                <li><img src={ma02} onClick={() => addObject(ma02)} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={ma03} alt="" />
+                <li><img src={ma03} onClick={() => addObject(ma03)} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
-                <li><img src={ma04} alt="" />
+                <li><img src={ma04} onClick={() => addObject(ma04)} alt="" />
                 <div className="avatarsName">Avatar - Four</div>
                 </li>
-                <li><img src={ma02} alt="" />
+                <li><img src={ma05} onClick={() => addObject(ma05)} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={ma03} alt="" />
+                <li><img src={ma01} onClick={() => addObject(ma01)} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
             </ul>
@@ -419,7 +423,7 @@ function CreatelandscapeVideo() {
                 <li><img src={po05} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={po01} alt="" />
+                <li><img src={po02} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
             </ul>
