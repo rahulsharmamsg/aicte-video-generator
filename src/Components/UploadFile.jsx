@@ -9,6 +9,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context.js";
 import ReactPlayer from "react-player";
+import { useEditor } from "@layerhub-io/react"
+import useSetIsSidebarOpen from "../hooks/useSetIsSidebarOpen.tsx"
+import { nanoid } from "nanoid"
+import { captureFrame, loadVideoResource } from "../utils/video.ts"
 
 function UploadFile() {
   const [show, setShow] = useState(false);
@@ -143,6 +147,8 @@ fetch(videourl)
     .catch(err=>{console.log(err)})
     
   };
+
+ 
   function checkVideoDuration(file) {
     var video = document.createElement("video");
     video.preload = "metadata";
@@ -158,6 +164,58 @@ fetch(videourl)
       }
     };
     video.src = URL.createObjectURL(file);
+  }
+
+
+  const inputFileRef = React.useRef(null)
+  const [uploads, setUploads] = React.useState([])
+  const editor = useEditor()
+
+
+  const handleDropFiles = async (files) => {
+    try {
+      const file = files[0]
+  
+      const base64 = (await toBase64(file))
+      const video = await loadVideoResource(base64)
+      
+      if (!video) {
+        console.error("Failed to load video resource.")
+        return
+      }
+  
+      const frame = await captureFrame(video)
+  
+      const type = file.type.includes("video") ? "StaticVideo" : "StaticImage"
+  
+      const upload = {
+        id: nanoid(),
+        src: base64,
+        preview: frame,
+        type: type,
+      }
+  
+      setUploads([...uploads, upload])
+    } catch (error) {
+      console.error("Error processing file:", error)
+    }
+  }
+  
+
+  const handleInputFileRefClick = (e) => {
+    e.preventDefault()
+    inputFileRef.current?.click()
+
+    handleFileInput(e);
+  }
+
+  const handleFileInput = (e) => {
+    handleDropFiles(e.target.files)
+  }
+
+  const addImageToCanvas = (props) => {
+    console.log(props,"props")
+    editor.objects.add(props)
   }
 
   const createAudio = (file) =>{
@@ -268,16 +326,21 @@ fetch(videourl)
       mediaRecorderRef.current.stop();
       setIsRecording(false);
       const blob = new Blob(recordedChunks, { type: 'video/mp4' });
-      // const audioBlob = new Blob(recordedChunks, { type: 'audio/wav' });
-      const url = URL.createObjectURL(blob);
-      // setAud(audioBlob)
-      // setVideourl(url)
-      // setShow(false)
-      // const file = new File([blob],'video')
-      // createAudio(file)
-    //   setVideourl(URL.createObjectURL(file));
-    //   setVideo(file)
-    //   checkVideoDuration(file);
+
+      // Convert the Blob to base64
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64Data = reader.result;
+        console.log('Base64 Data:', base64Data);
+
+        // Create a data URL
+        const dataURL = `data:video/mp4;base64,${base64Data}`;
+        console.log('Data URL:', dataURL);
+
+        // Now 'dataURL' contains the data URL for the recorded video
+        // You can use 'dataURL' as needed (e.g., display the video or submit it)
+      };
+      reader.readAsDataURL(blob);
     }
   };
 
@@ -285,6 +348,7 @@ fetch(videourl)
     const blob = new Blob(recordedChunks, { type: 'video/mp4' });
     // const blob2 = new Blob(recordedChunks, { type: 'audio/wav' });
     const url = URL.createObjectURL(blob);
+    console.log(url,"url")
     // const a = document.createElement('a');
     // a.style.display = 'none';
     // a.href = url;
@@ -297,6 +361,15 @@ fetch(videourl)
     // // a.click();
     // window.URL.revokeObjectURL(url);
     // document.body.removeChild(a);
+    const type = "StaticVideo";
+    const upload = {
+      id: nanoid(),
+      src: url,
+      preview: url,
+      type: type,
+    };
+
+    setUploads([...uploads, upload]);
     const file = new File([blob],'video')
       createAudio(file)
       setVideourl(URL.createObjectURL(file));
@@ -344,14 +417,15 @@ fetch(videourl)
                             </div>
                         </div>
                     </>:<>
-                    <div style={{color:'#ff7b56', margin:"30px 0 10px"}}>Note: You can record or Upload a video of maximum duration 30 seconds.</div>
+                    
                     <div className="d-flex justify-content-between">
               <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div className="uploadFile useBorder">
                   <div className="upload-btn-wrapper">
                     <a
                       className="button orange btn"
-                      href="/face-analyser/PassportPhotoMaker"
+                      onClick={(e)=>handleInputFileRefClick(e)}
+                      
                       style={{
                         fontSize: 26,
                         borderRadius: 10,
@@ -399,12 +473,13 @@ fetch(videourl)
                     <input
                       type="file"
                       name="myfile"
-                      onChange={(e) => handleFile(e)}
+                      
+                      onChange={handleFileInput} id="file" ref={inputFileRef} style={{ display: "none" }}
                     />
                   </div>
                   
                 </div>
-                <span>Supported 30sec video only</span>
+                
               </div>
               <div className="or">or</div>
               <div className="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -463,7 +538,7 @@ fetch(videourl)
               </div>
             </div>
 
-            {videourl && (
+            {videourl.length>1 && (
               <div className="mt-4">
                 {/* <ReactPlayer url={[
      {src: videourl.videoFileURL, type: 'video/mp4'}
@@ -481,7 +556,22 @@ fetch(videourl)
                 </div>
               </div>
             )}
-            <div className="mt-4">
+            {uploads.map((upload) => (
+                <div
+                  key={upload.id}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => addImageToCanvas(upload)}
+                >
+                  <div>
+                    <img width="100%" src={upload.preview ? upload.preview : upload.url} alt="preview" />
+                  </div>
+                </div>
+              ))}
+            {/* <div className="mt-4">
               {
                 blobLoading?
                 <div className="loader">
@@ -496,7 +586,8 @@ fetch(videourl)
               </Button>
               }
               
-            </div></>}
+            </div> */}
+            </>}
          
           </div>
         </section>
@@ -506,3 +597,12 @@ fetch(videourl)
 }
 
 export default UploadFile;
+
+
+const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = (error) => reject(error)
+  })

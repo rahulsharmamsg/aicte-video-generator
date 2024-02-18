@@ -25,26 +25,36 @@ export default function Import() {
   console.log("uplodas", uploads    )
 
   const handleDropFiles = async (files: FileList) => {
-    const file = files[0]
-
-    const base64 = (await toBase64(file)) as string
-    const video = await loadVideoResource(base64)
-    const frame = await captureFrame(video)
-
-    const type = file.type.includes("video") ? "StaticVideo" : "StaticImage"
-
-    const upload = {
-      id: nanoid(),
-      src: base64,
-      preview: frame,
-      type: type,
+    try {
+      const file = files[0]
+  
+      const base64 = (await toBase64(file)) as string
+      const video = await loadVideoResource(base64)
+      
+      if (!video) {
+        console.error("Failed to load video resource.")
+        return
+      }
+  
+      const frame = await captureFrame(video)
+  
+      const type = file.type.includes("video") ? "StaticVideo" : "StaticImage"
+  
+      const upload = {
+        id: nanoid(),
+        src: base64,
+        preview: frame,
+        type: type,
+      }
+  
+      setUploads([...uploads, upload])
+    } catch (error) {
+      console.error("Error processing file:", error)
     }
-
-    setUploads([...uploads, upload])
-    console.log("uploads", uploads)
   }
+  
 
-  const handleInputFileRefClick = (e) => {
+  const handleInputFileRefClick = (e:any) => {
     e.preventDefault()
 
     inputFileRef.current?.click()
