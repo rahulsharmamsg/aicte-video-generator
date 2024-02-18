@@ -17,6 +17,8 @@ import BottomMenu from './BottomMenu';
 import CanvasEditor from '../DesignEditor/Canvas/Canvas.tsx'
 import Footer from "../DesignEditor/Footer/Footer.tsx"
 import { useEditor } from "@layerhub-io/react"
+import { nanoid } from "nanoid"
+import Background from '../Components/Background.tsx';
 
 
 
@@ -37,13 +39,17 @@ function CreateBackground() {
  
 
   const addObject = React.useCallback(
+    
     (url) => {
       if (editor) {
-        const options = {
-          type: "StaticVector",
+        console.log("url", url)
+        const upload = {
+          id: nanoid(),
           src: url,
+          preview: url,
+          type: "StaticVideo",
         }
-        editor.objects.add(options)
+        editor.objects.add(upload)
       }
     },
     [editor]
@@ -84,85 +90,7 @@ function CreateBackground() {
                 </div>
             </form>
             <div className="avatarsTab">
-            <Tabs
-      defaultActiveKey="home"
-      id="fill-tab-example"
-      className="mb-3"
-      fill
-    >
-      <Tab eventKey="home" title="Basic">
-        <div className="femaleCntDiv videoBackgroundLst">
-            <ul>
-                <li><img src={bac01} onClick={()=>{addObject(bac01)}} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-            </ul>
-        </div>
-      </Tab>
-      <Tab eventKey="profile" title="Simple">
-      <div className="femaleCntDiv maleDivCnt">
-      <div className="femaleCntDiv videoBackgroundLst">
-            <ul>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-               
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-            </ul>
-        </div>
-        </div>
-      </Tab>
-      <Tab eventKey="longer-tab" title="Lifestyle">
-      <div className="femaleCntDiv educatCantDiv">
-      <div className="femaleCntDiv videoBackgroundLst">
-            <ul>
-            <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                <li><img src={bac03} alt="" /></li>
-                <li><img src={bac04} alt="" /></li>
-                <li><img src={bac01} alt="" /></li>
-                <li><img src={bac02} alt="" /></li>
-                
-            </ul>
-        </div>
-        </div>
-      </Tab>
-    </Tabs>
+            <Background />
             </div>
             </div>
         </div>
