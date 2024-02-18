@@ -15,9 +15,9 @@ import ma02 from '../assets/images/ma02.png';
 import ma03 from '../assets/images/ma03.png';
 import ma04 from '../assets/images/ma04.png';
 import ma05 from '../assets/images/ma05.png';
-import po01 from '../assets/images/po01.jpeg';
-import po02 from '../assets/images/po02.jpeg';
-import po03 from '../assets/images/po01.png';
+import pro01 from '../assets/images/pro01.png';
+import pro02 from '../assets/images/pro02.png';
+import pro03 from '../assets/images/pro03.png';
 import po04 from '../assets/images/po04.jpeg';
 import po05 from '../assets/images/po02.png';
 import aiVidoe1 from '../assets/images/avatarVideoBg.jpg';
@@ -35,6 +35,8 @@ import Footer from "../DesignEditor/Footer/Footer.tsx"
 import  {useEditor}  from "@layerhub-io/react"
 import  useDesignEditorContext  from "../hooks/useDesignEditorContext.ts"
 import Toolbox from '../DesignEditor/Toolbox.tsx';
+import UploadFile from '../Components/UploadFile.jsx';
+import Import from '../Components/Import.tsx';
 
 
 function CreatelandscapeVideo() {
@@ -345,10 +347,7 @@ function CreatelandscapeVideo() {
            <div className="dashBrdLftInScndLayer">
             <h3 className='scndryHdng'>Avatars</h3>
             <form action="">
-                <div className="srchAiAvatar">
-                <input type="text" placeholder="Search for AI Avatars" className="srchAiAvatars" />
-                <MagnifyingGlass className="maginifyIcn" size={22} />
-                </div>
+               <Import />
             </form>
             <div className="avatarsTab">
             <Tabs
@@ -408,25 +407,30 @@ function CreatelandscapeVideo() {
       <Tab eventKey="longer-tab" title="Education">
       <div className="femaleCntDiv educatCantDiv">
             <ul>
-                <li><img src={po01} alt="" />
+                <li><img src={pro01} onClick={() => addObject(pro01)} alt="" />
                 <div className="avatarsName">Avatar - One</div>
                 </li>
-                <li><img src={po02} alt="" />
+                <li><img src={pro02} onClick={() => addObject(pro02)} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={po03} alt="" />
+                <li><img src={pro03} onClick={() => addObject(pro03)} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
-                <li><img src={po04} alt="" />
+                <li><img src={pro03} onClick={() => addObject(pro03)} alt="" />
                 <div className="avatarsName">Avatar - Four</div>
                 </li>
-                <li><img src={po05} alt="" />
+                <li><img src={po05} onClick={() => addObject(po05)} alt="" />
                 <div className="avatarsName">Avatar - Two</div>
                 </li>
-                <li><img src={po02} alt="" />
+                <li><img src={pro02} alt="" />
                 <div className="avatarsName">Avatar - Three</div>
                 </li>
             </ul>
+        </div>
+      </Tab>
+      <Tab eventKey="video" title="Upload Your Video">
+      <div className="femaleCntDiv educatCantDiv">
+            <UploadFile />
         </div>
       </Tab>
     </Tabs>

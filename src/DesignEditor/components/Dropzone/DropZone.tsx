@@ -83,4 +83,4 @@ const DropZone = ({ children, handleDropFiles }: Props) => {
   )
 }
 
-export default DropZone
+export default DropZone;
