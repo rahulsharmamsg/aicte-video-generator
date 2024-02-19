@@ -43,6 +43,7 @@ import UploadFile from '../Components/UploadFile.jsx';
 import Import from '../Components/Import.tsx';
 import { Upload} from "phosphor-react";
 import Background from '../Components/Background.tsx';
+import Text from '../Components/Text.tsx';
 
 
 function CreatelandscapeVideo() {
@@ -354,9 +355,7 @@ function CreatelandscapeVideo() {
           activePanel==="avatars" && <div className="dashBrdLft">
           <div className="dashBrdLftInScndLayer">
            <h3 className='scndryHdng'>Avatars</h3>
-           <form action="">
-              <Import />
-           </form>
+           
            <div className="avatarsTab">
            <Tabs
      defaultActiveKey="profile"
@@ -506,6 +505,36 @@ function CreatelandscapeVideo() {
            </div>
            </div>
        </div>
+        }
+
+        {
+          activePanel==="text" &&
+          <div className="dashBrdLft">
+          <div className="dashBrdLftInScndLayer">
+           
+           <div className="avatarsTab">
+           <Text />
+           </div>
+           </div>
+       </div>
+
+        }
+
+        {
+          activePanel==="import" &&
+          <div className="dashBrdLft">
+          <div className="dashBrdLftInScndLayer">
+           <h3 className='scndryHdng'>Import</h3>
+           <form action="">
+              <Import />
+           </form>
+           <div className="avatarsTab">
+          
+           </div>
+           </div>
+           </div>
+         
+
         }
         
         <div className="dashBrdRgt">

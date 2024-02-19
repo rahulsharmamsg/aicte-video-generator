@@ -19,13 +19,13 @@ function BottomMenu({setActivePanel}) {
   return (
     <>
     <ul className="dashbrdMenu">
-    <li><Link className={activeLink === 'landscapeVideo' ? 'dashActive' : ''} onClick={() => setActivePanel("avatars")} to="/dashboard/landscapeVideo"><User size={32}  className="menuIcn"/> Avatars</Link></li>
-    <li><Link className={activeLink === 'aitemplate' ? 'dashActive' : ''} onClick={() => setActivePanel("template")} ><FileVideo size={32} className="menuIcn" /> Template</Link></li>
-    <li><Link className={activeLink === 'aibackground' ? 'dashActive' : ''} onClick={() => setActivePanel("background")} ><SelectionBackground size={32}  className="menuIcn"/> Background</Link></li>
-    <li><Link className={activeLink === 'landscapeText' ? 'dashActive' : ''} onClick={() => setActivePanel("text")} ><TextAa size={32}  className="menuIcn"/> Text</Link></li>
-    <li><Link className={activeLink === 'aisticker' ? 'dashActive' : ''} onClick={() =>setActiveLink("sticker")} ><SmileySticker size={32}  className="menuIcn"/> Sticker</Link></li>
-    <li><Link className={activeLink === 'aimusic' ? 'dashActive' : ''} onClick={() => setActiveLink("music")} ><Headphones size={32}  className="menuIcn"/> Music</Link></li>
-    <li><Link onClick={() => setActiveLink("import")} ><DownloadSimple size={32}  className="menuIcn"/> Import</Link></li>
+    <li><Link className={activeLink === 'landscapeVideo' ? 'dashActive' : ''} onClick={() => {handleLinkClick('landscapeVideo');setActivePanel("avatars")}} ><User size={32}  className="menuIcn"/> Avatars</Link></li>
+    <li><Link className={activeLink === 'aitemplate' ? 'dashActive' : ''} onClick={() => {handleLinkClick('aitemplate');setActivePanel("template")}} ><FileVideo size={32} className="menuIcn" /> Template</Link></li>
+    <li><Link className={activeLink === 'aibackground' ? 'dashActive' : ''} onClick={() => {handleLinkClick('aibackground');setActivePanel("background")}} ><SelectionBackground size={32}  className="menuIcn"/> Background</Link></li>
+    <li><Link className={activeLink === 'landscapeText' ? 'dashActive' : ''} onClick={() => {handleLinkClick('landscapeText');setActivePanel("text")}} ><TextAa size={32}  className="menuIcn"/> Text</Link></li>
+    <li><Link className={activeLink === 'aisticker' ? 'dashActive' : ''} onClick={() =>{handleLinkClick('aisticker');setActiveLink("sticker")}} ><SmileySticker size={32}  className="menuIcn"/> Sticker</Link></li>
+    <li><Link className={activeLink === 'aimusic' ? 'dashActive' : ''} onClick={() => {handleLinkClick('aimusic');setActiveLink("music")}} ><Headphones size={32}  className="menuIcn"/> Music</Link></li>
+    <li><Link className={activeLink === 'import' ? 'dashActive' : ''} onClick={() => {handleLinkClick('import');setActivePanel("import")}} ><DownloadSimple size={32}  className="menuIcn"/> Import</Link></li>
 
 </ul>
     </>
