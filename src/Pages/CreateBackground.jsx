@@ -19,6 +19,8 @@ import Footer from "../DesignEditor/Footer/Footer.tsx"
 import { useEditor } from "@layerhub-io/react"
 import { nanoid } from "nanoid"
 import Background from '../Components/Background.tsx';
+import UploadFile from '../Components/UploadFile.jsx';
+import Import from '../Components/Import.tsx';
 
 
 

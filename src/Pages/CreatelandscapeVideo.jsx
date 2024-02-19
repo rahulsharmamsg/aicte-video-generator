@@ -31,12 +31,18 @@ import GenerateScript from '../Components/GenerateScript';
 import zIndex from '@mui/material/styles/zIndex';
 import CanvasEditor from '../DesignEditor/Canvas/Canvas.tsx'
 import Footer from "../DesignEditor/Footer/Footer.tsx"
+import tem01 from '../assets/images/tem01.jpg';
+import tem02 from '../assets/images/tem02.jpg';
+import tem03 from '../assets/images/tem03.jpg';
+import tem04 from '../assets/images/tem04.jpg';
 
 import  {useEditor}  from "@layerhub-io/react"
 import  useDesignEditorContext  from "../hooks/useDesignEditorContext.ts"
 import Toolbox from '../DesignEditor/Toolbox.tsx';
 import UploadFile from '../Components/UploadFile.jsx';
 import Import from '../Components/Import.tsx';
+import { Upload} from "phosphor-react";
+import Background from '../Components/Background.tsx';
 
 
 function CreatelandscapeVideo() {
@@ -47,6 +53,7 @@ function CreatelandscapeVideo() {
   const[AItextcontent,setAITextcontent]=useState("")
   const[GenerateScriptcnt,setGenerateScriptcnt]=useState("")
   const [showContent, setShowContent] = useState('');
+  const [activePanel,setActivePanel]=useState('avatars');
 
   const selectedEditor = "VIDEO";
   const { setEditorType } = useDesignEditorContext()
@@ -343,100 +350,164 @@ function CreatelandscapeVideo() {
         showContent === 'Explore_all' && exploreAllContent
       }
       <section className="dashboardSec createVideoDashbrdSec">
-        <div className="dashBrdLft">
-           <div className="dashBrdLftInScndLayer">
-            <h3 className='scndryHdng'>Avatars</h3>
-            <form action="">
-               <Import />
-            </form>
-            <div className="avatarsTab">
-            <Tabs
-      defaultActiveKey="profile"
-      id="fill-tab-example"
-      className="mb-3"
-      fill
-    >
-      <Tab eventKey="home" title="Female">
-        <div className="femaleCntDiv">
-            <ul>
-                <li><img src={fe07} alt=""  onClick={() => addObject(fe07)} />
-                <div className="avatarsName">Avatar - One</div>
-                </li>
-                <li><img src={fe06} onClick={() => addObject(fe06)} alt="" />
-                <div className="avatarsName">Avatar - Two</div>
-                </li>
-                <li><img src={fe05} onClick={() => addObject(fe05)} alt="" />
-                <div className="avatarsName">Avatar - Three</div>
-                </li>
-                <li><img src={fe04} onClick={() => addObject(fe04)} alt="" />
-                <div className="avatarsName">Avatar - Four</div>
-                </li>
-                <li><img src={fe03} onClick={() => addObject(fe03)} alt="" />
-                <div className="avatarsName">Avatar - Two</div>
-                </li>
-                <li><img src={fe02} onClick={() => addObject(fe02)} alt="" />
-                <div className="avatarsName">Avatar - Three</div>
-                </li>
-            </ul>
-        </div>
-      </Tab>
-      <Tab eventKey="profile" title="Male">
-      <div className="femaleCntDiv maleDivCnt">
-            <ul>
-                <li><img src={ma01} onClick={() => addObject(ma01)} alt="" />
-                <div className="avatarsName">Avatar - One</div>
-                </li>
-                <li><img src={ma02} onClick={() => addObject(ma02)} alt="" />
-                <div className="avatarsName">Avatar - Two</div>
-                </li>
-                <li><img src={ma03} onClick={() => addObject(ma03)} alt="" />
-                <div className="avatarsName">Avatar - Three</div>
-                </li>
-                <li><img src={ma04} onClick={() => addObject(ma04)} alt="" />
-                <div className="avatarsName">Avatar - Four</div>
-                </li>
-                <li><img src={ma05} onClick={() => addObject(ma05)} alt="" />
-                <div className="avatarsName">Avatar - Two</div>
-                </li>
-                <li><img src={ma01} onClick={() => addObject(ma01)} alt="" />
-                <div className="avatarsName">Avatar - Three</div>
-                </li>
-            </ul>
-        </div>
-      </Tab>
-      <Tab eventKey="longer-tab" title="Education">
-      <div className="femaleCntDiv educatCantDiv">
-            <ul>
-                <li><img src={pro01} onClick={() => addObject(pro01)} alt="" />
-                <div className="avatarsName">Avatar - One</div>
-                </li>
-                <li><img src={pro02} onClick={() => addObject(pro02)} alt="" />
-                <div className="avatarsName">Avatar - Two</div>
-                </li>
-                <li><img src={pro03} onClick={() => addObject(pro03)} alt="" />
-                <div className="avatarsName">Avatar - Three</div>
-                </li>
-                <li><img src={pro03} onClick={() => addObject(pro03)} alt="" />
-                <div className="avatarsName">Avatar - Four</div>
-                </li>
-                <li><img src={po05} onClick={() => addObject(po05)} alt="" />
-                <div className="avatarsName">Avatar - Two</div>
-                </li>
-                <li><img src={pro02} alt="" />
-                <div className="avatarsName">Avatar - Three</div>
-                </li>
-            </ul>
-        </div>
-      </Tab>
-      <Tab eventKey="video" title="Upload Your Video">
-      <div className="femaleCntDiv educatCantDiv">
-            <UploadFile />
-        </div>
-      </Tab>
-    </Tabs>
-            </div>
-            </div>
-        </div>
+        {
+          activePanel==="avatars" && <div className="dashBrdLft">
+          <div className="dashBrdLftInScndLayer">
+           <h3 className='scndryHdng'>Avatars</h3>
+           <form action="">
+              <Import />
+           </form>
+           <div className="avatarsTab">
+           <Tabs
+     defaultActiveKey="profile"
+     id="fill-tab-example"
+     className="mb-3"
+     fill
+   >
+     <Tab eventKey="home" title="Female">
+       <div className="femaleCntDiv">
+           <ul>
+               <li><img src={fe07} alt=""  onClick={() => addObject(fe07)} />
+               <div className="avatarsName">Avatar - One</div>
+               </li>
+               <li><img src={fe06} onClick={() => addObject(fe06)} alt="" />
+               <div className="avatarsName">Avatar - Two</div>
+               </li>
+               <li><img src={fe05} onClick={() => addObject(fe05)} alt="" />
+               <div className="avatarsName">Avatar - Three</div>
+               </li>
+               <li><img src={fe04} onClick={() => addObject(fe04)} alt="" />
+               <div className="avatarsName">Avatar - Four</div>
+               </li>
+               <li><img src={fe03} onClick={() => addObject(fe03)} alt="" />
+               <div className="avatarsName">Avatar - Two</div>
+               </li>
+               <li><img src={fe02} onClick={() => addObject(fe02)} alt="" />
+               <div className="avatarsName">Avatar - Three</div>
+               </li>
+           </ul>
+       </div>
+     </Tab>
+     <Tab eventKey="profile" title="Male">
+     <div className="femaleCntDiv maleDivCnt">
+           <ul>
+               <li><img src={ma01} onClick={() => addObject(ma01)} alt="" />
+               <div className="avatarsName">Avatar - One</div>
+               </li>
+               <li><img src={ma02} onClick={() => addObject(ma02)} alt="" />
+               <div className="avatarsName">Avatar - Two</div>
+               </li>
+               <li><img src={ma03} onClick={() => addObject(ma03)} alt="" />
+               <div className="avatarsName">Avatar - Three</div>
+               </li>
+               <li><img src={ma04} onClick={() => addObject(ma04)} alt="" />
+               <div className="avatarsName">Avatar - Four</div>
+               </li>
+               <li><img src={ma05} onClick={() => addObject(ma05)} alt="" />
+               <div className="avatarsName">Avatar - Two</div>
+               </li>
+               <li><img src={ma01} onClick={() => addObject(ma01)} alt="" />
+               <div className="avatarsName">Avatar - Three</div>
+               </li>
+           </ul>
+       </div>
+     </Tab>
+     <Tab eventKey="longer-tab" title="Education">
+     <div className="femaleCntDiv educatCantDiv">
+           <ul>
+               <li><img src={pro01} onClick={() => addObject(pro01)} alt="" />
+               <div className="avatarsName">Avatar - One</div>
+               </li>
+               <li><img src={pro02} onClick={() => addObject(pro02)} alt="" />
+               <div className="avatarsName">Avatar - Two</div>
+               </li>
+               <li><img src={pro03} onClick={() => addObject(pro03)} alt="" />
+               <div className="avatarsName">Avatar - Three</div>
+               </li>
+               <li><img src={pro03} onClick={() => addObject(pro03)} alt="" />
+               <div className="avatarsName">Avatar - Four</div>
+               </li>
+               <li><img src={po05} onClick={() => addObject(po05)} alt="" />
+               <div className="avatarsName">Avatar - Two</div>
+               </li>
+               <li><img src={pro02} alt="" />
+               <div className="avatarsName">Avatar - Three</div>
+               </li>
+           </ul>
+       </div>
+     </Tab>
+     <Tab eventKey="video" title="Upload Your Video">
+     <div className="femaleCntDiv educatCantDiv">
+           <UploadFile />
+       </div>
+     </Tab>
+   </Tabs>
+           </div>
+           </div>
+       </div>
+        }
+        {
+          activePanel==="background" && <div className="dashBrdLft">
+          <div className="dashBrdLftInScndLayer">
+           <h3 className='scndryHdng'>Background</h3>
+           <form action="">
+               <div className="srchAiAvatar">
+               <input type="file" placeholder="Search for AI Avatars" className="srchAiAvatars" />
+               <Upload className="maginifyIcn" size={22} />
+               </div>
+           </form>
+           <div className="avatarsTab">
+           <Background />
+           </div>
+           </div>
+       </div>
+        }
+        {
+          activePanel==="template" &&
+          <div className="dashBrdLft">
+          <div className="dashBrdLftInScndLayer">
+           <h3 className='scndryHdng'>Template</h3>
+           {/* <form action="">
+               <div className="srchAiAvatar">
+               <input type="file" placeholder="Search for AI Avatars" className="srchAiAvatars" />
+               <Upload className="maginifyIcn" size={22} />
+               </div>
+           </form> */}
+           <div className="avatarsTab">
+           <Tabs
+     defaultActiveKey="home"
+     id="fill-tab-example"
+     className="mb-3"
+     fill
+   >
+     <Tab eventKey="home" title="Storyboard Template">
+       <div className="femaleCntDiv aiTemplateDivLst">
+           <ul>
+               <li><img src={tem01} alt="" /></li>
+               <li><img src={tem02} alt="" /></li>
+               <li><img src={tem03} alt="" /></li>
+               <li><img src={tem04} alt="" /></li>
+               <li><img src={tem01} alt="" /></li>
+               <li><img src={tem02} alt="" /></li>
+               <li><img src={tem03} alt="" /></li>
+               <li><img src={tem04} alt="" /></li>
+               <li><img src={tem01} alt="" /></li>
+               <li><img src={tem02} alt="" /></li>
+               <li><img src={tem03} alt="" /></li>
+               <li><img src={tem04} alt="" /></li>
+               <li><img src={tem01} alt="" /></li>
+               <li><img src={tem02} alt="" /></li>
+               <li><img src={tem03} alt="" /></li>
+               <li><img src={tem04} alt="" /></li>
+           </ul>
+       </div>
+     </Tab>
+     </Tabs>
+           </div>
+           </div>
+       </div>
+        }
+        
         <div className="dashBrdRgt">
             <div className="">
            <div className="" >
@@ -499,7 +570,7 @@ function CreatelandscapeVideo() {
             </div>
         </div>
         <div className="dashBrdLftIn ftrBtmFooter">
-        <BottomMenu />
+        <BottomMenu setActivePanel={setActivePanel}/>
         </div>
       </section>
       <MyVerticallyCenteredModal

@@ -98,14 +98,16 @@ function GenerateScript({hidePopup,setShowContent}) {
                 <div className='col-12 newPopCntOne'>
             <div className='row'>
                 <div className='col-3 newpopCntIn'>
-                <p>Voice Tone</p>
+                <p>Voice Toning</p>
                 </div>
                 <div className='col-9 newpopCntIn'>
                     <ul>
                         <li>Angry</li>
-                        <li>Light</li>
-                        <li>Heavy</li>
+                        <li>Happy</li>
+                        <li>Sad</li>
                         <li>Motivational</li>
+                        <li>Fear</li>
+                        <li>Suprise</li>
                     </ul>
                 </div>
                 </div>
