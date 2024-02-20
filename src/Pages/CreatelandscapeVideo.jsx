@@ -572,6 +572,10 @@ function CreatelandscapeVideo() {
                 <div className='flgTxt' variant="primary" onClick={() => setModalShow(true)}><img src={flagInd} alt="" /> <span>English - India</span></div> 
                 <ArrowsLeftRight className='arrowLftRgt' size={24} />   
                 </div>  
+                {/* <div className='voiceOverInpt'>
+                <div className='flgTxt' variant="primary" onClick={() => setModalShow(true)}><img src={flagInd} alt="" /> <span>English - India</span></div> 
+                <ArrowsLeftRight className='arrowLftRgt' size={24} />   
+                </div> */}
             </div> 
               </div>  
               </div>   

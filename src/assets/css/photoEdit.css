@@ -6071,6 +6071,11 @@ p.centertext {
     border-radius: 4px;
     cursor: pointer;
   }
+  .upload-btn-wrapper .button.orange.btn{padding: 10px!important; font-size: 17px!important;}
+  .useBorder{padding: 5px!important; min-height: auto; height: 109px;}
+  .useBorder .btn.btn-primary{height: 94px; background: #41d1b2; color: #fff; transition: all 0.5s;}
+  .useBorder .btn.btn-primary:hover{transform: scale(1.03);transition: all 0.5s;}
+  .or{position: relative; top: 38px; font-size: 18px; padding: 5px;}
 /* End Dummy Assessment */
 
 
