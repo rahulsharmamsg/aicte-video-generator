@@ -11,9 +11,9 @@ import aiVidoe1 from '../assets/images/avatarVideoBg.jpg';
 import flagInd from '../assets/images/flag/ind.jpg';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Popup from '../Components/Popup';
 import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
+import AiScriptPopup from '../Components/AiScriptPopup';
 
 function CreateTemplate() {
   const[text,setText]=useState(false)
@@ -107,7 +107,7 @@ function CreateTemplate() {
             </div>
          
         </div>
-        {text?<Popup hidePopup={closePopup}/>:null}    
+        {text?<AiScriptPopup hidePopup={closePopup}/>:null}    
             {textAi?<AiTranslation hidePopup={closePopupAi}/>:null}  
         <div className="dashBrdLft dashBrdLftRgt">
            <div className="dashBrdLftInScndLayer">

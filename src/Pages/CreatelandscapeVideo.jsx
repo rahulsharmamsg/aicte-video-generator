@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
@@ -20,12 +20,15 @@ import aiVidoe1 from '../assets/images/avatarVideoBg.jpg';
 import flagInd from '../assets/images/flag/ind.jpg';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Popup from '../Components/Popup';
 import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
 import GenerateScript from '../Components/GenerateScript';
 import zIndex from '@mui/material/styles/zIndex';
 import MyVerticallyCenteredModal from '../Components/LanguageCode';
+import axios from 'axios';
+import { useSound } from 'use-sound';
+import AiScriptPopup from '../Components/AiScriptPopup';
+import * as Tone from 'tone';
 function CreatelandscapeVideo() {
   const[text,setText]=useState(false)
   const[textAi,setAiText]=useState(false)
@@ -35,8 +38,32 @@ function CreatelandscapeVideo() {
   const[GenerateScriptcnt,setGenerateScriptcnt]=useState("")
   const [showContent, setShowContent] = useState('');
   const [getLanguageCode,seLanguageCode] = useState("");
+    const [volume, setVolume] = useState(1.0);
+    const [speed, setSpeed] = useState(1.0);
 
- 
+  const [audioSrc, setAudioSrc] = useState();
+  const audioRef = useRef();
+  
+ const audioSpeed = val => audioRef.current.playbackRate = val
+const volumeSet = val=> audioRef.current.volume = val
+
+const audioPitch = (value)=>{
+  var player = new Tone.Player(audioSrc).sync().start(0);
+console.log(value)
+  const pitch_shift = new Tone.PitchShift({
+    pitch: value
+  }).toDestination();
+
+  player.connect(pitch_shift);
+//   const pitchShift = new Tone.PitchShift(value).toDestination();
+// audioRef.current.pitchShift = value;
+// pitchShift.pitch = value;
+
+}
+
+  
+
+
  
   const youtubeExplainerContent = (
     <div className='popupOutline generateScrptDiv youtubeScriptvideoDiv'>
@@ -408,13 +435,13 @@ function CreatelandscapeVideo() {
             <img src={aiVidoe1} alt="" />
             </div>
             <div className="audioplayerDiv">
-            <audio src="path/to/your/audio/file.mp3" controls={true} autoPlay={false} />
+            <audio id="audioElement" src={audioSrc} ref={audioRef} controls={true} autoPlay={false}/>
             </div>
 
             </div>
          
         </div>
-        {text?<Popup hidePopup={closePopup} language={getLanguageCode}/>:null}    
+        {text?<AiScriptPopup hidePopup={closePopup} language={getLanguageCode} setAudioSrc={setAudioSrc} />:null}    
         {scriptText?<GenerateScript hidePopup={closePopupScrpt} setShowContent={setShowContent} />:null}    
             {textAi?<AiTranslation hidePopup={closePopupAi}/>:null}  
         <div className="dashBrdLft dashBrdLftRgt">
@@ -432,7 +459,7 @@ function CreatelandscapeVideo() {
             </ul>  
             <div className='voiceOverPpup'>
                 <div className='voiceOverInpt'>
-                <div className='flgTxt' variant="primary" onClick={() => setModalShow(true)}><img src={flagInd} alt="" /> <span>English - India</span></div> 
+                <div className='flgTxt' variant="primary" onClick={() => setModalShow(true)}><img src={flagInd} alt="" /> <span>{getLanguageCode? (getLanguageCode[1]):"English - India"}</span></div> 
                 <ArrowsLeftRight className='arrowLftRgt' size={24} />   
                 </div>  
             </div> 
@@ -443,18 +470,18 @@ function CreatelandscapeVideo() {
             <div className='sppedPitchVlmDiv'>
             <div className='speedDiv'>
             <p className='sppedDivtxt'>Speed <span>1.00x</span></p>
-            <input type="range" className='rangeInpt' />
+            <input type="range" className='rangeInpt' min="0" max="1" step="0.1"  onChange={(e)=>audioSpeed(e.target.value)}/>
             </div>
             <div className='speedDiv pitchDiv'>
             <p className='sppedDivtxt'>Pitch <span>0%</span></p>
-            <input type="range" className='rangeInpt' />
+            <input type="range" className='rangeInpt' min="0.1" max="2.0" step="0.01" onChange={(e)=>audioPitch(e.target.value)}/>
             </div>
             <div className='speedDiv pitchDiv'>
             <p className='sppedDivtxt'>Volume <span>50%</span></p>
-            <input type="range" className='rangeInpt' />
+            <input type="range" id="volumeControl" className='rangeInpt'  min="0" max="1" step="0.01" onChange={(e)=>volumeSet(e.target.value)}/>
             </div>
             <div className='speedDiv playScripts'>
-           <Link className='playScrptsBtn'><PlayCircle size={20} /> Play Scripts</Link>
+           <Link className='playScrptsBtn' ><PlayCircle size={20} /> Play Scripts</Link>
             </div>
             </div>  
             </div>   

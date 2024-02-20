@@ -14,6 +14,7 @@ const MyVerticallyCenteredModal = (props)=>{
     const [getEnable,setEnable] = useState("");
    
     const selectLanguage = (lcode,index)=>{
+      console.log(lcode)
         props.seLanguageCode(lcode);
         setEnable(index)
     }
@@ -40,14 +41,14 @@ const MyVerticallyCenteredModal = (props)=>{
         <Tab eventKey="all" title="All">
           <div className='engLngDiv'>
           <ul>
-          {Object.entries( LanguageVoice[3] ).map((res,i)=>{
+          {Object.entries( LanguageVoice[4] ).map((res,i)=>{
               return(
                 <>
   
   <li key={i}>
             <div className='voiceOverPpup'>
           <div className='voiceOverInpt' style={{ backgroundColor: getEnable === i ? '#4cde8c' : '' }}>
-          <div className='flgTxt' variant="primary"  onClick={(e)=>selectLanguage(res[0],i)}  ><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>{res[1]}</span></div> 
+          <div className='flgTxt' variant="primary"  onClick={(e)=>selectLanguage(res,i)}  ><span className='flgIcnpop'><img src={flagInd} alt="" /></span> <span className='voiceLang'>{res[1]}</span></div> 
           <PlayCircle size={24} className='arrowLftRgt' /> 
           </div>  
               </div> 

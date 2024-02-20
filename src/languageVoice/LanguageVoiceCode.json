@@ -87,5 +87,20 @@
         "pa-IN":"Punjabi",
         "as-IN":"Assamese",
         "or-IN":"Oriya"
-    }
+    },
+
+    
+        {
+            "en": "en-IN-PrabhatNeural",
+            "hi": "hi-IN-MadhurNeural",
+            "te": "te-IN-MohanNeural",
+            "ta": "ta-IN-ValluvarNeural",
+            "kn": "kn-IN-GaganNeural",
+            "ml": "ml-IN-MidhunNeural",
+            "mr": "mr-IN-ManoharNeural",
+            "gu": "gu-IN-NiranjanNeural",
+            "bn": "bn-IN-BashkarNeural",
+            "ur": "ur-IN-SalmanNeural"
+        }
+    
 ]

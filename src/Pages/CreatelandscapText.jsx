@@ -15,10 +15,10 @@ import aiVidoe1 from '../assets/images/avatarVideoBg.jpg';
 import flagInd from '../assets/images/flag/ind.jpg';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import Popup from '../Components/Popup';
 import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
 import MyVerticallyCenteredModal from '../Components/LanguageCode';
+import AiScriptPopup from '../Components/AiScriptPopup';
 function CreatelandscapeText() {
     const[text,setText]=useState(false)
     const[textAi,setAiText]=useState(false)
@@ -74,7 +74,7 @@ function CreatelandscapeText() {
                     <li><Link to=""><DownloadSimple size={32}  className="menuIcn"/> Import</Link></li>
                 </ul>
             </div> */}
-            {text?<Popup hidePopup={closePopup}/>:null}    
+            {text?<AiScriptPopup hidePopup={closePopup}/>:null}    
             {textAi?<AiTranslation hidePopup={closePopupAi}/>:null}    
 
             <div className="dashBrdLftInScndLayer">
