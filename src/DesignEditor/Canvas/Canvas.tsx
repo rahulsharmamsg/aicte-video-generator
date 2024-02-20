@@ -12,7 +12,7 @@ const CanvasEditor=()=> {
       <ContextMenu />
       <Canvas
         config={{
-          background: "#FFF",
+          background: "#ebecf0",
           controlsPosition: {
             rotation: "BOTTOM",
           },
