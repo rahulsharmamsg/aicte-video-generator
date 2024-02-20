@@ -7,18 +7,19 @@ function GenerateScript({ hidePopup, setShowContent }) {
     const [generateTextValue, setGenerateTextValue] = useState()
     const [audienceValue, setAudienceValue] = useState("")
     const [selectedOption, setSelectedOption] = useState('');    
+    const [voicetoneOption, setVoicetoneOption] = useState('');    
     const [platformselectedOption, setPlatformSelectedOption] = useState('');
     const audienceoption = ["Political Enthusiasts", "Tamil Speakers", "Indian Citizens"]
     const platformoption = ["Youtube", "Facebook", "Instagram"]  
     const lookandFeel = ["Bright", "Inspiring", "Clean"];
-    
+    const voicetone = ["Normal", "Energetic" ,"Motivational", "Angry", "Heavy", "Light" , ];
+    const [promptMessage, setPromptMessage] = useState()
     const toggleModal = () => {
         setShowModal(!showModal);
         // hidePopup()
     };
     
     const textplaceholder = () => {
-
     }
     const handleaudienceOptionClick = (value) => {
         setAudienceValue(value);
@@ -30,20 +31,24 @@ function GenerateScript({ hidePopup, setShowContent }) {
     const handleplatformOptionClick = (value) => {
         setPlatformSelectedOption(value);
     };
+    const handleVoiceToneOptionClick = (value) => {
+        setVoicetoneOption(value);
+    };    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
         try {
-          // Make API request using Axios
-          const response = await axios.post('https://example.com/api/endpoint', {
+          const response = await axios.post('http://localhost:4000/api/generateVideo', {
             videoTextPromt: generateTextValue,
             audience: audienceValue,
             lookAndFeel: selectedOption,
-            platform: platformselectedOption
+            platform: platformselectedOption,
+            voiceTone : voicetoneOption,
           });
-          console.log('API Response:', response.data);
-    
+          if (response.status === 200){
+            setPromptMessage(response.data.message)
+          }
+          console.log('API Response:', response);
           // Reset the form or perform any other necessary actions
         } catch (error) {
           console.error('Error:', error);
@@ -134,6 +139,24 @@ function GenerateScript({ hidePopup, setShowContent }) {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className='col-12 newPopCntOne'>
+                                        <div className='row'>
+                                            <div className='col-3 newpopCntIn'>
+                                                <p>Voice Tone</p>
+                                            </div>
+                                            <div className='col-9 newpopCntIn'>
+                                                {voicetone.map((option, index) => (
+                                                    <RadioButton
+                                                    key={index}
+                                                    value={option}
+                                                    checked={voicetoneOption === option}
+                                                    onChange={() => handleVoiceToneOptionClick(option)}
+                                                    label={option}
+                                                    ></RadioButton>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div>
                                     </div>
 
@@ -155,6 +178,7 @@ function GenerateScript({ hidePopup, setShowContent }) {
                                             </div>
                                         </div>
                                     </div>
+                                    {promptMessage}
                                     <div className='btmBtmDiv'>
                                         <button className='btn button contBtn' onClick={handleSubmit} >Continue</button>
                                         <button className='btn button edtPrmpt' >Edit Prompt</button>
@@ -163,7 +187,6 @@ function GenerateScript({ hidePopup, setShowContent }) {
                             </div>
                         </div></>}
                 </div>
-
             </div>
         </>
     )

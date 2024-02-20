@@ -2834,6 +2834,7 @@ footer center{
 .sliderLink{position: absolute; bottom: 140px; left: 73px; z-index: 2; width: 54%;}
 .sliderLink .videoBtn{ margin-right: 20px; margin-bottom: 20px; /*height: 40px;*/}
 .sliderLink .videoBtn span{font-size: 17px;}
+.createVideoDashbrdSec .videoTgt {width: 80%;}
 /* .sliderLink .videoBtn.sBtn1{width: 246px;}
 .sliderLink .videoBtn.sBtn2{width: 246px;}
 .sliderLink .videoBtn.sBtn3{width: 246px;} */

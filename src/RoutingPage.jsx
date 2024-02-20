@@ -11,6 +11,7 @@ import CreateAimusic from './Pages/AiMusic';
 import CreateBackground from './Pages/CreateBackground';
 import CreateSticker from './Pages/CreateSticker';
 import CreateTemplate from './Pages/CreateTemplate';
+import VideoGenerator from './Pages/VideoGenerator';
 
 function RoutingPage() {
   return (
@@ -29,6 +30,7 @@ function RoutingPage() {
           <Route path="aibackground" element={<CreateBackground />} />
           <Route path="aisticker" element={<CreateSticker />} />
           <Route path="aitemplate" element={<CreateTemplate />} />
+          <Route path="videogenerate" element={<VideoGenerator/>}/>
         </Route>
       </Routes>
     </Router>

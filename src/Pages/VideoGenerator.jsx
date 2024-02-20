@@ -20,9 +20,11 @@ import AiTranslation from '../Components/AiTranslation';
 import BottomMenu from './BottomMenu';
 import GenerateScript from '../Components/GenerateScript';
 import zIndex from '@mui/material/styles/zIndex';
+import ReactPlayer from 'react-player'
+import videourl from '../assets/images/demo.mp4';
 
 
-function CreatelandscapeVideo() {
+function VideoGenerator() {
   const [text, setText] = useState(false)
   const [textAi, setAiText] = useState(false)
   const [scriptText, setscriptText] = useState(false)
@@ -299,109 +301,32 @@ function CreatelandscapeVideo() {
         showContent === 'Explore_all' && exploreAllContent
       }
       <section className="dashboardSec createVideoDashbrdSec">
-        <div className="dashBrdLft">
-          <div className="dashBrdLftInScndLayer">
-            <h3 className='scndryHdng'>Avatars</h3>
-            <form action="">
-              <div className="srchAiAvatar">
-                <input type="text" placeholder="Search for AI Avatars" className="srchAiAvatars" />
-                <MagnifyingGlass className="maginifyIcn" size={22} />
-              </div>
-            </form>
-            <div className="avatarsTab">
-              <Tabs
-                defaultActiveKey="profile"
-                id="fill-tab-example"
-                className="mb-3"
-                fill
-              >
-                <Tab eventKey="home" title="Female">
-                  <div className="femaleCntDiv">
-                    <ul>
-                      <li><img src={fe01} alt="" />
-                        <div className="avatarsName">Avatar - One</div>
-                      </li>
-                      <li><img src={fe02} alt="" />
-                        <div className="avatarsName">Avatar - Two</div>
-                      </li>
-                      <li><img src={fe03} alt="" />
-                        <div className="avatarsName">Avatar - Three</div>
-                      </li>
-                      <li><img src={fe04} alt="" />
-                        <div className="avatarsName">Avatar - Four</div>
-                      </li>
-                      <li><img src={fe02} alt="" />
-                        <div className="avatarsName">Avatar - Two</div>
-                      </li>
-                      <li><img src={fe03} alt="" />
-                        <div className="avatarsName">Avatar - Three</div>
-                      </li>
-                    </ul>
-                  </div>
-                </Tab>
-                <Tab eventKey="profile" title="Male">
-                  <div className="femaleCntDiv maleDivCnt">
-                    <ul>
-                      <li><img src={ma01} alt="" />
-                        <div className="avatarsName">Avatar - One</div>
-                      </li>
-                      <li><img src={ma02} alt="" />
-                        <div className="avatarsName">Avatar - Two</div>
-                      </li>
-                      <li><img src={ma03} alt="" />
-                        <div className="avatarsName">Avatar - Three</div>
-                      </li>
-                      <li><img src={ma04} alt="" />
-                        <div className="avatarsName">Avatar - Four</div>
-                      </li>
-                      <li><img src={ma02} alt="" />
-                        <div className="avatarsName">Avatar - Two</div>
-                      </li>
-                      <li><img src={ma03} alt="" />
-                        <div className="avatarsName">Avatar - Three</div>
-                      </li>
-                    </ul>
-                  </div>
-                </Tab>
-                <Tab eventKey="longer-tab" title="Education">
-                  <div className="femaleCntDiv educatCantDiv">
-                    <ul>
-                      <li><img src={fe01} alt="" />
-                        <div className="avatarsName">Avatar - One</div>
-                      </li>
-                      <li><img src={ma02} alt="" />
-                        <div className="avatarsName">Avatar - Two</div>
-                      </li>
-                      <li><img src={fe03} alt="" />
-                        <div className="avatarsName">Avatar - Three</div>
-                      </li>
-                      <li><img src={ma04} alt="" />
-                        <div className="avatarsName">Avatar - Four</div>
-                      </li>
-                      <li><img src={ma02} alt="" />
-                        <div className="avatarsName">Avatar - Two</div>
-                      </li>
-                      <li><img src={fe03} alt="" />
-                        <div className="avatarsName">Avatar - Three</div>
-                      </li>
-                    </ul>
-                  </div>
-                </Tab>
-              </Tabs>
-            </div>
-          </div>
-        </div>
-        <div className="dashBrdRgt">
+        <div className="videoTgt">
           <div className="dashBrdRgtIn">
             <div className="avatarVideoDiv">
-              <img src={aiVidoe1} alt="" />
+              {/* <img src={aiVidoe1} alt="" /> */}
+              {/* <ReactPlayer
+url={videourl}
+controls={true}  /> 
+  config={{
+    youtube: {
+      playerVars: { showinfo: 1 }
+    },
+    facebook: {
+      appId: '12345'
+    }
+  }}
+/> */}
+             <ReactPlayer  url={videourl}
+ controls={true} height={500} width="100%" />
+
             </div>
+            
             <div className="audioplayerDiv">
-              <audio src="path/to/your/audio/file.mp3" controls={true} autoPlay={false} />
+              {/* <audio src="path/to/your/audio/file.mp3" controls={true} autoPlay={false} /> */}
             </div>
 
           </div>
-
         </div>
         {text ? <Popup hidePopup={closePopup} /> : null}
         {scriptText ? <GenerateScript hidePopup={closePopupScrpt} setShowContent={setShowContent} /> : null}
@@ -417,8 +342,7 @@ function CreatelandscapeVideo() {
                     <li><ClockClockwise size={22} /> Pause</li>
                     <li><Headset size={22} /> Audio Script</li>
                     <li><SelectionPlus size={22} /> Add Scene</li>
-                    {/* <li onClick={() => generateScipt()}><TextT size={22} /> Generate Script</li> */}
-                    <li><Link to="/dashboard/videogenerate">Generate Script</Link></li>
+                    <li onClick={() => generateScipt()}><TextT size={22} /> Generate Script</li>
                   </ul>
                   <div className='voiceOverPpup'>
                     <div className='voiceOverInpt'>
@@ -571,4 +495,4 @@ function MyVerticallyCenteredModal(props) {
     </>
   );
 }
-export default CreatelandscapeVideo;
+export default VideoGenerator;
