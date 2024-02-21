@@ -26,6 +26,7 @@ function BottomMenu({setActivePanel}) {
     <li><Link className={activeLink === 'aisticker' ? 'dashActive' : ''} onClick={() =>{handleLinkClick('aisticker');setActiveLink("sticker")}} ><SmileySticker size={32}  className="menuIcn"/> Sticker</Link></li>
     <li><Link className={activeLink === 'aimusic' ? 'dashActive' : ''} onClick={() => {handleLinkClick('aimusic');setActiveLink("music")}} ><Headphones size={32}  className="menuIcn"/> Music</Link></li>
     <li><Link className={activeLink === 'import' ? 'dashActive' : ''} onClick={() => {handleLinkClick('import');setActivePanel("import")}} ><DownloadSimple size={32}  className="menuIcn"/> Import</Link></li>
+    <li><Link className={activeLink === 'image' ? 'dashActive' : ''} onClick={() => {handleLinkClick('image');setActivePanel("image")}} ><User size={32}  className="menuIcn"/> Image Generation</Link></li>
 
 </ul>
     </>

@@ -35,6 +35,7 @@ import tem01 from '../assets/images/tem01.jpg';
 import tem02 from '../assets/images/tem02.jpg';
 import tem03 from '../assets/images/tem03.jpg';
 import tem04 from '../assets/images/tem04.jpg';
+import ImageGeneration from '../Components/ImageGeneration';
 
 import  {useEditor}  from "@layerhub-io/react"
 import  useDesignEditorContext  from "../hooks/useDesignEditorContext.ts"
@@ -535,6 +536,12 @@ function CreatelandscapeVideo() {
            </div>
          
 
+        }
+        {
+          activePanel==="image" &&
+          <div className="dashBrdLft">
+          <ImageGeneration />
+          </div>
         }
         
         <div className="dashBrdRgt">
