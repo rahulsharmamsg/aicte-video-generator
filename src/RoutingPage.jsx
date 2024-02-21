@@ -15,6 +15,7 @@ import AssessmentCategories from './Components/AssessmentCategories';
 import AssessmentCategoryListing from './Components/AssessmentCategoryListing';
 import AssessmentCategoryDetail from './Components/AssessmentCategoryDetail';
 import LandingPage from './Pages/LandingPage';
+import VideoTranslator from './Pages/VideoTranslator';
 
 function RoutingPage() {
   return (
@@ -26,6 +27,7 @@ function RoutingPage() {
           <Route path="/assessmentCategories" element={<AssessmentCategories />} />
           <Route path="/AssessmentCategoryListing" element={<AssessmentCategoryListing />} />
           <Route path="/AssessmentCategoryDetail" element={<AssessmentCategoryDetail />} />
+          <Route path="videoTranslator" element={<VideoTranslator />} />
           <Route path="*" element={<LandingPage  />} />
         </Route>
 
@@ -40,6 +42,7 @@ function RoutingPage() {
           <Route path="aibackground" element={<CreateBackground />} />
           <Route path="aisticker" element={<CreateSticker />} />
           <Route path="aitemplate" element={<CreateTemplate />} />
+          
         </Route>
       </Routes>
     </Router>

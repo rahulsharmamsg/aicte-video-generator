@@ -68,6 +68,13 @@ function HomeServices() {
                         <h2 className="titleTxt"><span>Create</span>Your Avatar in Bhartiya Languages!</h2>
                         <p className="sbTitleTxt"> Unique Avatars, Voices, and Settings. Express Yourself Now!</p>
                         <Link to='/dashboard' className="videoBtn"><span><MonitorPlay size={30} /> Generate AI Video Online</span></Link>
+                        <Link to='/videotranslator' style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginTop: '20px'
+                        
+                        }} className="videoBtn"><span><MonitorPlay size={30} /> video Translator</span></Link>
                     </div>
                 </div>
             </div>
