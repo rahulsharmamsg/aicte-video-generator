@@ -561,6 +561,7 @@ function CreatelandscapeVideo() {
               <div className='videoRgtBtmDivLftIn'>
               <ul>
             <li onClick={()=>handlePop("AI Script")}><TextT size={22} /> AI Script</li>
+            <li onClick={()=>handlePop("AI Script")}><TextT size={22} /> Video Translation</li>
             <li onClick={()=>AitranslationPop()}><Translate size={22} /> AI Translation</li>
             <li><ClockClockwise size={22} /> Pause</li>
             <li><Headset size={22} /> Audio Script</li>

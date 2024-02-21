@@ -27,6 +27,9 @@ function HomepageSlider() {
           <Link className="videoBtn sBtn7"><span><FinnTheHuman className="lnkIcn" size={24} /> Create Talking Avatars</span></Link>
           <Link className="videoBtn sBtn8"><span><Command className="lnkIcn" size={24} /> Create Quizzes</span></Link>
           <Link className="videoBtn sBtn9"><span><Article className="lnkIcn" size={24} /> Create a Blog</span></Link>
+          <Link className="videoBtn sBtn9"><span><Article className="lnkIcn" size={24} /> Create Online Course</span></Link>
+          <Link className="videoBtn sBtn9"><span><Article className="lnkIcn" size={24} /> Create short video/image course (reels )</span></Link>
+         
          </div>
       </section>
       
