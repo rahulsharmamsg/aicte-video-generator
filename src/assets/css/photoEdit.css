@@ -6079,6 +6079,32 @@ p.centertext {
 /* End Dummy Assessment */
 
 
-/* Start AI Video Avatar */
-/* End AI Video Avatar */
+/* Start AI Video Translation */
+.VdTrnsltnPg {
+}
+.vdUpldBx {
+    border: 2px dotted rgb(204, 204, 204); margin: auto; z-index: 0; position: relative; border-radius: 10px; background: rgb(255, 255, 255); padding: 50px; width: 100%;
+    text-align: center;
+}
+.vdUpldBxHdTxt {
+    font-size: 20px; font-weight: bold;
+}
+input[type=file]{
+    font-size: 26px; border-radius: 10px; padding: 15px 30px;
+}
+.vdUpldTrnslnBx {
+    margin: auto; z-index: 0; position: relative; border-radius: 10px; background: rgb(255, 255, 255); padding: 20px 0; width: 100%;
+    text-align: left;
+}
+.vdUpldTrnslnBx label {
+    display: block;
+    margin-bottom: 10px;
+}
+.vdUpldTrnslnBx select {
+    width: 100%;
+}
+.vdUpldTrnslnBx button {
+    
+}
+/* End AI Video Transklation */
 
