@@ -10,7 +10,7 @@ import {
 } from "phosphor-react";
 import axios from "axios";
 import CanvasComponent from "./ImageCanvasComponent";
-// import TranslatorInput from "./Translation";
+import TranslatorInput from "./Translation";
 const LanguageList = {
   "en-IN": "English",
   "hi-IN": "हिंदी [Hindi]",
@@ -296,7 +296,7 @@ function ImageGeneration() {
                 ) : null}
                 </div>
                 {vkeyboard &&<div className="inputGroup">
-                {/* <TranslatorInput /> */}
+                <TranslatorInput />
               </div>}
                 {imageSrc && (
                   <div className="inputGroup">

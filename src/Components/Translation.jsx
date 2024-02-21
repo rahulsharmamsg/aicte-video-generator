@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import useRecorder from "./useRecorder.js";
+import useRecorder from "../assets/useRecorder.js";
 import {
   Stop,
   Record,
@@ -9,11 +9,11 @@ import {
   Pause
 } from "phosphor-react";
 // import checkDictionary from "../../helpers/CheckDictionary";
-import TeDictionary from "./dictionaries/te.json";
-import HiDictionary from "./dictionaries/hi.json";
-import KnDictionary from "./dictionaries/kn.json";
-import TaDictionary from "./dictionaries/ta.json";
-import MlDictionary from "./dictionaries/ml.json";
+import TeDictionary from "../assets/dictionaries/te.json";
+import HiDictionary from "../assets/dictionaries/hi.json";
+import KnDictionary from "../assets/dictionaries/kn.json";
+import TaDictionary from "../assets/dictionaries/ta.json";
+import MlDictionary from "../assets/dictionaries/ml.json";
 // import AsDictionary from "./dictionaries/as.json";
 // import BaDictionary from "./dictionaries/ba.json";
 // import GuDictionary from "./dictionaries/gu.json";
@@ -21,7 +21,7 @@ import MlDictionary from "./dictionaries/ml.json";
 // import OrDictionary from "./dictionaries/or.json";
 // import PaDictionary from "./dictionaries/pa.json";
 // import LanguageSelector from "./langselector.js";
-import LangjsonFile from './langVoiceCodes.json';
+import LangjsonFile from '../assets/dictionaries/langVoiceCodes.json';
 import {
   WhatsappShareButton,
   WhatsappIcon,
@@ -32,11 +32,11 @@ import {
   LinkedinIcon,
   LinkedinShareButton
 } from "react-share";
-import "./transInput.css";
+import "./transinput.css";
 import "./bulma.min.css";
 import './LanguageSelector.css';
 import copy from "copy-to-clipboard";
-import languagesList from './helpers/languages.json';
+import languagesList from '../assets/dictionaries/languages.json';
 import "react-toastify/dist/ReactToastify.css";
 const root_url = "https://translationlive.aicte-india.org";
 // const root_url = "http://localhost:8080";

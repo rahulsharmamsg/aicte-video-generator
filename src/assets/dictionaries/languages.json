@@ -1,0 +1,90 @@
+[
+    {
+        "name": "Hindi",
+        "short": "हि",
+        "code": "hi",
+        "literal": "हिन्दी",
+        "script": "Deva",
+        "isBeta": false
+    },
+    {
+        "name": "Telugu",
+        "short": "తె",
+        "code": "te",
+        "literal": "తెలుగు",
+        "script": "Telu",
+        "isBeta": false
+    },
+    {
+        "name": "Tamil",
+        "short": "த",
+        "code": "ta",
+        "literal": "தமிழ்",
+        "script": "Taml",
+        "isBeta": false
+    },
+    {
+        "name": "Kannada",
+        "short": "ಕ",
+        "code": "kn",
+        "literal": "ಕನ್ನಡ",
+        "script": "Knda",
+        "isBeta": false
+    },
+    {
+        "name": "Malayalam",
+        "code": "ml",
+        "literal": "മലയാളം",
+        "script": "Mlym",
+        "isBeta": false
+    },
+    {
+        "name": "Bangla",
+        "code": "bn",
+        "literal": "বাংলা",
+        "script": "Beng",
+        "isBeta": true
+    },
+    {
+        "name": "Marathi",
+        "code": "mr",
+        "literal": "मराठी",
+        "script": "Deva",
+        "isBeta": true
+    },
+    {
+        "name": "Gujarati",
+        "code": "gu",
+        "literal": "ગુજરાતી",
+        "script": "Gujr",
+        "isBeta": true
+    },
+    {
+        "name": "Odiya",
+        "code": "or",
+        "literal": "ଓଡ଼ିଆ",
+        "script": "Orya",
+        "isBeta": true
+    },
+    {
+        "name": "Punjabi",
+        "code": "pa",
+        "literal": "ਪੰਜਾਬੀ",
+        "script": "Guru",
+        "isBeta": true
+    },
+    {
+        "name": "Assamese",
+        "code": "as",
+        "literal": "অসমীয়া",
+        "script": "Beng",
+        "isBeta": true
+    },
+    {
+        "name": "English",
+        "code": "en",
+        "literal": "English",
+        "script": "Latn",
+        "isBeta": false
+    }
+]

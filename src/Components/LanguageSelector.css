@@ -1,0 +1,35 @@
+.card-container {
+    display: flex;
+  
+    align-content: center;
+    flex-wrap: wrap;
+    padding-left: 10px;
+    /* width: 75rem; */
+    justify-content: center;
+}
+[class ^="box-"]{margin: 0 5px;}
+.section{padding-top: 1.5rem;}
+[class ^="box-"] {
+    background-color: #fff;
+    border-radius: 0.25rem;
+    /* box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .02); */
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+    color: #363636;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.125;
+    padding: 0;
+    border: o;
+        cursor: pointer;
+    }
+    
+    [class ^="box-"]:hover {
+        background-color: #fff;
+}
+.selected-language,
+.selected-language:hover {
+    color: #fefefe;
+    background-color: #8787ff;
+}
