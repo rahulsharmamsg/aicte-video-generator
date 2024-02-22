@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import CanvasComponent from "./ImageCanvasComponent";
 import TranslatorInput from "./Translation";
+import { set } from "lodash";
 const LanguageList = {
   "en-IN": "English",
   "hi-IN": "हिंदी [Hindi]",
@@ -52,7 +53,7 @@ function ImageGeneration() {
   const [errorMessage, setErrorMessage] = useState("");
   const [Text, setText] = useState("");
   const [TransText, setTransText] = useState("");
-  const [imageSrc, setImageSrc] = useState("");
+  const [imageSrc, setImageSrc] = useState([]);
   function trimSpecialCharacters(inputString) {
     // Use regular expression to remove all non-alphanumeric characters
     return inputString.replace(/[^a-zA-Z0-9 ]/g, "");
@@ -152,9 +153,27 @@ function ImageGeneration() {
           setLoading(true);
           setImageSrc("");
           const response = await axios.post(url, formData);
-          console.log(response.data.base64);
-          setImageSrc(response.data.base64);
           setLoading(false);
+          setImageSrc((prevImageSrc) => [...prevImageSrc, response.data.base64]);
+          // want to call the function multiple times
+          const response2 = await axios.post(url, formData);
+          setImageSrc((prevImageSrc) => [...prevImageSrc, response2.data.base64]);
+          const response3 = await axios.post(url, formData);
+          const response4 = await axios.post(url, formData);
+          const response5 = await axios.post(url, formData);
+          const response6 = await axios.post(url, formData);
+          console.log(response.data.base64);
+          // add the generated image to the imageSrc array
+          setImageSrc((prevImageSrc) => [
+            ...prevImageSrc,
+            response.data.base64,
+            response2.data.base64,
+            response3.data.base64,
+            response4.data.base64,
+            response5.data.base64,
+            response6.data.base64,
+          ]);
+          
         } catch (error) {
           console.error(error);
           setLoading(false);
@@ -299,44 +318,22 @@ function ImageGeneration() {
                 {vkeyboard &&<div className="inputGroup">
                 <TranslatorInput />
               </div>}
-                {imageSrc && (
-                  <div className="inputGroup">
-                    {/* <img
-                    width={"100%"}
-                    src={`data:image/png;base64,${imageSrc}`}
-                    alt="Generated Image"
-                  /> */}
-                    <div>
-                      {/* <img src={`data:image/png;base64,${imageSrc}`} style={{width:'100%'}} alt="Base64 Image" /> */}
-                      <CanvasComponent base64img={imageSrc} />
-                      {/* Watermark */}
-                      {/* <div
-        style={{
-          position: 'relative',
-          bottom: '25px',
-          left: '88px', // Adjust the positioning as needed
-          color: 'white', // Adjust the color of the watermark text
-          fontSize: '16px', // Adjust the font size of the watermark text
-          fontWeight: 'bold', // Adjust the font weight of the watermark text
-        }}
-      >
-        AI Generated Image from ANUVADINI
-      </div> */}
+              {console.log("imgscr",imageSrc)}
+              
+                {imageSrc && imageSrc.map((img, index) => (
+                  (
+                    <div className="inputGroup">
+                      
+                      <div>
+                       
+                        <CanvasComponent base64img={imageSrc} />
+                        
+                      </div>
+                     
                     </div>
-                    {/* <img
-                    src={watermarkImageUrl}
-                    alt="Watermark"
-                    style={{
-                      position: "absolute",
-                      top: "10px",
-                      right: "10px",
-                      opacity: 0.8,
-                      height: "6vw",
-                      pointerEvents: "none", // To allow interaction with video
-                    }}
-                  /> */}
-                  </div>
-                )}
+                  )
+                ))
+                }
                 {loading && (
                   <div className="loading-overlay">
                     <div className="load">
