@@ -322,11 +322,11 @@ function ImageGeneration() {
               
                 {imageSrc && imageSrc.map((img, index) => (
                   (
-                    <div className="inputGroup">
+                    <div >
                       
                       <div>
                        
-                        <CanvasComponent base64img={imageSrc} />
+                        <CanvasComponent base64img={img} />
                         
                       </div>
                      
