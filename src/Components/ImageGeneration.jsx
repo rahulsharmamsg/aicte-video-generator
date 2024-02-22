@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import CanvasComponent from "./ImageCanvasComponent";
 import TranslatorInput from "./Translation";
+import { useEditor } from "@layerhub-io/react";
 import { set } from "lodash";
 const LanguageList = {
   "en-IN": "English",
@@ -66,6 +67,22 @@ function ImageGeneration() {
     "prime",
     "minister",
   ];
+  const editor = useEditor();
+
+  const addObject = React.useCallback(
+    (url) => {
+      if (editor) {
+        console.log(editor, "editor");
+        const options = {
+          type: "StaticImage",
+          src: url,
+        };
+
+        editor.objects.add(options);
+      }
+    },
+    [editor]
+  );
   function censorString(inputString) {
     // Use a regular expression to replace unwanted words with asterisks
     let NewinputString = inputString.replace(/[^a-zA-Z0-9 ]/g, "");
@@ -152,27 +169,19 @@ function ImageGeneration() {
         try {
           setLoading(true);
           setImageSrc("");
-          const response = await axios.post(url, formData);
-          setLoading(false);
-          setImageSrc((prevImageSrc) => [...prevImageSrc, response.data.base64]);
-          // want to call the function multiple times
-          const response2 = await axios.post(url, formData);
-          setImageSrc((prevImageSrc) => [...prevImageSrc, response2.data.base64]);
-          const response3 = await axios.post(url, formData);
-          const response4 = await axios.post(url, formData);
-          const response5 = await axios.post(url, formData);
-          const response6 = await axios.post(url, formData);
-          console.log(response.data.base64);
-          // add the generated image to the imageSrc array
-          setImageSrc((prevImageSrc) => [
-            ...prevImageSrc,
-            response.data.base64,
-            response2.data.base64,
-            response3.data.base64,
-            response4.data.base64,
-            response5.data.base64,
-            response6.data.base64,
-          ]);
+          const promises = [];
+        for (let i = 0; i < 7; i++) { // Adjust number of images if needed
+          promises.push(axios.post(url, formData, { prompt }));
+        }
+
+        setLoading(true); // Set loading state before fetching images
+
+        const responses = await Promise.all(promises);
+        const imageData = responses.map((response) => response.data.base64);
+
+        setImageSrc(imageData);
+        setLoading(false); // Set loading state to false after fetching
+  
           
         } catch (error) {
           console.error(error);
@@ -180,6 +189,8 @@ function ImageGeneration() {
         }
       });
   };
+
+  
 
   return (
     <>
@@ -319,14 +330,15 @@ function ImageGeneration() {
                 <TranslatorInput />
               </div>}
               {console.log("imgscr",imageSrc)}
+              <div style={{display:"flex",flexWrap:"wrap"}}>
               
                 {imageSrc && imageSrc.map((img, index) => (
                   (
                     <div >
                       
-                      <div>
+                      <div style={{width:"100px",height:"100px"}} >
                        
-                        <CanvasComponent base64img={img} />
+                        <CanvasComponent  size={10} base64img={img} />
                         
                       </div>
                      
@@ -334,6 +346,7 @@ function ImageGeneration() {
                   )
                 ))
                 }
+                </div>
                 {loading && (
                   <div className="loading-overlay">
                     <div className="load">

@@ -75,7 +75,7 @@ const ImageCanvasComponent = ({ base64img }) => {
     <>
       <div className="downloaddiv">
         {" "}
-        <button
+        {/* <button
           className="button orange mr-rg-2"
           onClick={() => handleDownloadPNG()}
         >
@@ -86,7 +86,7 @@ const ImageCanvasComponent = ({ base64img }) => {
           onClick={() => handleDownloadJPEG()}
         >
           Download Jpeg
-        </button>
+        </button> */}
       </div>
       <canvas
         ref={canvasRef}

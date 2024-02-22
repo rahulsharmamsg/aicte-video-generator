@@ -96,6 +96,8 @@ function CreatelandscapeVideo() {
           src: url,
         };
 
+        console.log(url, "url")
+
         editor.objects.add(options);
       }
     },
