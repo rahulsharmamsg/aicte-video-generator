@@ -116,7 +116,8 @@ function ImageGeneration() {
           console.log("Invalid query!");
         });
     };
-    if (audioURL !== undefined) {
+    console.log(audioURL,"hello")
+    if (audioURL !== undefined && audioURL !== "") {
       fetchText();
     }
   }, [audioURL]);
