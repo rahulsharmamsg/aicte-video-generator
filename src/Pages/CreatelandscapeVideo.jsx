@@ -741,9 +741,9 @@ function CreatelandscapeVideo() {
             </div>
           </div>
         </div>
-        {text==="AI Script" ? <Popup hidePopup={closePopup} /> : null}
+        {/* {text ? <Popup hidePopup={closePopup} /> : null} */}
         
-        {text==="Video Translation" ? <Popup2 hidePopup={closePopup} /> : null}
+        {text ? <Popup2 hidePopup={closePopup} /> : null}
         {}
         {scriptText ? (
           <GenerateScript

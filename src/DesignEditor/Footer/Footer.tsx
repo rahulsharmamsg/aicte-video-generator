@@ -5,7 +5,7 @@ import React from "react"
 
 const Footer = () =>{
   return (
-    <Block $style={{ background: "#ffffff" }}>
+    <Block $style={{ background: "#ffe8ba" }}>
       <Timeline />
       <Common />
     </Block>

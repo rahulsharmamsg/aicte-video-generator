@@ -7,7 +7,7 @@ import ContextMenu from "../ContextMenu/ContextMenu.tsx"
 const CanvasEditor=()=> {
   const { displayPlayback } = useDesignEditorContext()
   return (
-    <div style={{ flex: 1, display: "flex", position: "relative",height:"70vh",width:"119vh" }}>
+    <div style={{ flex: 1, display: "flex", position: "relative",height:"70vh" }}>
       {displayPlayback && <Playback />}
       <ContextMenu />
       <Canvas

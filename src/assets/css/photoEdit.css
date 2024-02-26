@@ -2716,7 +2716,7 @@ footer center{
 .popupRgtLnk ul{padding: 0; margin: 0; list-style: none;}
 .popupRgtLnk ul li{width: 100%; float: left; padding: 4px; text-align: center; background: #fff; border-radius: 6px; margin-bottom: 10px; font-size: 13px; cursor: pointer; transition: all 0.5s;}
 .popupRgtLnk ul li:hover{background: transparent;transition: all 0.5s;}
-.popupContentDiv .button.green{padding: 5px 15px 7px; font-size: 16px; background: #0a9027!important; float: right;}
+.popupContentDiv .button.green{padding: 5px 15px 7px; font-size: 16px;  float: right;}
 .transLabel .form-control{height: 40px; margin-bottom: 15px; appearance: auto;}
 .popupContentDiv .button.green{margin-right: 35px;}
 .hotMusicList ul li{width: 100%; float: left; border:0px solid #d79859; border-radius: 6px;  cursor: pointer; transition: all 0.5s; padding: 8px 0; position: relative;}
@@ -6083,7 +6083,7 @@ p.centertext {
 .VdTrnsltnPg {
 }
 .vdUpldBx {
-    border: 2px dotted rgb(204, 204, 204); margin: auto; z-index: 0; position: relative; border-radius: 10px; background: rgb(255, 255, 255); padding: 50px; width: 100%;
+    border: 2px dotted rgb(255 232 186); margin: auto; z-index: 0; position: relative; border-radius: 10px; background: rgb(250 247 241); padding: 50px; width: 100%;
     text-align: center;
 }
 .vdUpldBxHdTxt {

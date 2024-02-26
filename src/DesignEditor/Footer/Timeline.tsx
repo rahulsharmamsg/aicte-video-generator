@@ -144,11 +144,11 @@ export default function () {
   return (
     <Block $style={{ display: "flex", alignItems: "center" }}>
       <TimelineControl />
-      <Block $style={{ background: "#ffffff" }}>
+      <Block $style={{ background: "#fff4de" }}>
         <div className={css({ display: "flex", alignItems: "center" })}>
           <Block
             id="TimelineItemsContainer"
-            $style={{ display: "flex", alignItems: "center", position: "relative", padding: "1rem 0", flex: 1 }}
+            $style={{ display: "flex", alignItems: "center", position: "relative", padding: ".2rem 0", flex: 1 }}
           >
             {contextMenuTimelineRequest.visible && <TimelineContextMenu />}
             <TimeMarker />
@@ -158,7 +158,7 @@ export default function () {
             onClick={addScene}
             $style={{
               width: "100px",
-              height: "56px",
+              height: "66px",
               background: "rgb(243,244,246)",
               display: "flex",
               alignItems: "center",

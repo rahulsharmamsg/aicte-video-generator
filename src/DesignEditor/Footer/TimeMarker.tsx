@@ -80,7 +80,7 @@ export default function () {
             height: 0,
             borderLeft: "9px solid transparent",
             borderRight: "9px solid transparent",
-            borderTop: "11px solid #333333",
+            borderTop: "11px solid #fe8b6b",
             borderRadius: "5px",
             transform: "translate(-8px, -1px)",
           }}
@@ -89,9 +89,9 @@ export default function () {
         <Block
           id="markerLine"
           $style={{
-            height: "84px",
+            height: "65px",
             width: "2px",
-            backgroundColor: "#333333",
+            backgroundColor: "#fe8b6b",
             transform: "translate(0, -2px)",
           }}
         />
