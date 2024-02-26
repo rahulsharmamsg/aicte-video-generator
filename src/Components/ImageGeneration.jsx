@@ -196,8 +196,8 @@ function ImageGeneration() {
     <>
       
       <section className="logoSec youtubeSessionSec">
-        <div className="sessionDiv">
-          <div className="container">
+        <div className="sessionDiv" style={{height:"83vh", overflow:"auto"}}>
+          <div className="dashBrdLftInScndLayer">
             <div
               className="cntnrLogo"
               style={{
@@ -215,16 +215,16 @@ function ImageGeneration() {
               /> */}
             </div>
             <div className="videoSldrCnt">
-              <h2>Speech to Image 22 AI</h2>
-              <p>
+              <h3 className="scndryHdng">Image Generation</h3>
+              {/* <p>
                 Transform your creative text into images using voice commands in
                 Bharatiya languages.
-              </p>
+              </p> */}
             </div>
 
-            <div className="realtimevideoCnt">
+            <div className="realtimevideoCnt mt-3">
               <div className="inputGroup">
-                <select onChange={(e) => setSourceLanguage(e.target.value)}>
+                <select onChange={(e) => setSourceLanguage(e.target.value)} className="form-control">
                   <option value="" disabled selected>
                     Select a Source language
                   </option>
@@ -236,8 +236,8 @@ function ImageGeneration() {
                 </select>{" "}
                 {sourceLanguage ? (
                   <>
-                    <div className="inputfrom">
-                      <input
+                    <div className="inputfrom mt-3" style={{position: "relative"}}>
+                      <input className="form-control"
                         type="text"
                         placeholder="Enter Your Prompt"
                         value={Text}
@@ -247,7 +247,7 @@ function ImageGeneration() {
                       {isRecording ? (
                         <React.Fragment>
                           <button
-                            className="stopbutton button orange"
+                            className="stopbutton button orange mt-3" 
                             onClick={stopRecording}
                             disabled={!isRecording}
                           >
@@ -256,7 +256,7 @@ function ImageGeneration() {
                           {pause != false ? (
                             <>
                               <button
-                                className="startbutton button green"
+                                className="startbutton button green mt-3"
                                 onClick={() => {
                                   setPause(false);
                                   setResume(true);
@@ -265,7 +265,7 @@ function ImageGeneration() {
                                 <Record size={20} weight="fill" />
                               </button>
                               <button
-                                className="stopbutton button orange"
+                                className="stopbutton button orange mt-3"
                                 onClick={() => {
                                   setText("");
                                 }}
@@ -277,7 +277,7 @@ function ImageGeneration() {
                           ) : (
                             <>
                               <button
-                                className="stopbutton button orange"
+                                className="stopbutton button orange mt-3"
                                 onClick={() => {
                                   setPause(true);
                                 }}
@@ -286,7 +286,7 @@ function ImageGeneration() {
                               </button>
                               {Text ? (
                                 <button
-                                  className="startbutton button orange"
+                                  className="startbutton button orange mt-3"
                                   onClick={() => {
                                     setText("");
                                   }}
@@ -302,7 +302,7 @@ function ImageGeneration() {
                         </React.Fragment>
                       ) : (
                         <button
-                          className="startbutton button green"
+                          className="startbutton button green mt-3"
                           onClick={(e) => {
                             startRecording();
                             setText("");
@@ -313,16 +313,18 @@ function ImageGeneration() {
                         </button>
                       )}
 
+                      
+                      <button onClick={generateImage} className="button orange mt-3">
+                        Generate image
+                      </button>
                       <button
                         onClick={() => setvkeyboard(!vkeyboard)}
-                        className="button orange"
+                        className="button orange mt-3 w-100"
                       >
                         Virtual Keyboard
                       </button>
-                      <button onClick={generateImage} className="button orange">
-                        Generate image
-                      </button>
                     </div>
+                    <br />
                   </>
                 ) : null}
                 </div>
@@ -330,7 +332,7 @@ function ImageGeneration() {
                 <TranslatorInput />
               </div>}
               {console.log("imgscr",imageSrc)}
-              <div style={{display:"flex",flexWrap:"wrap"}}>
+              <div style={{display:"flex",flexWrap:"wrap", gap:"15px"}}>
               
                 {imageSrc && imageSrc.map((img, index) => (
                   (
