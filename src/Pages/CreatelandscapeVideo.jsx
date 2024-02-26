@@ -47,6 +47,7 @@ import flagInd from "../assets/images/flag/ind.jpg";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Popup from "../Components/Popup";
+import Popup2 from "../Components/Popup2";
 import AiTranslation from "../Components/AiTranslation";
 import BottomMenu from "./BottomMenu";
 import GenerateScript from "../Components/GenerateScript";
@@ -740,7 +741,10 @@ function CreatelandscapeVideo() {
             </div>
           </div>
         </div>
-        {text ? <Popup hidePopup={closePopup} /> : null}
+        {text==="AI Script" ? <Popup hidePopup={closePopup} /> : null}
+        
+        {text==="Video Translation" ? <Popup2 hidePopup={closePopup} /> : null}
+        {}
         {scriptText ? (
           <GenerateScript
             hidePopup={closePopupScrpt}
@@ -757,7 +761,7 @@ function CreatelandscapeVideo() {
                     <li onClick={() => handlePop("AI Script")}>
                       <TextT size={22} /> AI Script
                     </li>
-                    <li onClick={() => handlePop("AI Script")}>
+                    <li onClick={() => handlePop("Video Translation")}>
                       <TextT size={22} /> Video Translation
                     </li>
                     <li onClick={() => AitranslationPop()}>
