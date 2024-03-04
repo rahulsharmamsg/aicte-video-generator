@@ -1,16 +1,10 @@
 import { ILayer } from "@layerhub-io/types"
-import preview from '../assets/images/template/1.png';
-
+import preview1 from '../assets/images/template/1.png';
+import preview2 from '../assets/images/template/2.png';
+import preview3 from '../assets/images/template/3.png';
 export const SecondLevelMenus = ["FontFamily"]
 export const FirstLevelMenus = ["Background"]
 
-export enum SubMenuType {
-  FONT_FAMILY = "FontFamily",
-  BACKGROUND = "Background",
-  COLOR = "Color",
-  ANIMATIONS = "Animations",
-  EFFECTS = "Effects",
-}
 
 export const SAMPLE_TEMPLATES = [
   {
@@ -198,7 +192,7 @@ export const SAMPLE_TEMPLATES = [
     metadata: {
       animated: false,
     },
-    preview: "preview",
+    preview: preview1,
   },
   {
     id: "sRQQYw0OOnctiJUBsMg6S",
@@ -368,7 +362,7 @@ export const SAMPLE_TEMPLATES = [
     metadata: {
       animated: false,
     },
-    preview: "https://ik.imagekit.io/scenify/2ZdeFFC6gdlw_LkzDN2J5cHs.png",
+    preview: preview2,
   },
   {
     id: "x2shx-AJICr0dZo32dq9y",
@@ -538,9 +532,18 @@ export const SAMPLE_TEMPLATES = [
     metadata: {
       animated: false,
     },
-    preview: "https://ik.imagekit.io/scenify/hkHXvT7iOVnyZwLIkniU8WpA.png",
+    preview: preview3,
   },
 ]
+export enum SubMenuType {
+  FONT_FAMILY = "FontFamily",
+  BACKGROUND = "Background",
+  COLOR = "Color",
+  ANIMATIONS = "Animations",
+  EFFECTS = "Effects",
+}
+
+
 
 export const editorFonts = [
   {

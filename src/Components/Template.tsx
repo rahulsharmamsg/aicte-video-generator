@@ -12,7 +12,7 @@ import { loadVideoEditorAssets } from "../utils/video"
 import { Image } from 'react-bootstrap'
 
 // import Scrollable from "../components/Scrollable/Scrollable.tsx"
-import previewimg from '../assets/images/template/1.png';
+// import previewimg from '../assets/images/template/1.png';
 
 
 
@@ -62,13 +62,13 @@ export default function Template() {
         </Block> */}
       </Block>
       {/* <Scrollable> */}
-      <div style={{ padding: "0 1.5rem" }}>
+      <div style={{ padding: "0 1.5rem" }} className="hhhhh">
         <div style={{ display: "grid", gap: "0.5rem", gridTemplateColumns: "1fr 1fr" }}>
           {SAMPLE_TEMPLATES.map((item, index) => {
             return <ImageItem onClick={() => loadTemplate(item)} key={index} preview={`${item?.preview}`} />
           })}
         </div>
-        <img src={previewimg}/>
+        {/* <img src={previewimg} width={100} height={100}/> */}
       </div>
       {/* </Scrollable> */}
     </Block>
@@ -76,7 +76,7 @@ export default function Template() {
 }
 
 function ImageItem({ preview, onClick }: { preview: any; onClick?: (option: any) => void }) {
-  console.log("preview")
+  console.log(preview,'hihi')
   const [css] = useStyletron()
   return (
     <div

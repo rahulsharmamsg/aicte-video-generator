@@ -69,6 +69,13 @@ import { Upload } from "phosphor-react";
 import Background from "../Components/Background.tsx";
 import Text from "../Components/Text.tsx";
 import Template from "../Components/Template.tsx"
+import LoadButton from './audio-components/LoadButton.component';
+import Players from './audio-components/Player.component.js';
+import {PlayerProv} from './Player.context.js';
+import Tempo from "./audio-components/Tempo.component.js";
+import Pitch from "./audio-components/Pitch.component.js";
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
   const [text, setText] = useState(false);
   const [textAi, setAiText] = useState(false);
@@ -78,7 +85,9 @@ function CreatelandscapeVideo() {
   const [GenerateScriptcnt, setGenerateScriptcnt] = useState("");
   const [showContent, setShowContent] = useState("");
   const [activePanel, setActivePanel] = useState("avatars");
-
+  const [getLanguageCode,seLanguageCode] = useState("");
+  const [audioSrc, setAudioSrc] = useState();
+  const [buf, setBuf] = useState("");
   const selectedEditor = "VIDEO";
   const { setEditorType } = useDesignEditorContext();
 
@@ -86,6 +95,8 @@ function CreatelandscapeVideo() {
     setEditorType(selectedEditor);
   }, [selectedEditor, setEditorType]);
 
+
+  
   const editor = useEditor();
 
   const addObject = React.useCallback(
@@ -738,6 +749,22 @@ function CreatelandscapeVideo() {
               <Toolbox />
 
               <CanvasEditor />
+
+             
+
+{/* 
+              {audioSrc ?(
+              <>
+               <PlayerProv {...{ audioCtx, gainNode }}>
+        <LoadButton audioSrc={buf}/>
+        <Players />          
+      </PlayerProv>
+              </>
+
+            ):""} */}
+
+
+
             </div>
             <div className="audioplayerDiv">
               <Footer />
@@ -746,7 +773,7 @@ function CreatelandscapeVideo() {
         </div>
         {/* {text ? <Popup hidePopup={closePopup} /> : null} */}
         
-        {text ? <Popup hidePopup={closePopup} /> : null}
+        {text ? <Popup  hidePopup={closePopup} language={getLanguageCode} setAudioSrc={setAudioSrc} setBuf={setBuf} /> : null}
         {}
         {scriptText ? (
           <GenerateScript
@@ -804,29 +831,43 @@ function CreatelandscapeVideo() {
               </div>
               <div className="videoRgtBtmDivRgt">
                 <div className="sppedPitchVlmDiv">
-                  <div className="speedDiv">
-                    <p className="sppedDivtxt">
-                      Speed <span>1.00x</span>
-                    </p>
-                    <input type="range" className="rangeInpt" />
+
+                {audioSrc ?(
+              <>
+               <PlayerProv {...{ audioCtx, gainNode }}>
+        <LoadButton audioSrc={buf}/>
+        <Players />
+        
+        
+        <div className="speedDiv">
+                    
+                    <Tempo />
                   </div>
                   <div className="speedDiv pitchDiv">
-                    <p className="sppedDivtxt">
-                      Pitch <span>0%</span>
-                    </p>
-                    <input type="range" className="rangeInpt" />
+                    
+                    <Pitch />
                   </div>
-                  <div className="speedDiv pitchDiv">
+
+                  {/* <div className="speedDiv pitchDiv">
                     <p className="sppedDivtxt">
                       Volume <span>50%</span>
                     </p>
                     <input type="range" className="rangeInpt" />
-                  </div>
+                  </div> */}
                   <div className="speedDiv playScripts">
                     <Link className="playScrptsBtn">
                       <PlayCircle size={20} /> Play Scripts
                     </Link>
                   </div>
+      </PlayerProv>
+              </>
+
+            ):""}
+
+                  
+
+
+                 
                 </div>
               </div>
             </div>
@@ -839,6 +880,7 @@ function CreatelandscapeVideo() {
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        seLanguageCode={seLanguageCode}
       />
     </>
   );

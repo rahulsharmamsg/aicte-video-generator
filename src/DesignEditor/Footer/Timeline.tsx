@@ -15,7 +15,7 @@ import TimelineContextMenu from "./TimelineContextMenu.tsx"
 import useContextMenuTimelineRequest from "../../hooks/useContextMenuTimelineRequest.ts"
 import { findSceneIndexByTime } from "../../utils/scenes.ts"
 
-export default function () {
+export default function Timeline () {
   const { time, setTime, status } = useTimer()
   const { setScenes, setCurrentScene, currentScene, scenes, setCurrentPreview, setCurrentDesign, currentDesign } =
     React.useContext(DesignEditorContext)

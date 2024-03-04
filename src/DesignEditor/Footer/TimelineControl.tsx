@@ -5,7 +5,7 @@ import Pause from "../../assets/Icons/Pause.tsx"
 import PlaySolid from "../../assets/Icons/PlaySolid.tsx"
 import useDesignEditorContext from "../../hooks/useDesignEditorContext.ts"
 
-export default function () {
+export default function TimelineControl () {
   const { pause, status } = useTimer()
   const { setDisplayPlayback } = useDesignEditorContext()
 
