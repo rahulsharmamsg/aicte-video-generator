@@ -68,7 +68,7 @@ import Import from "../Components/Import.tsx";
 import { Upload } from "phosphor-react";
 import Background from "../Components/Background.tsx";
 import Text from "../Components/Text.tsx";
-
+import Template from "../Components/Template.tsx"
 function CreatelandscapeVideo() {
   const [text, setText] = useState(false);
   const [textAi, setAiText] = useState(false);
@@ -635,7 +635,7 @@ function CreatelandscapeVideo() {
                <Upload className="maginifyIcn" size={22} />
                </div>
            </form> */}
-              <div className="avatarsTab">
+              {/* <div className="avatarsTab">
                 <Tabs
                   defaultActiveKey="home"
                   id="fill-tab-example"
@@ -697,7 +697,10 @@ function CreatelandscapeVideo() {
                     </div>
                   </Tab>
                 </Tabs>
-              </div>
+              </div> */}
+
+              <Template />
+
             </div>
           </div>
         )}
@@ -732,7 +735,7 @@ function CreatelandscapeVideo() {
         <div className="dashBrdRgt">
           <div className="">
             <div className="">
-              {/* <Toolbox /> */}
+              <Toolbox />
 
               <CanvasEditor />
             </div>
@@ -743,7 +746,7 @@ function CreatelandscapeVideo() {
         </div>
         {/* {text ? <Popup hidePopup={closePopup} /> : null} */}
         
-        {text ? <Popup2 hidePopup={closePopup} /> : null}
+        {text ? <Popup hidePopup={closePopup} /> : null}
         {}
         {scriptText ? (
           <GenerateScript

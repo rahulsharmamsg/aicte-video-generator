@@ -1,4 +1,5 @@
 import { ILayer } from "@layerhub-io/types"
+import preview from '../assets/images/template/1.png';
 
 export const SecondLevelMenus = ["FontFamily"]
 export const FirstLevelMenus = ["Background"]
@@ -197,7 +198,7 @@ export const SAMPLE_TEMPLATES = [
     metadata: {
       animated: false,
     },
-    preview: "https://ik.imagekit.io/scenify/OnktZ7CLGntNeirIYZ_eN8Cm.png",
+    preview: "preview",
   },
   {
     id: "sRQQYw0OOnctiJUBsMg6S",
