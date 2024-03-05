@@ -74,6 +74,7 @@ import Players from './audio-components/Player.component.js';
 import {PlayerProv} from './Player.context.js';
 import Tempo from "./audio-components/Tempo.component.js";
 import Pitch from "./audio-components/Pitch.component.js";
+import MyVerticallyCenteredModal from "../Components/LanguageCode.jsx";
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
@@ -90,7 +91,20 @@ function CreatelandscapeVideo() {
   const [buf, setBuf] = useState("");
   const selectedEditor = "VIDEO";
   const { setEditorType } = useDesignEditorContext();
-
+  const [defaultLanguege,setdefaultLanguage] = useState( {
+    "en-IN-PrabhatNeural": "English",
+    "hi-IN-MadhurNeural": "Hindi",
+    "te-IN-MohanNeural": "Telugu",
+    "ta-IN-ValluvarNeural": "Tamil",
+    "kn-IN-GaganNeural": "Kannada",
+    "ml-IN-MidhunNeural": "Malayalam",
+    "mr-IN-ManoharNeural": "Marathi",
+    "gu-IN-NiranjanNeural": "Gujarati",
+    "bn-IN-BashkarNeural": "Bengali",
+    "ur-IN-SalmanNeural": "Urdu"
+})
+console.log(defaultLanguege,'default language')
+console.log(getLanguageCode,'get language')
   useEffect(() => {
     setEditorType(selectedEditor);
   }, [selectedEditor, setEditorType]);
@@ -818,7 +832,7 @@ function CreatelandscapeVideo() {
                         onClick={() => setModalShow(true)}
                       >
                         <img src={flagInd} alt="" />{" "}
-                        <span>English - India</span>
+                        <span>{getLanguageCode? (defaultLanguege[getLanguageCode[1]]):"English - India"}</span>
                       </div>
                       <ArrowsLeftRight className="arrowLftRgt" size={24} />
                     </div>
@@ -885,188 +899,5 @@ function CreatelandscapeVideo() {
     </>
   );
 }
-function MyVerticallyCenteredModal(props) {
-  return (
-    <>
-      <Modal
-        className="langVoiceOver"
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <div className="avatarsTab">
-            <Tabs
-              defaultActiveKey="all"
-              id="fill-tab-example"
-              className="mb-3"
-              fill
-            >
-              <Tab eventKey="all" title="All">
-                <div className="engLngDiv">
-                  <ul>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Ireland) <br />
-                              Pure accent丨Universal
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Ireland) <br />
-                              Fluent丨Universal
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Australia) <br />
-                              Magnetic丨Clear丨Explanation
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Australia) <br />
-                              Fluent丨Universal
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Australia) <br />
-                              Composed丨Explanation
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Australia) <br />
-                              Energetic丨Marketing
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Australia) <br />
-                              Gentle丨Universal
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="voiceOverPpup">
-                        <div className="voiceOverInpt">
-                          <div className="flgTxt" variant="primary">
-                            <span className="flgIcnpop">
-                              <img src={flagInd} alt="" />
-                            </span>{" "}
-                            <span className="voiceLang">
-                              English (Australia) <br />
-                              Gentle丨Universal
-                            </span>
-                          </div>
-                          <PlayCircle size={24} className="arrowLftRgt" />
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </Tab>
-              <Tab eventKey="custom" title="Custom">
-                <div className="customvoiceDiv">
-                  <form action="">
-                    <label htmlFor="">
-                      Drag & Drop <span>Or</span> Browse
-                    </label>
-                    <input type="file" />
-                  </form>
-                </div>
-              </Tab>
-            </Tabs>
-          </div>
-        </Modal.Body>
-        <Modal.Footer className="modlFtrDiv">
-          <Button
-            onClick={props.onHide}
-            className="button green btn-login-signup cancleBtn"
-          >
-            Cancle
-          </Button>
-          <Button
-            onClick={props.onHide}
-            className="button green btn-login-signup"
-          >
-            OK
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-}
+
 export default CreatelandscapeVideo;
