@@ -11,7 +11,7 @@ const pexelsClient = axios.create({
 export const getPexelsVideos = (query: string) => {
   return new Promise((resolve, reject) => {
     pexelsClient
-      .get(`/videos/search?query=background&per_page=20&size=small`)
+      .get(`/videos/search?query=${query}&per_page=20&size=small`)
       .then(({ data }) => {
         const videos = data.videos.map((video: any) => ({
           id: video.id,

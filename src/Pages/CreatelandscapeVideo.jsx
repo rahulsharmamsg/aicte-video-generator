@@ -75,6 +75,7 @@ import {PlayerProv} from './Player.context.js';
 import Tempo from "./audio-components/Tempo.component.js";
 import Pitch from "./audio-components/Pitch.component.js";
 import MyVerticallyCenteredModal from "../Components/LanguageCode.jsx";
+import VideoGeneration from "../Components/VideoGeneration.jsx";
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
@@ -756,6 +757,20 @@ console.log(getLanguageCode,'get language')
             <ImageGeneration />
           </div>
         )}
+
+        {
+          activePanel ==="aivideo" &&(
+            <div className="dashBrdLft">
+            <div className="dashBrdLftInScndLayer">
+              <h3 className="scndryHdng">Video Generator</h3>
+              <form action="">
+                <VideoGeneration />
+              </form>
+              <div className="avatarsTab"></div>
+            </div>
+          </div>
+          )
+        }
 
         <div className="dashBrdRgt">
           <div className="">
