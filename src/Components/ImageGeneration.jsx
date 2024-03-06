@@ -55,6 +55,7 @@ function ImageGeneration() {
   const [Text, setText] = useState("");
   const [TransText, setTransText] = useState("");
   const [imageSrc, setImageSrc] = useState([]);
+
   function trimSpecialCharacters(inputString) {
     // Use regular expression to remove all non-alphanumeric characters
     return inputString.replace(/[^a-zA-Z0-9 ]/g, "");
@@ -72,7 +73,6 @@ function ImageGeneration() {
   const addObject = React.useCallback(
     (url) => {
       if (editor) {
-        console.log(editor, "editor");
         const options = {
           type: "StaticImage",
           src: url,
@@ -110,7 +110,6 @@ function ImageGeneration() {
       });
       const selectedLang = sourceLanguage;
       let files = new File([output.data], fileName, { type: "audio/wav" });
-      console.log(files);
       fd.append("file", files);
       fd.append("language", selectedLang);
       let config = {
@@ -134,7 +133,6 @@ function ImageGeneration() {
           console.log("Invalid query!");
         });
     };
-    console.log(audioURL,"hello")
     if (audioURL !== undefined && audioURL !== "") {
       fetchText();
     }
@@ -151,18 +149,15 @@ function ImageGeneration() {
     fd.append("outputLang", "en-IN");
 
     let payload = { text: Text, outputLang: "en-IN" };
-
-    axios
-      .post("https://voiceapi.aicte-india.org/text-to-text", payload)
-      .then(async (res) => {
+    setLoading(true);
+   const res =  await axios.post("https://voiceapi.aicte-india.org/text-to-text", payload);
+ 
         setTransText(res.data.data);
-        console.log(TransText);
         let censorStrin = censorString(res.data.data);
         if (censorStrin == "") {
           return;
         }
-        const url =
-          "https://bharattube.aicte-india.org/api/generate-image/generate-image";
+       
 
         let formData = new FormData();
         formData.append("prompt", censorStrin);
@@ -170,24 +165,30 @@ function ImageGeneration() {
           setLoading(true);
           setImageSrc("");
           const promises = [];
-        for (let i = 0; i < 7; i++) { // Adjust number of images if needed
-          promises.push(axios.post(url, formData, { prompt }));
-        }
+          const resData =  await axios.post('https://bharattube.aicte-india.org/api/generate-image/generate-image', formData, { prompt });       
+         console.log(resData,'generate image')
+         setLoading(false);
+          promises.push(resData);
+          const imageData = promises.map((response) => response.data.base64);
+          setImageSrc(imageData);
+          if(resData){
+            for (let i = 0; i < 2; i++) { // Adjust number of images if needed
+              const resData1 =   await axios.post('https://bharattube.aicte-india.org/api/generate-image/generate-image', formData, { prompt });       
+              promises.push(resData1);
+            }    
+            const imageData = promises.map((response) => response.data.base64);
+            setImageSrc(imageData);
 
-        setLoading(true); // Set loading state before fetching images
+          }
 
-        const responses = await Promise.all(promises);
-        const imageData = responses.map((response) => response.data.base64);
-
-        setImageSrc(imageData);
-        setLoading(false); // Set loading state to false after fetching
+     
   
           
         } catch (error) {
           console.error(error);
           setLoading(false);
         }
-      });
+
   };
 
   
