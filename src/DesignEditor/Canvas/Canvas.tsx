@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { Canvas } from "@layerhub-io/react"
 import Playback from "../Playback/Playback.tsx"
 import useDesignEditorContext from "../../hooks/useDesignEditorContext.ts"
@@ -11,6 +11,7 @@ const CanvasEditor=()=> {
       {displayPlayback && <Playback />}
       <ContextMenu />
       <Canvas
+      
         config={{
           background: "#ebecf0",
           controlsPosition: {
@@ -24,6 +25,7 @@ const CanvasEditor=()=> {
           },
           frameMargin: 0,
         }}
+        
       />
       
     </div>

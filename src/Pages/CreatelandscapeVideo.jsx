@@ -103,8 +103,6 @@ function CreatelandscapeVideo() {
     "bn-IN-BashkarNeural": "Bengali",
     "ur-IN-SalmanNeural": "Urdu"
 })
-console.log(defaultLanguege,'default language')
-console.log(getLanguageCode,'get language')
   useEffect(() => {
     setEditorType(selectedEditor);
   }, [selectedEditor, setEditorType]);
@@ -112,6 +110,26 @@ console.log(getLanguageCode,'get language')
 
   
   const editor = useEditor();
+  
+
+  const handleAddAudio = async (audioSrc) => {
+    if (!editor) return;
+
+    // Create audio object
+    const audioObject = await editor.objects.add({
+      type: 'audio',
+      src: audioSrc, // Convert audio blob to object URL
+      x: 100, // Example: Set initial position
+      y: 100,
+    });
+
+   console.log(audioObject,'hello this is obj')
+  };
+
+  useEffect(()=>{
+    handleAddAudio(audioSrc);
+    
+  },[audioSrc])
 
   const addObject = React.useCallback(
     (url) => {
@@ -122,13 +140,15 @@ console.log(getLanguageCode,'get language')
           src: url,
         };
 
-        console.log(url, "url")
-
+       
         editor.objects.add(options);
+       
       }
     },
     [editor]
   );
+
+ 
   const youtubeExplainerContent = (
     <div className="popupOutline generateScrptDiv youtubeScriptvideoDiv">
       <div className="pop-up">
