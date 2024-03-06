@@ -16,6 +16,7 @@ import AssessmentCategoryListing from './Components/AssessmentCategoryListing';
 import AssessmentCategoryDetail from './Components/AssessmentCategoryDetail';
 import LandingPage from './Pages/LandingPage';
 import VideoTranslator from './Pages/VideoTranslator';
+import VideoGenerator from './Pages/VideoGenerator';
 
 function RoutingPage() {
   return (
@@ -42,7 +43,8 @@ function RoutingPage() {
           <Route path="aibackground" element={<CreateBackground />} />
           <Route path="aisticker" element={<CreateSticker />} />
           <Route path="aitemplate" element={<CreateTemplate />} />
-          
+          <Route path="videogenerate" element={<VideoGenerator/>}/>
+
         </Route>
       </Routes>
     </Router>
