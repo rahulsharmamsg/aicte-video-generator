@@ -76,12 +76,15 @@ import Tempo from "./audio-components/Tempo.component.js";
 import Pitch from "./audio-components/Pitch.component.js";
 import MyVerticallyCenteredModal from "../Components/LanguageCode.jsx";
 import VideoGeneration from "../Components/VideoGeneration.jsx";
+import VirtualKeyword from "../Components/VirtualKeyword.jsx";
+import TranslatorInput from "../Components/Translation.jsx";
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
   const [text, setText] = useState(false);
   const [textAi, setAiText] = useState(false);
   const [scriptText, setscriptText] = useState(false);
+  const [virtualShow,setVirtualShow] = useState(false)
   const [textcontent, setTextcontent] = useState("");
   const [AItextcontent, setAITextcontent] = useState("");
   const [GenerateScriptcnt, setGenerateScriptcnt] = useState("");
@@ -450,6 +453,10 @@ function CreatelandscapeVideo() {
     setscriptText(!scriptText);
     setGenerateScriptcnt(GenerateScriptcnt);
   };
+
+  const createVirtualKeyword = ()=>{
+    setVirtualShow(!virtualShow);
+  }
   const AitranslationPop = (AItextcontent) => {
     setAiText(!textAi);
     setAITextcontent(AItextcontent);
@@ -462,6 +469,9 @@ function CreatelandscapeVideo() {
   };
   const closePopupScrpt = () => {
     setscriptText(false);
+  };
+  const closePopupVirtual = () => {
+    setVirtualShow(false);
   };
 
   return (
@@ -830,6 +840,13 @@ function CreatelandscapeVideo() {
             setShowContent={setShowContent}
           />
         ) : null}
+
+{virtualShow ? (
+  
+          <VirtualKeyword
+            hidePopup={closePopupVirtual}
+          />
+        ) : null}
         {textAi ? <AiTranslation hidePopup={closePopupAi} /> : null}
         <div className="dashBrdLft dashBrdLftRgt">
           <div className="dashBrdLftInScndLayer">
@@ -857,6 +874,9 @@ function CreatelandscapeVideo() {
                     </li>
                     <li onClick={() => generateScipt()}>
                       <TextT size={22} /> Generate Script
+                    </li>
+                    <li onClick={() => createVirtualKeyword()}>
+                      <TextT size={22} /> Virtual Keywords
                     </li>
                   </ul>
                   <div className="voiceOverPpup">
