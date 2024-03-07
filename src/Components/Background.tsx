@@ -66,15 +66,51 @@ export default function Background() {
     setVideos(videos)
   }
 
-  const loadPexelsVideos = async () => {
-    console.log("running")
-    const videos = (await getPexelsVideos("people")) as any
-    console.log( videos )
-    setVideos(videos)
-  }
+  const [searchTerm, setSearchTerm] = React.useState<string>('people'); // Default search term
+
+  // const getPexelsVideos = async (query: string): Promise<any[]> => {
+  //   // Your getPexelsVideos implementation goes here
+  //   // Replace this with your actual API call
+  //   // Example: const response = await fetch(`API_URL_HERE`);
+  //   //          const data = await response.json();
+  //   //          return data;
+  //   console.log("Searching for:", query);
+  //   return [];
+  // };
+
+  const loadPexelsVideos = async (query: string) => {
+    if (!query.trim()) {
+      console.log("Search query is empty");
+      return;
+    }
+    console.log("running");
+    const videos = await getPexelsVideos(query) as any
+    console.log(videos);
+    setVideos(videos);
+  };
+
+
   React.useEffect(() => {
-    loadPexelsVideos()
-  }, [])
+    loadPexelsVideos(searchTerm);
+  }, [searchTerm]);
+
+  const handleSearch = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    loadPexelsVideos(searchTerm);
+    
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default form submission behavior
+      loadPexelsVideos(searchTerm);
+    }
+  };
+
 
   const addObject = React.useCallback(
     async (options: any) => {
@@ -99,6 +135,26 @@ export default function Background() {
   )
 
   return (
+    <> 
+    <form action="">
+    <div className="srchAiAvatar">
+      {/* <input
+        type="file"
+        placeholder="Search for AI Avatars"
+        className="srchAiAvatars"
+      /> */}
+      {/* <Upload className="maginifyIcn" size={22} /> */}
+      <input
+        placeholder="Search"
+        className="srchAiAvatars"
+        value={searchTerm}
+        onChange={handleInputChange}
+        // onKeyPress={handleKeyPress}
+      />
+      <button className="button orange mt-3 w-100" onClick={handleSearch}>Search</button>
+     
+    </div>
+  </form>
     <Block $style={{ flex: 1, display: "flex", flexDirection: "column" }}>
       <Block
         $style={{
@@ -123,6 +179,7 @@ export default function Background() {
         </Block>
       {/* </Scrollable> */}
     </Block>
+    </>
   )
 }
 

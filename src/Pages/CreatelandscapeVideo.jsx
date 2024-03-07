@@ -59,7 +59,7 @@ import tem02 from "../assets/images/tem02.jpg";
 import tem03 from "../assets/images/tem03.jpg";
 import tem04 from "../assets/images/tem04.jpg";
 import ImageGeneration from "../Components/ImageGeneration";
-
+import { CirclesWithBar } from "react-loader-spinner";
 import { useEditor } from "@layerhub-io/react";
 import useDesignEditorContext from "../hooks/useDesignEditorContext.ts";
 import Toolbox from "../DesignEditor/Toolbox.tsx";
@@ -76,6 +76,8 @@ import Tempo from "./audio-components/Tempo.component.js";
 import Pitch from "./audio-components/Pitch.component.js";
 import MyVerticallyCenteredModal from "../Components/LanguageCode.jsx";
 import VideoGeneration from "../Components/VideoGeneration.jsx";
+import TexttoVideo from "../Components/TexttoVideo.jsx"
+
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
@@ -90,6 +92,7 @@ function CreatelandscapeVideo() {
   const [getLanguageCode,seLanguageCode] = useState("");
   const [audioSrc, setAudioSrc] = useState();
   const [buf, setBuf] = useState("");
+  const [loading, setLoading] = useState(false);
   const selectedEditor = "VIDEO";
   const { setEditorType } = useDesignEditorContext();
   const [defaultLanguege,setdefaultLanguage] = useState( {
@@ -635,16 +638,7 @@ console.log(getLanguageCode,'get language')
           <div className="dashBrdLft">
             <div className="dashBrdLftInScndLayer">
               <h3 className="scndryHdng">Background</h3>
-              <form action="">
-                <div className="srchAiAvatar">
-                  <input
-                    type="file"
-                    placeholder="Search for AI Avatars"
-                    className="srchAiAvatars"
-                  />
-                  <Upload className="maginifyIcn" size={22} />
-                </div>
-              </form>
+             
               <div className="avatarsTab">
                 <Background />
               </div>
@@ -771,12 +765,24 @@ console.log(getLanguageCode,'get language')
           </div>
           )
         }
+         {
+          activePanel ==="textvideo" &&(
+            <div className="dashBrdLft">
+            <div className="dashBrdLftInScndLayer">
+              <h3 className="scndryHdng">Video Generator</h3>
+              <form action="">
+                <TexttoVideo />
+              </form>
+              <div className="avatarsTab"></div>
+            </div>
+          </div>
+          )
+        }
 
         <div className="dashBrdRgt">
           <div className="">
             <div className="">
               <Toolbox />
-
               <CanvasEditor />
 
              
@@ -911,8 +917,35 @@ console.log(getLanguageCode,'get language')
         onHide={() => setModalShow(false)}
         seLanguageCode={seLanguageCode}
       />
+       {loading && (
+    <div className="loading-overlay">
+      <div className="load">
+        <CirclesWithBar
+          height="100"
+          width="100"
+          color="#4fa94d"
+          outerCircleColor="#4fa94d"
+          innerCircleColor="#4fa94d"
+          barColor="#4fa94d"
+          ariaLabel="circles-with-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+        <h4>Loading...</h4>
+
+        {console.log("i m hitting")}
+      </div>
+    </div>
+  )}
     </>
-  );
+
+);
+ 
+
 }
+
+
+
 
 export default CreatelandscapeVideo;
