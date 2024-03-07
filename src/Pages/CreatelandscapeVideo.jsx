@@ -76,6 +76,8 @@ import Tempo from "./audio-components/Tempo.component.js";
 import Pitch from "./audio-components/Pitch.component.js";
 import MyVerticallyCenteredModal from "../Components/LanguageCode.jsx";
 import VideoGeneration from "../Components/VideoGeneration.jsx";
+import VirtualKeyword from "../Components/VirtualKeyword.jsx";
+import TranslatorInput from "../Components/Translation.jsx";
 import TexttoVideo from "../Components/TexttoVideo.jsx"
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -84,6 +86,7 @@ function CreatelandscapeVideo() {
   const [text, setText] = useState(false);
   const [textAi, setAiText] = useState(false);
   const [scriptText, setscriptText] = useState(false);
+  const [virtualShow,setVirtualShow] = useState(false)
   const [textcontent, setTextcontent] = useState("");
   const [AItextcontent, setAITextcontent] = useState("");
   const [GenerateScriptcnt, setGenerateScriptcnt] = useState("");
@@ -107,8 +110,6 @@ function CreatelandscapeVideo() {
     "bn-IN-BashkarNeural": "Bengali",
     "ur-IN-SalmanNeural": "Urdu"
 })
-console.log(defaultLanguege,'default language')
-console.log(getLanguageCode,'get language')
   useEffect(() => {
     setEditorType(selectedEditor);
   }, [selectedEditor, setEditorType]);
@@ -116,6 +117,26 @@ console.log(getLanguageCode,'get language')
 
   
   const editor = useEditor();
+  
+
+  const handleAddAudio = async (audioSrc) => {
+    if (!editor) return;
+
+    // Create audio object
+    const audioObject = await editor.objects.add({
+      type: 'audio',
+      src: audioSrc, // Convert audio blob to object URL
+      x: 100, // Example: Set initial position
+      y: 100,
+    });
+
+   console.log(audioObject,'hello this is obj')
+  };
+
+  useEffect(()=>{
+    handleAddAudio(audioSrc);
+    
+  },[audioSrc])
 
   const addObject = React.useCallback(
     (url) => {
@@ -126,13 +147,15 @@ console.log(getLanguageCode,'get language')
           src: url,
         };
 
-        console.log(url, "url")
-
+       
         editor.objects.add(options);
+       
       }
     },
     [editor]
   );
+
+ 
   const youtubeExplainerContent = (
     <div className="popupOutline generateScrptDiv youtubeScriptvideoDiv">
       <div className="pop-up">
@@ -433,6 +456,10 @@ console.log(getLanguageCode,'get language')
     setscriptText(!scriptText);
     setGenerateScriptcnt(GenerateScriptcnt);
   };
+
+  const createVirtualKeyword = ()=>{
+    setVirtualShow(!virtualShow);
+  }
   const AitranslationPop = (AItextcontent) => {
     setAiText(!textAi);
     setAITextcontent(AItextcontent);
@@ -445,6 +472,9 @@ console.log(getLanguageCode,'get language')
   };
   const closePopupScrpt = () => {
     setscriptText(false);
+  };
+  const closePopupVirtual = () => {
+    setVirtualShow(false);
   };
 
   return (
@@ -816,6 +846,13 @@ console.log(getLanguageCode,'get language')
             setShowContent={setShowContent}
           />
         ) : null}
+
+{virtualShow ? (
+  
+          <VirtualKeyword
+            hidePopup={closePopupVirtual}
+          />
+        ) : null}
         {textAi ? <AiTranslation hidePopup={closePopupAi} /> : null}
         <div className="dashBrdLft dashBrdLftRgt">
           <div className="dashBrdLftInScndLayer">
@@ -843,6 +880,9 @@ console.log(getLanguageCode,'get language')
                     </li>
                     <li onClick={() => generateScipt()}>
                       <TextT size={22} /> Generate Script
+                    </li>
+                    <li onClick={() => createVirtualKeyword()}>
+                      <TextT size={22} /> Virtual Keywords
                     </li>
                   </ul>
                   <div className="voiceOverPpup">

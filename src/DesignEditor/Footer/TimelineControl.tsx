@@ -15,9 +15,11 @@ export default function TimelineControl () {
         onClick={
           status === "STOPPED" || status === "PAUSED"
             ? () => {
+              console.log("hello this is test");
                 setDisplayPlayback(true)
               }
             : () => {
+              console.log("hello ");
                 pause()
                 setDisplayPlayback(false)
               }

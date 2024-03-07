@@ -29,6 +29,7 @@ function UploadFile() {
   const [vid,setVid] = useState()
   const webcamRef = useRef(null);
   const mediaRecorderRef = useRef(null);
+  const [createVideoUrl,setVideoCreateurl] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
@@ -345,22 +346,41 @@ fetch(videourl)
   };
 
   const handleDownload = () => {
+
+    console.log(recordedChunks,'chunk')
     const blob = new Blob(recordedChunks, { type: 'video/mp4' });
     // const blob2 = new Blob(recordedChunks, { type: 'audio/wav' });
     const url = URL.createObjectURL(blob);
     console.log(url,"url")
-    // const a = document.createElement('a');
-    // a.style.display = 'none';
-    // a.href = url;
-    // a.download = 'recorded-video.mp4';
-    // document.body.appendChild(a);
-    // setVideourl(url)
-    // setVideo(url)
-    // setAud(blob2)
-    // setVid(blob)
-    // // a.click();
-    // window.URL.revokeObjectURL(url);
-    // document.body.removeChild(a);
+//----//
+    // const file = files[0]
+  
+    // const base64 = (await toBase64(file))
+    // const video = await loadVideoResource(base64)
+    
+    // if (!video) {
+    //   console.error("Failed to load video resource.")
+    //   return
+    // }
+
+    // const frame = await captureFrame(video)
+
+    // const type = file.type.includes("video") ? "StaticVideo" : "StaticImage"
+
+    // const upload = {
+    //   id: nanoid(),
+    //   src: base64,
+    //   preview: frame,
+    //   type: type,
+    // }
+//----//
+
+    
+
+
+
+
+
     const type = "StaticVideo";
     const upload = {
       id: nanoid(),
@@ -372,7 +392,7 @@ fetch(videourl)
     setUploads([...uploads, upload]);
     const file = new File([blob],'video')
       createAudio(file)
-      setVideourl(URL.createObjectURL(file));
+      setVideoCreateurl([...createVideoUrl,URL.createObjectURL(file)]);
       setVideo(file)
       // checkVideoDuration(file);
   };
@@ -538,7 +558,7 @@ fetch(videourl)
               </div>
             </div>
 
-            {videourl.length>1 && (
+            {createVideoUrl.length>0 && (
               <div className="mt-4">
                 {/* <ReactPlayer url={[
      {src: videourl.videoFileURL, type: 'video/mp4'}
@@ -546,16 +566,22 @@ fetch(videourl)
    ]} />
    */}
                 <div className="max-width-800 m-auto">
-                  <video
-                    src={videourl}
+                  {createVideoUrl.map((videoBlobUrl)=>{
+                    return <>
+                    <video
+                    src={videoBlobUrl}
                     typeof="video/mp4"
                     autoPlay={true}
                     controls={true}
                     duta
                   />
+                    </>
+                  })}
+                  
                 </div>
               </div>
             )}
+            
             {uploads.map((upload) => (
                 <div
                   key={upload.id}
