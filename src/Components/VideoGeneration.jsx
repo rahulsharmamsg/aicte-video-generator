@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useEditor } from "@layerhub-io/react";
 import useDesignEditorContext from "../hooks/useDesignEditorContext.ts"
+import demov from "./video.mp4"
 
 const loadVideoResource = (videoSrc) => {
     return new Promise(function (resolve, reject) {
@@ -19,6 +20,9 @@ const loadVideoResource = (videoSrc) => {
         })
     })
 }
+
+
+
 
 const captureFrame = (video) => {
     return new Promise(function (resolve) {
@@ -63,7 +67,50 @@ const VideoGeneration = () => {
     //     body: formdata,
     //     redirect: "follow"
     //   };
+    //   const editor = useEditor();
+    const handleImageClick = () => {
+        // Add the video to the editor
+        addObject(demov);
+    };
+    const addObject = async (videoSrc) => {
 
+        console.log("im hitting");
+        if (editor) {
+            try {
+                const video = await loadVideoResource(videoSrc);
+                const frame = await captureFrame(video);
+                const duration = await captureDuration(video);
+    
+                // Here you should construct your video object
+                const videoObject = {
+                    src: videoSrc,
+                    duration: duration,
+                    preview: frame,
+                    // Add any other properties you need for your video object
+                };
+    
+                // Add the video object to the editor
+                editor.objects.add(videoObject);
+    
+                // Update scene duration if necessary
+                if (currentScene) {
+                    const updatedScenes = scenes.map((scn) => {
+                        if (scn.id === currentScene.id) {
+                            return {
+                                ...currentScene,
+                                duration: duration * 1000 > currentScene.duration ? duration * 1000 : currentScene.duration,
+                            };
+                        }
+                        return scn;
+                    });
+                    setScenes(updatedScenes);
+                }
+            } catch (error) {
+                console.error('Error adding video to editor:', error);
+            }
+        }
+    };
+    
     const handleTextChange = (e) => {
         setText(e.target.value);
     };
@@ -78,7 +125,7 @@ const VideoGeneration = () => {
         formData.append('prompt', text);
         formData.append('image', image);
         try {
-            const response = await axios.post('http://10.150.0.13:5000/generate-video', formData,
+            const response = await axios.post('http://10.150.0.8/api/generate-video', formData,
                 { responseType: 'blob' },
                 {
                     headers: {
@@ -86,37 +133,38 @@ const VideoGeneration = () => {
                     },
                 },
             );
-            // Handle success response
-            //   const videoBlob = new Blob([response.data], { type: 'video/mp4' });
-            //   const videoUrl = URL.createObjectURL(videoBlob);
+           
             const url = URL.createObjectURL(response?.data)
-
+            const videoFile = new File([url], 'video.mp4', { type: 'video/mp4' });
+            console.log("videoFile ===>" , videoFile);
             setVideoUrl(url);
-            if (editor) {
-                const video = await loadVideoResource(url)
-                const frame = await captureFrame(video)
-                const duration = await captureDuration(video)
-                editor.objects.add({ duration, preview: frame })
-                const updatedScenes = scenes.map((scn) => {
-                    if (scn.id === currentScene?.id) {
-                        return {
-                            ...currentScene,
-                            duration: duration * 1000 > currentScene.duration ? duration * 1000 : currentScene.duration,
-                        }
-                    }
-                    return scn
-                })
-                setScenes(updatedScenes)
-            }
+            // if ()
+            // const file = files[0]
+  
+            // // const base64 = (await toBase64(file)) as string
+            // const video = await loadVideoResource(base64)
+            
+            // const frame = await captureFrame(video)
+            // const type = file.type.includes("video") ? "StaticVideo" : "StaticImage"
+            // const upload = {
+            //     id: nanoid(),
+            //     src: base64,
+            //     preview: frame,
+            //     type: type,
+            // }
+            // setUploads([...uploads, upload])
+       
 
-            console.log('Response:', response, "videoUrl", videoUrl);
+            // console.log('Response:', response, "videoUrl", videoUrl);
             //   setVideoUrl(response?.data)
         } catch (error) {
             // Handle error
             console.error('Error:', error);
         }
     };
-
+    const addImageToCanvas = (props) => {
+        editor.objects.add(props)
+    }
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -148,13 +196,31 @@ const VideoGeneration = () => {
                 <button class="button orange mt-3 w-100" onClick={handleSubmit}>Generate Video</button>
             </form>
             {videoUrl && (
-                <video controls>
-                    <source src={videoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                <>
+                    {/* <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => addImageToCanvas(upload)}
+                    >
+                        <div>
+                            <img width="100%" src={upload.preview ? upload.preview : upload.url} alt="preview" />
+                        </div>
+                    </div> */}
+
+                    <video controls>
+                        <source src={videoUrl} onClick={() => addObject(videoUrl)} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+  
+                </>
             )}
+
+{/* <img src={demov} onClick={handleImageClick} alt="Generated Image" /> */}
+
         </div>
     );
 };
-
 export default VideoGeneration;

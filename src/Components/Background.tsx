@@ -17,11 +17,9 @@ const loadVideoResource = (videoSrc: string): Promise<HTMLVideoElement> => {
     video.addEventListener("loadedmetadata", function (event) {
       video.currentTime = 1
     })
-
     video.addEventListener("seeked", function () {
       resolve(video)
     })
-
     video.addEventListener("error", function (error) {
       reject(error)
     })
@@ -170,6 +168,7 @@ export default function Background() {
         
       </Block>
       {/* <Scrollable> */}
+      {console.log("videos", videos) }
         <Block padding={"0 1.5rem"}>
           <div style={{ display: "grid", gap: "8px", gridTemplateColumns: "1fr 1fr" }}>
             {videos.map((video, index) => {

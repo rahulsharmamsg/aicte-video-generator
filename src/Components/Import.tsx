@@ -27,6 +27,7 @@ export default function Import() {
   const handleDropFiles = async (files: FileList) => {
     try {
       const file = files[0]
+  console.log("fileformatv ", file);
   
       const base64 = (await toBase64(file)) as string
       const video = await loadVideoResource(base64)
@@ -35,25 +36,20 @@ export default function Import() {
         console.error("Failed to load video resource.")
         return
       }
-  
       const frame = await captureFrame(video)
-  
       const type = file.type.includes("video") ? "StaticVideo" : "StaticImage"
-  
       const upload = {
         id: nanoid(),
         src: base64,
         preview: frame,
         type: type,
       }
-  
       setUploads([...uploads, upload])
     } catch (error) {
       console.error("Error processing file:", error)
     }
   }
   
-
   const handleInputFileRefClick = (e:any) => {
     e.preventDefault()
 
@@ -66,10 +62,10 @@ export default function Import() {
 
   const addImageToCanvas = (props) => {
     editor.objects.add(props)
+    
   }
   return (
     <DropZone handleDropFiles={handleDropFiles}>
-        
       <Block $style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <Block
           $style={{
@@ -81,8 +77,6 @@ export default function Import() {
           }}
         >
           <Block>Uploads</Block>
-
-          
         </Block>
         <div>
             <Button
@@ -99,7 +93,6 @@ export default function Import() {
               Computer
             </Button>
             <input onChange={handleFileInput} type="file" id="file" ref={inputFileRef} style={{ display: "none" }} />
-
             <div
               style={{
                 marginTop: "1rem",
@@ -108,7 +101,6 @@ export default function Import() {
                 gridTemplateColumns: "1fr 1fr",
               }}
             >
-                
               {uploads.map((upload) => (
                 <div
                   key={upload.id}

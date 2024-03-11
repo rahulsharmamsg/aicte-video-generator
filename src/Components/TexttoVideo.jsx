@@ -49,6 +49,7 @@ const captureFrame = (video) => {
             })
     })
 }
+// const editor = useEditor();
 
 const captureDuration = (video) => {
     return new Promise((resolve) => {
@@ -78,7 +79,23 @@ const VideoGeneration = () => {
     //     body: formdata,
     //     redirect: "follow"
     //   };
-
+    const addObject = React.useCallback(
+        (url) => {
+          if (editor) {
+            console.log(editor, "editor");
+            const options = {
+              type: "StaticImage",
+              src: url,
+            };
+    
+           
+            editor.objects.add(options);
+           
+          }
+        },
+        [editor]
+      );
+    
     const handleTextChange = (e) => {
         setText(e.target.value);
     };
@@ -99,25 +116,26 @@ const VideoGeneration = () => {
         try {
             const res = await axios.post("https://bharattube.aicte-india.org/api/generate-image/generate-image", formData);
             setImageSrc(res?.data?.base64);
+
+            console.log("image type =====?", res?.data?.base64);
             // setLoading(false);
             // const videourl = URL.createObjectURL(imageSrc)
-            if (res.status === 200){
+            if (res.status === 200){               
                 setLoading(false);
-
                 const formData = new FormData();
                 formData.append('prompt', text);
-                console.log("imageSrc", formData);
-                const byteCharacters = atob(imageSrc);
+                const byteCharacters = atob(res.data.base64);
                 const byteNumbers = new Array(byteCharacters.length);
                 for (let i = 0; i < byteCharacters.length; i++) {
                     byteNumbers[i] = byteCharacters.charCodeAt(i);
                 }
                 const byteArray = new Uint8Array(byteNumbers);
                 const blob = new Blob([byteArray], { type: 'image/jpeg' });
-                formData.append('image', blob, 'image.jpg'); 
-                // formData.append('image', imageSrc);
+                formData.append('image', blob, 'image.jpg');
+
+                console.log("formData===>", formData);
                 try {
-                    const response = await axios.post('http://10.150.0.13:5000/generate-video', formData,
+                    const response = await axios.post('http://10.150.0.13:7860/generate-video', formData,
                         { responseType: 'blob' },
                         {
                             headers: {
@@ -255,7 +273,8 @@ const VideoGeneration = () => {
                 <button class="button orange mt-3 w-100" onClick={handleSubmit}>Generate Video</button>
             </form>
             {videoUrl && (
-                <video controls>
+                <video controls onClick={() => addObject(videoUrl)}
+                >
                     <source src={videoUrl} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>

@@ -332,13 +332,11 @@ function ImageGeneration() {
                 {vkeyboard &&<div className="inputGroup">
                 <TranslatorInput />
               </div>}
-              {console.log("imgscr",imageSrc)}
               <div style={{display:"flex",flexWrap:"wrap", gap:"15px"}}>
               
                 {imageSrc && imageSrc.map((img, index) => (
                   (
                     <div >
-                      
                       <div style={{width:"100px",height:"100px"}} >
                        
                         <CanvasComponent  size={10} base64img={img} />

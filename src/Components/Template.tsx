@@ -38,7 +38,6 @@ export default function Template() {
         if (filteredFonts.length > 0) {
           await loadFonts(filteredFonts)
         }
-
         setCurrentScene({ ...template, id: currentScene?.id })
       }
     },
@@ -76,7 +75,7 @@ export default function Template() {
 }
 
 function ImageItem({ preview, onClick }: { preview: any; onClick?: (option: any) => void }) {
-  console.log(preview,'hihi')
+  // console.log(preview,'hihi')
   const [css] = useStyletron()
   return (
     <div

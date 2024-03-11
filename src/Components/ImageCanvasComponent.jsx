@@ -113,7 +113,7 @@ const ImageCanvasComponent = ({ base64img }) => {
         </button> */}
         
       </div>
-      <img ref={canvasRef} width={200} height={200} onClick={(e)=>addObject(e.target.src)}/>
+      <img ref={canvasRef} width={200} height={200} onClick={(e)=>addObject(e.target.src)} />
       {/* <canvas
         ref={canvasRef}
         width={1100}

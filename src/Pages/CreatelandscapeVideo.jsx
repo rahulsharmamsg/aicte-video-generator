@@ -71,7 +71,7 @@ import Text from "../Components/Text.tsx";
 import Template from "../Components/Template.tsx"
 import LoadButton from './audio-components/LoadButton.component';
 import Players from './audio-components/Player.component.js';
-import {PlayerProv} from './Player.context.js';
+import { PlayerProv } from './Player.context.js';
 import Tempo from "./audio-components/Tempo.component.js";
 import Pitch from "./audio-components/Pitch.component.js";
 import MyVerticallyCenteredModal from "../Components/LanguageCode.jsx";
@@ -79,6 +79,7 @@ import VideoGeneration from "../Components/VideoGeneration.jsx";
 import VirtualKeyword from "../Components/VirtualKeyword.jsx";
 import TranslatorInput from "../Components/Translation.jsx";
 import TexttoVideo from "../Components/TexttoVideo.jsx"
+import TalkingAvatar from "../Components/TalkingAvatar.jsx";
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
@@ -86,19 +87,19 @@ function CreatelandscapeVideo() {
   const [text, setText] = useState(false);
   const [textAi, setAiText] = useState(false);
   const [scriptText, setscriptText] = useState(false);
-  const [virtualShow,setVirtualShow] = useState(false)
+  const [virtualShow, setVirtualShow] = useState(false)
   const [textcontent, setTextcontent] = useState("");
   const [AItextcontent, setAITextcontent] = useState("");
   const [GenerateScriptcnt, setGenerateScriptcnt] = useState("");
   const [showContent, setShowContent] = useState("");
   const [activePanel, setActivePanel] = useState("avatars");
-  const [getLanguageCode,seLanguageCode] = useState("");
+  const [getLanguageCode, seLanguageCode] = useState("");
   const [audioSrc, setAudioSrc] = useState();
   const [buf, setBuf] = useState("");
   const [loading, setLoading] = useState(false);
   const selectedEditor = "VIDEO";
   const { setEditorType } = useDesignEditorContext();
-  const [defaultLanguege,setdefaultLanguage] = useState( {
+  const [defaultLanguege, setdefaultLanguage] = useState({
     "en-IN-PrabhatNeural": "English",
     "hi-IN-MadhurNeural": "Hindi",
     "te-IN-MohanNeural": "Telugu",
@@ -109,15 +110,15 @@ function CreatelandscapeVideo() {
     "gu-IN-NiranjanNeural": "Gujarati",
     "bn-IN-BashkarNeural": "Bengali",
     "ur-IN-SalmanNeural": "Urdu"
-})
+  })
   useEffect(() => {
     setEditorType(selectedEditor);
   }, [selectedEditor, setEditorType]);
 
 
-  
+
   const editor = useEditor();
-  
+
 
   const handleAddAudio = async (audioSrc) => {
     if (!editor) return;
@@ -130,13 +131,13 @@ function CreatelandscapeVideo() {
       y: 100,
     });
 
-   console.log(audioObject,'hello this is obj')
+    console.log(audioObject, 'hello this is obj')
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     handleAddAudio(audioSrc);
-    
-  },[audioSrc])
+
+  }, [audioSrc])
 
   const addObject = React.useCallback(
     (url) => {
@@ -147,15 +148,15 @@ function CreatelandscapeVideo() {
           src: url,
         };
 
-       
+
         editor.objects.add(options);
-       
+
       }
     },
     [editor]
   );
 
- 
+
   const youtubeExplainerContent = (
     <div className="popupOutline generateScrptDiv youtubeScriptvideoDiv">
       <div className="pop-up">
@@ -439,11 +440,8 @@ function CreatelandscapeVideo() {
     });
   };
   scrollToTop();
-
   const [modalShow, setModalShow] = React.useState(false);
-
   const [isPlaying, setIsPlaying] = useState(false);
-
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
@@ -457,7 +455,7 @@ function CreatelandscapeVideo() {
     setGenerateScriptcnt(GenerateScriptcnt);
   };
 
-  const createVirtualKeyword = ()=>{
+  const createVirtualKeyword = () => {
     setVirtualShow(!virtualShow);
   }
   const AitranslationPop = (AItextcontent) => {
@@ -668,7 +666,7 @@ function CreatelandscapeVideo() {
           <div className="dashBrdLft">
             <div className="dashBrdLftInScndLayer">
               <h3 className="scndryHdng">Background</h3>
-             
+
               <div className="avatarsTab">
                 <Background />
               </div>
@@ -764,7 +762,20 @@ function CreatelandscapeVideo() {
             </div>
           </div>
         )}
-
+    {    console.log("activePanel", activePanel)}
+ {
+          activePanel === "talkingavtar" && (
+            <div className="dashBrdLft">
+              <div className="dashBrdLftInScndLayer">
+                <h3 className="scndryHdng">Talking Avatar</h3>
+                <form action="">
+                  <TalkingAvatar />
+                </form>
+                <div className="avatarsTab"></div>
+              </div>
+            </div>
+          )
+        }
         {activePanel === "import" && (
           <div className="dashBrdLft">
             <div className="dashBrdLftInScndLayer">
@@ -783,29 +794,29 @@ function CreatelandscapeVideo() {
         )}
 
         {
-          activePanel ==="aivideo" &&(
+          activePanel === "aivideo" && (
             <div className="dashBrdLft">
-            <div className="dashBrdLftInScndLayer">
-              <h3 className="scndryHdng">Video Generator</h3>
-              <form action="">
-                <VideoGeneration />
-              </form>
-              <div className="avatarsTab"></div>
+              <div className="dashBrdLftInScndLayer">
+                <h3 className="scndryHdng">Video Generator</h3>
+                <form action="">
+                  <VideoGeneration />
+                </form>
+                <div className="avatarsTab"></div>
+              </div>
             </div>
-          </div>
           )
         }
-         {
-          activePanel ==="textvideo" &&(
+        {
+          activePanel === "textvideo" && (
             <div className="dashBrdLft">
-            <div className="dashBrdLftInScndLayer">
-              <h3 className="scndryHdng">Video Generator</h3>
-              <form action="">
-                <TexttoVideo />
-              </form>
-              <div className="avatarsTab"></div>
+              <div className="dashBrdLftInScndLayer">
+                <h3 className="scndryHdng">Video Generator</h3>
+                <form action="">
+                  <TexttoVideo />
+                </form>
+                <div className="avatarsTab"></div>
+              </div>
             </div>
-          </div>
           )
         }
 
@@ -815,9 +826,9 @@ function CreatelandscapeVideo() {
               <Toolbox />
               <CanvasEditor />
 
-             
 
-{/* 
+
+              {/* 
               {audioSrc ?(
               <>
                <PlayerProv {...{ audioCtx, gainNode }}>
@@ -837,9 +848,9 @@ function CreatelandscapeVideo() {
           </div>
         </div>
         {/* {text ? <Popup hidePopup={closePopup} /> : null} */}
-        
-        {text ? <Popup  hidePopup={closePopup} language={getLanguageCode} setAudioSrc={setAudioSrc} setBuf={setBuf} /> : null}
-        {}
+
+        {text ? <Popup hidePopup={closePopup} language={getLanguageCode} setAudioSrc={setAudioSrc} setBuf={setBuf} /> : null}
+        { }
         {scriptText ? (
           <GenerateScript
             hidePopup={closePopupScrpt}
@@ -847,8 +858,7 @@ function CreatelandscapeVideo() {
           />
         ) : null}
 
-{virtualShow ? (
-  
+        {virtualShow ? (
           <VirtualKeyword
             hidePopup={closePopupVirtual}
           />
@@ -893,7 +903,7 @@ function CreatelandscapeVideo() {
                         onClick={() => setModalShow(true)}
                       >
                         <img src={flagInd} alt="" />{" "}
-                        <span>{getLanguageCode? (defaultLanguege[getLanguageCode[1]]):"English - India"}</span>
+                        <span>{getLanguageCode ? (defaultLanguege[getLanguageCode[1]]) : "English - India"}</span>
                       </div>
                       <ArrowsLeftRight className="arrowLftRgt" size={24} />
                     </div>
@@ -907,42 +917,37 @@ function CreatelandscapeVideo() {
               <div className="videoRgtBtmDivRgt">
                 <div className="sppedPitchVlmDiv">
 
-                {audioSrc ?(
-              <>
-               <PlayerProv {...{ audioCtx, gainNode }}>
-        <LoadButton audioSrc={buf}/>
-        <Players />
-        
-        
-        <div className="speedDiv">
-                    
-                    <Tempo />
-                  </div>
-                  <div className="speedDiv pitchDiv">
-                    
-                    <Pitch />
-                  </div>
+                  {audioSrc ? (
+                    <>
+                      <PlayerProv {...{ audioCtx, gainNode }}>
+                        <LoadButton audioSrc={buf} />
+                        <Players />
 
-                  {/* <div className="speedDiv pitchDiv">
+
+                        <div className="speedDiv">
+
+                          <Tempo />
+                        </div>
+                        <div className="speedDiv pitchDiv">
+
+                          <Pitch />
+                        </div>
+
+                        {/* <div className="speedDiv pitchDiv">
                     <p className="sppedDivtxt">
                       Volume <span>50%</span>
                     </p>
                     <input type="range" className="rangeInpt" />
                   </div> */}
-                  <div className="speedDiv playScripts">
-                    <Link className="playScrptsBtn">
-                      <PlayCircle size={20} /> Play Scripts
-                    </Link>
-                  </div>
-      </PlayerProv>
-              </>
+                        <div className="speedDiv playScripts">
+                          <Link className="playScrptsBtn">
+                            <PlayCircle size={20} /> Play Scripts
+                          </Link>
+                        </div>
+                      </PlayerProv>
+                    </>
 
-            ):""}
-
-                  
-
-
-                 
+                  ) : ""}
                 </div>
               </div>
             </div>
@@ -957,35 +962,28 @@ function CreatelandscapeVideo() {
         onHide={() => setModalShow(false)}
         seLanguageCode={seLanguageCode}
       />
-       {loading && (
-    <div className="loading-overlay">
-      <div className="load">
-        <CirclesWithBar
-          height="100"
-          width="100"
-          color="#4fa94d"
-          outerCircleColor="#4fa94d"
-          innerCircleColor="#4fa94d"
-          barColor="#4fa94d"
-          ariaLabel="circles-with-bar-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-        <h4>Loading...</h4>
-
-        {console.log("i m hitting")}
-      </div>
-    </div>
-  )}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="load">
+            <CirclesWithBar
+              height="100"
+              width="100"
+              color="#4fa94d"
+              outerCircleColor="#4fa94d"
+              innerCircleColor="#4fa94d"
+              barColor="#4fa94d"
+              ariaLabel="circles-with-bar-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+            <h4>Loading...</h4>
+            {console.log("i m hitting")}
+          </div>
+        </div>
+      )}
     </>
-
-);
- 
-
+  );
 }
-
-
-
 
 export default CreatelandscapeVideo;
