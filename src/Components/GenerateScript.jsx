@@ -47,19 +47,20 @@ function GenerateScript({hidePopup,setShowContent}) {
             setImageSrc(res?.data?.base64);
             // setLoading(false);
             // const videourl = URL.createObjectURL(imageSrc)
-            if (res.status === 200){
+            if (res.status === 200){               
                 const formData = new FormData();
                 formData.append('prompt', text);
-                // console.log("imageSrc", formData);
-                const byteCharacters = atob(imageSrc);
+                const byteCharacters = atob(res.data.base64);
                 const byteNumbers = new Array(byteCharacters.length);
                 for (let i = 0; i < byteCharacters.length; i++) {
                     byteNumbers[i] = byteCharacters.charCodeAt(i);
                 }
                 const byteArray = new Uint8Array(byteNumbers);
-                const blob = new Blob([byteArray], { type: 'image/jpeg' });
-                formData.append('image', blob, 'image.jpg'); 
-                // formData.append('image', imageSrc);
+                const blob = new Blob([byteArray], { type: 'image/png' });
+                // downloadBlobAsImage(blob)
+                formData.append('image', blob, 'image.jpg');
+
+                console.log("formData===>",   formData.append('image', blob, 'image.jpg'));
                 try {
                     const response = await axios.post('https://bharatlive.aicte-india.org/api/generate-video', formData,
                         { responseType: 'blob' },
@@ -76,9 +77,9 @@ function GenerateScript({hidePopup,setShowContent}) {
                     const url = URL.createObjectURL(response?.data)
                        if  (response.status == 200){
                        setLoading(false);
+                       setVideoUrl(url);
 
                        }
-                    setVideoUrl(url);
                     // if (editor) {
                     //     const video = await loadVideoResource(url)
                     //     const frame = await captureFrame(video)

@@ -104,6 +104,27 @@ const VideoGeneration = () => {
         setImage(e.target.files[0]);
     };
 
+    function downloadBlobAsImage(blob, filename = 'image.jpg') {
+        // Create a temporary anchor element
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+    
+        // Create a URL for the blob
+        const url = window.URL.createObjectURL(blob);
+    
+        // Set attributes for anchor element
+        a.href = url;
+        a.download = filename;
+    
+        // Simulate a click on the anchor element to trigger the download
+        a.click();
+    
+        // Clean up: remove the anchor element and revoke the URL
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    }
+    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (text === "") {
@@ -113,6 +134,8 @@ const VideoGeneration = () => {
         const formData = new FormData();
         formData.append("prompt", text);
         setLoading(true);
+
+
         try {
             const res = await axios.post("https://bharattube.aicte-india.org/api/generate-image/generate-image", formData);
             setImageSrc(res?.data?.base64);
@@ -130,12 +153,12 @@ const VideoGeneration = () => {
                     byteNumbers[i] = byteCharacters.charCodeAt(i);
                 }
                 const byteArray = new Uint8Array(byteNumbers);
-                const blob = new Blob([byteArray], { type: 'image/jpeg' });
+                const blob = new Blob([byteArray], { type: 'image/png' });
+                downloadBlobAsImage(blob)
                 formData.append('image', blob, 'image.jpg');
 
-                console.log("formData===>", formData);
                 try {
-                    const response = await axios.post('http://10.150.0.13:7860/generate-video', formData,
+                    const response = await axios.post('https://bharatlive.aicte-india.org/api/generate-video', formData,
                         { responseType: 'blob' },
                         {
                             headers: {

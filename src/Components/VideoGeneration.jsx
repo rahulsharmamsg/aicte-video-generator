@@ -124,6 +124,9 @@ const VideoGeneration = () => {
         const formData = new FormData();
         formData.append('prompt', text);
         formData.append('image', image);
+
+
+        console.log("formData===>",           formData.append('image', image)        );
         try {
             const response = await axios.post('http://10.150.0.8/api/generate-video', formData,
                 { responseType: 'blob' },
