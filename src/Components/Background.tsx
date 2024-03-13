@@ -64,7 +64,7 @@ export default function Background() {
     setVideos(videos)
   }
 
-  const [searchTerm, setSearchTerm] = React.useState<string>('people'); // Default search term
+  const [searchTerm, setSearchTerm] = React.useState<string>('Student'); // Default search term
 
   // const getPexelsVideos = async (query: string): Promise<any[]> => {
   //   // Your getPexelsVideos implementation goes here

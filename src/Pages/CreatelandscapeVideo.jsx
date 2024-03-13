@@ -23,7 +23,7 @@ import {
   SelectionPlus,
   Translate,
   ArrowsLeftRight,
-  PlayCircle,
+  PlayCircle, Video, 
 } from "phosphor-react";
 import fe01 from "../assets/images/fe01.png";
 import fe02 from "../assets/images/fe02.png";
@@ -51,6 +51,7 @@ import Popup2 from "../Components/Popup2";
 import AiTranslation from "../Components/AiTranslation";
 import BottomMenu from "./BottomMenu";
 import GenerateScript from "../Components/GenerateScript";
+import AvtarPopup from '../Components/AvtarPopup'
 import zIndex from "@mui/material/styles/zIndex";
 import CanvasEditor from "../DesignEditor/Canvas/Canvas.tsx";
 import Footer from "../DesignEditor/Footer/Footer.tsx";
@@ -95,6 +96,7 @@ function CreatelandscapeVideo() {
   const [activePanel, setActivePanel] = useState("avatars");
   const [getLanguageCode, seLanguageCode] = useState("");
   const [audioSrc, setAudioSrc] = useState();
+  const [talkingAvtar , setTalkingAvtar] = useState(false);
   const [buf, setBuf] = useState("");
   const [loading, setLoading] = useState(false);
   const selectedEditor = "VIDEO";
@@ -119,6 +121,9 @@ function CreatelandscapeVideo() {
 
   const editor = useEditor();
 
+  const onClickAvtar = () =>{
+    setTalkingAvtar(true)
+  }
 
   const handleAddAudio = async (audioSrc) => {
     if (!editor) return;
@@ -136,7 +141,6 @@ function CreatelandscapeVideo() {
 
   useEffect(() => {
     handleAddAudio(audioSrc);
-
   }, [audioSrc])
 
   const addObject = React.useCallback(
@@ -450,6 +454,7 @@ function CreatelandscapeVideo() {
     setText(!text);
     setTextcontent(textcontent);
   };
+
   const generateScipt = (GenerateScriptcnt) => {
     setscriptText(!scriptText);
     setGenerateScriptcnt(GenerateScriptcnt);
@@ -762,7 +767,6 @@ function CreatelandscapeVideo() {
             </div>
           </div>
         )}
-    {    console.log("activePanel", activePanel)}
  {
           activePanel === "talkingavtar" && (
             <div className="dashBrdLft">
@@ -825,9 +829,6 @@ function CreatelandscapeVideo() {
             <div className="">
               <Toolbox />
               <CanvasEditor />
-
-
-
               {/* 
               {audioSrc ?(
               <>
@@ -838,26 +839,25 @@ function CreatelandscapeVideo() {
               </>
 
             ):""} */}
-
-
-
             </div>
             <div className="audioplayerDiv">
               <Footer />
             </div>
           </div>
         </div>
-        {/* {text ? <Popup hidePopup={closePopup} /> : null} */}
-
         {text ? <Popup hidePopup={closePopup} language={getLanguageCode} setAudioSrc={setAudioSrc} setBuf={setBuf} /> : null}
-        { }
         {scriptText ? (
           <GenerateScript
             hidePopup={closePopupScrpt}
             setShowContent={setShowContent}
           />
         ) : null}
-
+       {talkingAvtar ? (
+          <AvtarPopup
+            hidePopup={closePopupScrpt}
+            setShowContent={setShowContent}
+          />
+        ) : null}
         {virtualShow ? (
           <VirtualKeyword
             hidePopup={closePopupVirtual}
@@ -889,11 +889,17 @@ function CreatelandscapeVideo() {
                       <SelectionPlus size={22} /> Add Scene
                     </li>
                     <li onClick={() => generateScipt()}>
-                      <TextT size={22} /> Generate Script
+                      <TextT size={32} /> Text to Video
+                    </li>
+                    <li onClick={() => onClickAvtar()}>
+                      <TextT size={22} /> Talking Avatar
                     </li>
                     <li onClick={() => createVirtualKeyword()}>
                       <TextT size={22} /> Virtual Keywords
                     </li>
+                    {/* <li onClick={() => generateScipt()}>
+                      <TextT size={22} /> Generate Script
+                    </li> */}
                   </ul>
                   <div className="voiceOverPpup">
                     <div className="voiceOverInpt">
@@ -978,7 +984,6 @@ function CreatelandscapeVideo() {
               visible={true}
             />
             <h4>Loading...</h4>
-            {console.log("i m hitting")}
           </div>
         </div>
       )}
