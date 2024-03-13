@@ -15,24 +15,7 @@ import HiDictionary from "../assets/dictionaries/hi.json";
 import KnDictionary from "../assets/dictionaries/kn.json";
 import TaDictionary from "../assets/dictionaries/ta.json";
 import MlDictionary from "../assets/dictionaries/ml.json";
-// import AsDictionary from "./dictionaries/as.json";
-// import BaDictionary from "./dictionaries/ba.json";
-// import GuDictionary from "./dictionaries/gu.json";
-// import MrDictionary from "./dictionaries/mr.json";
-// import OrDictionary from "./dictionaries/or.json";
-// import PaDictionary from "./dictionaries/pa.json";
-// import LanguageSelector from "./langselector.js";
-import LangjsonFile from '../assets/dictionaries/langVoiceCodes.json';
-import {
-  WhatsappShareButton,
-  WhatsappIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  FacebookShareButton,
-  FacebookIcon,
-  LinkedinIcon,
-  LinkedinShareButton
-} from "react-share";
+
 import "./transinput.css";
 import "./bulma.min.css";
 import './LanguageSelector.css';
@@ -46,7 +29,7 @@ window.Buffer = window.Buffer || require("buffer").Buffer;
 function VirtualKeyword({hidePopup,setShowContent,lang}) {
     const [showModal, setShowModal] = useState(false);
     const [isRecordingNew, setIsRecordingNew] = useState( false );
-
+    const [getTextPosition, setTextPosition] = useState( { start: 0, end: 0, text: '' } );
     const lancode = lang?lang:{name:"hindi",value: "hi-IN"}
     // const [word, setWord] = useState();
    
@@ -87,17 +70,13 @@ function VirtualKeyword({hidePopup,setShowContent,lang}) {
     ] = useRecorder();
     const [copySuccess, setCopySuccess] = useState("");
     const [copytext, setcopytext] = useState("Copy");
+    const [activeWord, setActiveWord] = useState( '' );
     const textAreaRef = useRef(null);
     const [WhatsAppText, setWhatsAppText] = useState("Copy & share");
 const [Text,setText] = useState("");
     const finalOut = useRef("");
-
-    const toggleModal = () => {
-        setShowModal(!showModal);
-        // hidePopup()
-   
-
-    };
+    const textInput = useRef( null );
+ 
 
     useEffect(() => {
         for (let i = 0; i < languagesList.length; i++) {
@@ -136,8 +115,22 @@ const [Text,setText] = useState("");
         localStorage.removeItem("name")
       }, [])
 
+      function getWordAtNthPosition( text, startPosition, endPosition ) {
+
+        const start_index = startPosition;
+        const end_index = endPosition;
+        const previous_space_index = text.lastIndexOf( " ", start_index - 1 );
+        const next_space_index = text.indexOf( " ", end_index );
+        const begin = previous_space_index < 0 ? 0 : previous_space_index + 1;
+        const end = next_space_index < 0 ? text.length : next_space_index;
+        // return
+        setActiveWord( text.substring( begin, end ) )
+        setTextPosition( { start: begin, end: end, text } )
+        return textInput.current.value.replace( text.substring( begin, end ) );
+    
+      }
+
     const updateTranslation = (e) => {
-        console.log(e.keyCode)
       if (e.keyCode === 8) {
         setcurrentSelect(e.target.value);
         setSentence('');
@@ -160,14 +153,10 @@ const [Text,setText] = useState("");
   
       if (e.target.value.split(" ").slice(-1)[0]?.length > 1) {
         setActiveDropdown("is-active");
-  
+        setActiveWord( e.target.value.split( " " ).slice( -1 )[0] )
         const fromLanguage = data.code;
-        // const fromScript = localStorage.getItem("fromScript");
-        // const toScript = localStorage.getItem("toScript");
   
         let tempWordList = [];
-  
-        // const Dictionary = dictionary;
   
         axios
           .post(`${root_url}/transliterate`, {
@@ -213,6 +202,8 @@ const [Text,setText] = useState("");
       } else {
         setActiveDropdown("");
       }
+      let { selectionStart, selectionEnd, value: txt } = e.target;
+    getWordAtNthPosition( txt, selectionStart, selectionEnd )
     };
   
     const changeCurrentText = (word) => {
@@ -227,26 +218,9 @@ const [Text,setText] = useState("");
       // finalOut.current.value = currentSelect;
       setSentence(currentSelect);
       setCopySuccess(currentSelect);
+      setcurrentSelect(currentSelect)
     }, [currentSelect]);
-  
-    function DocConvestion() {
-      var header =
-        "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
-        "xmlns:w='urn:schemas-microsoft-com:office:word' " +
-        "xmlns='http://www.w3.org/TR/REC-html40'>" +
-        "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-      var footer = "</body></html>";
-      var sourceHTML = header + sentence + footer;
-      var source =
-        "data:application/vnd.ms-word;charset=utf-8," +
-        encodeURIComponent(sourceHTML);
-      var fileDownload = document.createElement("a");
-      document.body.appendChild(fileDownload);
-      fileDownload.href = source;
-      fileDownload.download = Date.now() + "_document.doc";
-      fileDownload.click();
-      document.body.removeChild(fileDownload);
-    }
+
   
     async function pdfConvestion() {
       var iframe = document.createElement("iframe");
@@ -258,54 +232,54 @@ const [Text,setText] = useState("");
       document.body.removeChild(iframe);
     }
   
-    function codespeedy() {
-      var print_div = document.getElementById("content-in-textarea");
-      var print_area = window.open();
-      print_area.document.write(sentence);
-      print_area.document.close();
-      print_area.focus();
-      print_area.print();
-      print_area.close();
-    }
+    // function codespeedy() {
+    //   var print_div = document.getElementById("content-in-textarea");
+    //   var print_area = window.open();
+    //   print_area.document.write(sentence);
+    //   print_area.document.close();
+    //   print_area.focus();
+    //   print_area.print();
+    //   print_area.close();
+    // }
   
-    async function textTOAudio() {
-      let post = {
-        Body: sentence,
-        language:localStorage.getItem("fromLanguage") ||"hi",
-        voice: LangjsonFile[0][localStorage.getItem("fromLanguage") ||"hi-IN-SwaraNeural"],
-      };
-      fetch("https://voiceapi.aicte-india.org/text-to-voice", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(post),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          let ar = [];
-          ar = data.data.audio.data;
-          let bufferData = Buffer.from(ar, "binary");
-          let blob = new Blob([bufferData], { type: "audio/wav" });
+    // async function textTOAudio() {
+    //   let post = {
+    //     Body: sentence,
+    //     language:localStorage.getItem("fromLanguage") ||"hi",
+    //     voice: LangjsonFile[0][localStorage.getItem("fromLanguage") ||"hi-IN-SwaraNeural"],
+    //   };
+    //   fetch("https://voiceapi.aicte-india.org/text-to-voice", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(post),
+    //   })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       let ar = [];
+    //       ar = data.data.audio.data;
+    //       let bufferData = Buffer.from(ar, "binary");
+    //       let blob = new Blob([bufferData], { type: "audio/wav" });
   
-          let url = URL.createObjectURL(blob);
-          setAudioSrc(url);
-        })
-        .catch((err) => {});
-    }
+    //       let url = URL.createObjectURL(blob);
+    //       setAudioSrc(url);
+    //     })
+    //     .catch((err) => {});
+    // }
   
     // useEffect(() => {
     //   textTOAudio();
     // }, [sentence?.length > 0]);
   
-    const DownloadAudio = () => {
-      textTOAudio();
-      const element = document.createElement("a");
-      element.href = audioSrc;
-      element.download = "Audio-" + Date.now() + ".wav";
-      document.body.appendChild(element); // Required for this to work in FireFox
-      element.click();
-    };
+    // const DownloadAudio = () => {
+    //   textTOAudio();
+    //   const element = document.createElement("a");
+    //   element.href = audioSrc;
+    //   element.download = "Audio-" + Date.now() + ".wav";
+    //   document.body.appendChild(element); // Required for this to work in FireFox
+    //   element.click();
+    // };
   
     const ResetHandler = () => {
     
@@ -374,12 +348,16 @@ const [Text,setText] = useState("");
       setdata(languagesList[e.target.value])
   
   }
-  console.log(currentSelect,'Current select')
-  console.log(Text,'Text data')
 
   useEffect( () => {
-  setText(currentSelect + transcript + " ")
-// setcurrentSelect(Text  + transcript + " ");
+
+    const { text, start: begin, end } = getTextPosition;
+    console.log(getTextPosition,'position')
+    // if ( begin == 0 && end == 0 ) {
+    //   setText( currentSelect + " " + transcript + " " );
+    // } else {
+    //   setText( text.slice( 0, begin ) + transcript + text.slice( end ) );
+    // }
   }, [transcript] );
   if ( !browserSupportsSpeechRecognition ) {
     return <span>Browser doesn&apos;t support speech recognition.</span>;
@@ -449,19 +427,6 @@ const [Text,setText] = useState("");
             }
       </select>
 
-                    {/* {
-                languagesList.map((lang, index) => {
-                    return (
-                        <div className={`boxlangnew box-${index} ${data.code === lang.code ? 'selected-language' : ''}`} key={index} onClick={(e) => setLanguage(languagesList[index])} >
-                            {lang.literal}
-                           {lang.isBeta && <span className="tag is-info is-light" style={{ fontSize: '7px' }}>Beta</span>}
-                        </div>
-                    )
-                })
-            } */}
-            
-           
-
                     <button
             id="copy buttonbtn"
             className="buttonbtn copy-button is-small is-primary is-light"
@@ -471,6 +436,7 @@ const [Text,setText] = useState("");
           </button>
                         <textarea value={Text} name="" id="input-box" className='form-control' 
                         placeholder='Give me a topic, and detailed instructions...'
+                        ref={textInput}
                         onKeyUp={(e) => updateTranslation(e)}
                         onChange={(e)=>setText(e.target.value)}
                        ></textarea>
@@ -508,101 +474,11 @@ const [Text,setText] = useState("");
                     
                     </div>
                 </div>
-                <button className='btn button green'  onClick={toggleModal}>Generate a video</button>
+              
             </div>
-            <div className='col-12 popupRgtLnk popupWorkflow'>
-                    <h2 className='workFlowHdng'>Workflows:</h2>
-                    <ul>
-                        <li onClick={()=>setShowContent("Youtube_Explainer")}>Youtube Explainer</li>
-                        <li onClick={()=>setShowContent("Script_to_Video")}>Script to Video</li>
-                        <li onClick={()=>setShowContent("Youtube_Shorts")}>Youtube Shorts</li>
-                        <li onClick={()=>setShowContent("Explore_all")}>Explore all <Plus size={15} /></li>
-                    </ul>
-                    </div>
+     
             </>}
-            {showModal && <>
-        <div className="modal newpopupdiv">
-          <div className="modal-content">
-          <div className='newpopTitle'>
-            <h2>Generate Script</h2>
-          </div>
-          <div className='newPopCnt'>
-          <div className='col-12 newPopCntOne'>
-            <div className='row'>
-                <div className='col-3 newpopCntIn titleDivnew'>
-                  <p> Title </p>
-                </div>
-                <div className='col-9 newpopCntIn titleDivnew'>
-                <h2>Modi Ji's Inspiring Speech for Kashi in Tamil</h2>
-                </div>
-            </div>
-            </div>
-            <div className='col-12 newPopCntOne'>
-            <div className='row'>
-                <div className='col-3 newpopCntIn'>
-                  <p> Audience </p>
-                </div>
-                <div className='col-9 newpopCntIn'>
-                    <ul>
-                        <li>Political Enthusiasts</li>
-                        <li>Tamil Speakers</li>
-                        <li>Indian Citizens</li>
-                    </ul>
-                </div>
-            </div>
-            </div>
-            <div className='col-12 newPopCntOne'>
-            <div className='row'>
-                <div className='col-3 newpopCntIn'>
-                <p>Look and Feel</p>
-                </div>
-                <div className='col-9 newpopCntIn'>
-                    <ul>
-                        <li>Bright</li>
-                        <li>Inspiring</li>
-                        <li>Clean</li>
-                    </ul>
-                </div>
-                </div>
-            </div>
-            <div className='col-12 newPopCntOne'>
-            <div className='row'>
-                <div className='col-3 newpopCntIn'>
-                <p>Platform</p>
-                </div>
-                <div className='col-9 newpopCntIn'>
-                    <ul>
-                        <li>Youtube</li>
-                        <li>Facebook</li>
-                        <li>Instagram</li>
-                    </ul>
-                </div>
-                </div>
-                </div>
-                <div className='col-12 newPopCntOne'>
-            <div className='row'>
-                <div className='col-3 newpopCntIn'>
-                <p>Voice Toning</p>
-                </div>
-                <div className='col-9 newpopCntIn'>
-                    <ul>
-                        <li>Angry</li>
-                        <li>Happy</li>
-                        <li>Sad</li>
-                        <li>Motivational</li>
-                        <li>Fear</li>
-                        <li>Suprise</li>
-                    </ul>
-                </div>
-                </div>
-                </div>
-                <div className='btmBtmDiv'>
-                <button className='btn button contBtn' >Continue</button>
-                <button className='btn button edtPrmpt' >Edit Prompt</button>
-                </div>
-          </div>
-          </div>
-        </div></>}
+         
         </div>
  
     </div>
