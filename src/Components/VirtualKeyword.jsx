@@ -89,7 +89,7 @@ function VirtualKeyword({hidePopup,setShowContent,lang}) {
     const [copytext, setcopytext] = useState("Copy");
     const textAreaRef = useRef(null);
     const [WhatsAppText, setWhatsAppText] = useState("Copy & share");
-
+const [Text,setText] = useState("");
     const finalOut = useRef("");
 
     const toggleModal = () => {
@@ -135,6 +135,7 @@ function VirtualKeyword({hidePopup,setShowContent,lang}) {
       useEffect(() => {
         localStorage.removeItem("name")
       }, [])
+
     const updateTranslation = (e) => {
         console.log(e.keyCode)
       if (e.keyCode === 8) {
@@ -216,13 +217,14 @@ function VirtualKeyword({hidePopup,setShowContent,lang}) {
   
     const changeCurrentText = (word) => {
       setcurrentSelect(currentSelect  + word + " ");
+      setText(currentSelect + word + " ")
       const arr = currentSelect.split(" ");
       setActiveDropdown("");
       document.getElementById("input-box").focus();
     };
   
     useEffect(() => {
-      finalOut.current.value = currentSelect;
+      // finalOut.current.value = currentSelect;
       setSentence(currentSelect);
       setCopySuccess(currentSelect);
     }, [currentSelect]);
@@ -306,7 +308,7 @@ function VirtualKeyword({hidePopup,setShowContent,lang}) {
     };
   
     const ResetHandler = () => {
-      finalOut.current.value = "";
+    
       setSentence("");
       setcurrentSelect("")
       
@@ -340,7 +342,7 @@ function VirtualKeyword({hidePopup,setShowContent,lang}) {
             let newstring = (res.data.data).replaceAll(".", "");
             let newgg = sentence.replaceAll("&#13;&#10","")
             setcurrentSelect(newgg + newstring + " ");
-            finalOut.current.value = currentSelect;
+            
           })
           .catch((errr) => {
             setQueryLoader(false);
@@ -371,24 +373,13 @@ function VirtualKeyword({hidePopup,setShowContent,lang}) {
   
       setdata(languagesList[e.target.value])
   
-      // for (let i = 0; i < languagesList.length; i++) {
-      //   if (
-      //     languagesList[i].code ===  lang.value.replace("-IN","")
-         
-      //   ) {
-      //     setdata(languagesList[i])
-      //   } 
-      // }
-  
-      // localStorage.setItem('fromScript', 'Latn');
-      // localStorage.setItem('fromLanguage', d.code);
-      // localStorage.setItem('toScript', d.script);
-      // window.location.replace('/translation-independent/user');
   }
-  useEffect( () => {
+  console.log(currentSelect,'Current select')
+  console.log(Text,'Text data')
 
-console.log(transcript,'speak')
-setcurrentSelect(currentSelect  + transcript + " ");
+  useEffect( () => {
+  setText(currentSelect + transcript + " ")
+// setcurrentSelect(Text  + transcript + " ");
   }, [transcript] );
   if ( !browserSupportsSpeechRecognition ) {
     return <span>Browser doesn&apos;t support speech recognition.</span>;
@@ -478,10 +469,11 @@ setcurrentSelect(currentSelect  + transcript + " ");
           >
             {copytext}
           </button>
-                        <textarea defaultValue={sentence} name="" id="input-box" className='form-control' 
+                        <textarea value={Text} name="" id="input-box" className='form-control' 
                         placeholder='Give me a topic, and detailed instructions...'
                         onKeyUp={(e) => updateTranslation(e)}
-                        ref={finalOut}></textarea>
+                        onChange={(e)=>setText(e.target.value)}
+                       ></textarea>
 
 <div className="content-in-textarea" id="content-in-textarea">
             <div className="recommendation-popover">
