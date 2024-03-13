@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useEditor } from "@layerhub-io/react";
 import { CirclesWithBar } from "react-loader-spinner";
+import TalkingAvatar from './TalkingAvatar';
 
-function GenerateScript({hidePopup,setShowContent}) {
+function AvtarPopup({hidePopup,setShowContent}) {
     const [showModal, setShowModal] = useState(false);
     const [text, setText] = useState('');
     const [image, setImage] = useState(null);
@@ -118,31 +119,9 @@ function GenerateScript({hidePopup,setShowContent}) {
                 <>
             {!showModal &&<>
             <div className='popupContentDiv'>
-                <h2>Generate Script</h2>
-                <div className='popupContentDivMain'>
-                    <div className='row'>
-                    <div className='col-12 popupTxtare'>
-                        <textarea name=""          
-                        id="text"
-                        value={text}
-                        onChange={handleTextChange} className='form-control' placeholder='Give me a topic, and detailed instructions...'></textarea>
-                    </div>
-                    
-                    </div>
-                </div>
-                {/* <button className='btn button green'  onClick={toggleModal}>Generate a video</button> */}
-                <button className='btn button green'  onClick={handleSubmit}>Generate a video</button>
-
+                <h2>Talking Avtar</h2>
+                   <TalkingAvatar/>
             </div>
-            {/* <div className='col-12 popupRgtLnk popupWorkflow'>
-                    <h2 className='workFlowHdng'>Workflows:</h2>
-                    <ul>
-                        <li onClick={()=>setShowContent("Youtube_Explainer")}>Youtube Explainer</li>
-                        <li onClick={()=>setShowContent("Script_to_Video")}>Script to Video</li>
-                        <li onClick={()=>setShowContent("Youtube_Shorts")}>Youtube Shorts</li>
-                        <li onClick={()=>setShowContent("Explore_all")}>Explore all <Plus size={15} /></li>
-                    </ul>
-                    </div> */}
             </>}
             {showModal && <>
         <div className="modal newpopupdiv">
@@ -267,4 +246,4 @@ function GenerateScript({hidePopup,setShowContent}) {
   )
 }
 
-export default GenerateScript
+export default AvtarPopup

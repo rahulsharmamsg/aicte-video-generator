@@ -124,11 +124,8 @@ const VideoGeneration = () => {
         const formData = new FormData();
         formData.append('prompt', text);
         formData.append('image', image);
-
-
-        console.log("formData===>",           formData.append('image', image)        );
         try {
-            const response = await axios.post('http://10.150.0.8/api/generate-video', formData,
+            const response = await axios.post('https://bharatlive.aicte-india.org/api/generate-video', formData,
                 { responseType: 'blob' },
                 {
                     headers: {
@@ -136,32 +133,11 @@ const VideoGeneration = () => {
                     },
                 },
             );
-           
             const url = URL.createObjectURL(response?.data)
             const videoFile = new File([url], 'video.mp4', { type: 'video/mp4' });
-            console.log("videoFile ===>" , videoFile);
             setVideoUrl(url);
-            // if ()
-            // const file = files[0]
-  
-            // // const base64 = (await toBase64(file)) as string
-            // const video = await loadVideoResource(base64)
-            
-            // const frame = await captureFrame(video)
-            // const type = file.type.includes("video") ? "StaticVideo" : "StaticImage"
-            // const upload = {
-            //     id: nanoid(),
-            //     src: base64,
-            //     preview: frame,
-            //     type: type,
-            // }
-            // setUploads([...uploads, upload])
-       
-
-            // console.log('Response:', response, "videoUrl", videoUrl);
-            //   setVideoUrl(response?.data)
+         
         } catch (error) {
-            // Handle error
             console.error('Error:', error);
         }
     };
@@ -221,7 +197,6 @@ const VideoGeneration = () => {
                 </>
             )}
 
-{/* <img src={demov} onClick={handleImageClick} alt="Generated Image" /> */}
 
         </div>
     );

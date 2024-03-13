@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.buttonsizing button{margin-right: 0!important}
+
+
+.stepThree img {
+  width: 23%;
+}
+
+
+.waveBox.text-center video {
+  width: 30%;
+}
