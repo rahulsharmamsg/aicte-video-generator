@@ -100,7 +100,8 @@ function CreatelandscapeVideo() {
   const [buf, setBuf] = useState("");
   const [loading, setLoading] = useState(false);
   const selectedEditor = "VIDEO";
-  const { setEditorType } = useDesignEditorContext();
+  
+  const { setEditorType,setDisplayPreview, setScenes, setCurrentDesign, currentDesign, scenes } = useDesignEditorContext();
   const [defaultLanguege, setdefaultLanguage] = useState({
     "en-IN-PrabhatNeural": "English",
     "hi-IN-MadhurNeural": "Hindi",
@@ -138,7 +139,9 @@ function CreatelandscapeVideo() {
 
     console.log(audioObject, 'hello this is obj')
   };
-
+useEffect(()=>{
+  setCurrentDesign("PRESENTATION")
+},[editor])
   useEffect(() => {
     handleAddAudio(audioSrc);
   }, [audioSrc])
@@ -160,7 +163,53 @@ function CreatelandscapeVideo() {
     [editor]
   );
 
+  const makeDownloadTemplate = ()=>{
+    console.log(parsePresentationJSON())
+   return parsePresentationJSON()
 
+  }
+
+  const parsePresentationJSON = () => {
+    const currentScene = editor.scene.exportToJSON()
+
+    const updatedScenes = scenes.map((scn) => {
+      if (scn.id === currentScene.id) {
+        return {
+          id: currentScene.id,
+          duration: 5000,
+          layers: currentScene.layers,
+          name: currentScene.name,
+        }
+      }
+      return {
+        id: scn.id,
+        duration: 5000,
+        layers: scn.layers,
+        name: scn.name,
+      }
+    })
+
+
+      const presentationTemplate = {
+        id: currentDesign.id,
+        type: "PRESENTATION",
+        name: currentDesign.name,
+        frame: currentDesign.frame,
+        scenes: updatedScenes,
+        metadata: {},
+        preview: "",
+      }
+      makeDownload(presentationTemplate)
+  
+  }
+  const makeDownload = (data) => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data))
+    const a = document.createElement("a")
+    a.href = dataStr
+    a.download = "template.json"
+    a.click()
+   console.log(data)
+  }
   const youtubeExplainerContent = (
     <div className="popupOutline generateScrptDiv youtubeScriptvideoDiv">
       <div className="pop-up">
@@ -479,6 +528,8 @@ function CreatelandscapeVideo() {
   const closePopupVirtual = () => {
     setVirtualShow(false);
   };
+
+
 
   return (
     <>
@@ -897,9 +948,9 @@ function CreatelandscapeVideo() {
                     <li onClick={() => createVirtualKeyword()}>
                       <TextT size={22} /> Virtual Keywords
                     </li>
-                    {/* <li onClick={() => generateScipt()}>
-                      <TextT size={22} /> Generate Script
-                    </li> */}
+                    <li onClick={() => makeDownloadTemplate()}>
+                      <TextT size={22} /> Exports
+                    </li>
                   </ul>
                   <div className="voiceOverPpup">
                     <div className="voiceOverInpt">

@@ -556,6 +556,7 @@ export const SAMPLE_TEMPLATES = [
     },
     preview: preview3,
   },
+  
 ]
 export enum SubMenuType {
   FONT_FAMILY = "FontFamily",
