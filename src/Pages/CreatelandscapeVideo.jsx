@@ -23,7 +23,7 @@ import {
   SelectionPlus,
   Translate,
   ArrowsLeftRight,
-  PlayCircle, Video, 
+  PlayCircle, Video,
 } from "phosphor-react";
 import fe01 from "../assets/images/fe01.png";
 import fe02 from "../assets/images/fe02.png";
@@ -96,7 +96,7 @@ function CreatelandscapeVideo() {
   const [activePanel, setActivePanel] = useState("avatars");
   const [getLanguageCode, seLanguageCode] = useState("");
   const [audioSrc, setAudioSrc] = useState();
-  const [talkingAvtar , setTalkingAvtar] = useState(false);
+  const [talkingAvtar, setTalkingAvtar] = useState(false);
   const [buf, setBuf] = useState("");
   const [loading, setLoading] = useState(false);
   const selectedEditor = "VIDEO";
@@ -121,8 +121,13 @@ function CreatelandscapeVideo() {
 
   const editor = useEditor();
 
-  const onClickAvtar = () =>{
+  const onClickAvtar = () => {
     setTalkingAvtar(true)
+  }
+
+
+  const closeAvtar = () => {
+    setTalkingAvtar(false)
   }
 
   const handleAddAudio = async (audioSrc) => {
@@ -767,7 +772,7 @@ function CreatelandscapeVideo() {
             </div>
           </div>
         )}
- {
+        {
           activePanel === "talkingavtar" && (
             <div className="dashBrdLft">
               <div className="dashBrdLftInScndLayer">
@@ -852,9 +857,9 @@ function CreatelandscapeVideo() {
             setShowContent={setShowContent}
           />
         ) : null}
-       {talkingAvtar ? (
+        {talkingAvtar ? (
           <AvtarPopup
-            hidePopup={closePopupScrpt}
+            hidePopup={closeAvtar}
             setShowContent={setShowContent}
           />
         ) : null}
@@ -928,23 +933,13 @@ function CreatelandscapeVideo() {
                       <PlayerProv {...{ audioCtx, gainNode }}>
                         <LoadButton audioSrc={buf} />
                         <Players />
-
-
                         <div className="speedDiv">
-
                           <Tempo />
                         </div>
                         <div className="speedDiv pitchDiv">
 
                           <Pitch />
                         </div>
-
-                        {/* <div className="speedDiv pitchDiv">
-                    <p className="sppedDivtxt">
-                      Volume <span>50%</span>
-                    </p>
-                    <input type="range" className="rangeInpt" />
-                  </div> */}
                         <div className="speedDiv playScripts">
                           <Link className="playScrptsBtn">
                             <PlayCircle size={20} /> Play Scripts
@@ -952,7 +947,6 @@ function CreatelandscapeVideo() {
                         </div>
                       </PlayerProv>
                     </>
-
                   ) : ""}
                 </div>
               </div>
