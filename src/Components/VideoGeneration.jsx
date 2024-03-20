@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEditor } from "@layerhub-io/react";
 import useDesignEditorContext from "../hooks/useDesignEditorContext.ts"
 import demov from "./video.mp4"
+import { nanoid } from "nanoid"
 
 const loadVideoResource = (videoSrc) => {
     return new Promise(function (resolve, reject) {
@@ -20,7 +21,6 @@ const loadVideoResource = (videoSrc) => {
         })
     })
 }
-
 
 
 
@@ -57,7 +57,7 @@ const VideoGeneration = () => {
     const [videoUrl, setVideoUrl] = useState(null);
     const editor = useEditor();
     const { scenes, setScenes, currentScene } = useDesignEditorContext()
-
+    const [imageUrl, setImageUrl] = useState(null); // State to hold the URL of the uploaded image
     //   const formdata = new FormData();
     //   formdata.append("prompt", text);
     //   formdata.append("image", image);
@@ -80,7 +80,7 @@ const VideoGeneration = () => {
                 const video = await loadVideoResource(videoSrc);
                 const frame = await captureFrame(video);
                 const duration = await captureDuration(video);
-    
+
                 // Here you should construct your video object
                 const videoObject = {
                     src: videoSrc,
@@ -88,10 +88,9 @@ const VideoGeneration = () => {
                     preview: frame,
                     // Add any other properties you need for your video object
                 };
-    
+
                 // Add the video object to the editor
                 editor.objects.add(videoObject);
-    
                 // Update scene duration if necessary
                 if (currentScene) {
                     const updatedScenes = scenes.map((scn) => {
@@ -110,13 +109,14 @@ const VideoGeneration = () => {
             }
         }
     };
-    
+
     const handleTextChange = (e) => {
         setText(e.target.value);
     };
 
     const handleImageChange = (e) => {
         setImage(e.target.files[0]);
+        setImageUrl(URL.createObjectURL(e.target.files[0])); // Set the URL of the uploaded image
     };
 
     const handleSubmit = async (e) => {
@@ -132,18 +132,40 @@ const VideoGeneration = () => {
                         'Content-Type': 'multipart/form-data',
                     },
                 },
-            );
-            const url = URL.createObjectURL(response?.data)
-            const videoFile = new File([url], 'video.mp4', { type: 'video/mp4' });
-            setVideoUrl(url);
-         
+                );
+                console.log("videoFile=====>", "response?.data ======>", response)
+                const reader = new FileReader();
+                reader.readAsDataURL(response.data);
+                reader.onloadend = () => {
+                    const base64data = reader.result;
+                    setVideoUrl(base64data);
+                };
+            // const url = URL.createObjectURL(response?.data)
+            // const videoFile = new File([url], 'video.mp4', { type: 'video/mp4' });
+            // const url = response?.data
+
+            // setVideoUrl(response?.data);
         } catch (error) {
             console.error('Error:', error);
         }
     };
+
+    const type = "StaticVideo";
+    const videoSrc = `${videoUrl}`;
+
+    const upload = {
+        id: nanoid(),
+        src: videoSrc,
+        type: type,
+    };
+
     const addImageToCanvas = (props) => {
+     console.log("src={imageUrl}",  videoUrl);
+    //  console.log("videoFile=====>", videoFile)
+        console.log("props===>" , props)
         editor.objects.add(props)
     }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -173,31 +195,17 @@ const VideoGeneration = () => {
                     </div>
                 </div>
                 <button class="button orange mt-3 w-100" onClick={handleSubmit}>Generate Video</button>
+
             </form>
             {videoUrl && (
                 <>
-                    {/* <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            cursor: "pointer",
-                        }}
-                        onClick={() => addImageToCanvas(upload)}
-                    >
-                        <div>
-                            <img width="100%" src={upload.preview ? upload.preview : upload.url} alt="preview" />
-                        </div>
-                    </div> */}
-
-                    <video controls>
+                    <img src={imageUrl} alt="Uploaded" onClick={() => addImageToCanvas(upload)} style={{ maxWidth: '100%', maxHeight: '300px' }} />
+                    {/* <video controls>
                         <source src={videoUrl} onClick={() => addObject(videoUrl)} type="video/mp4" />
                         Your browser does not support the video tag.
-                    </video>
-  
+                    </video> */}
                 </>
             )}
-
-
         </div>
     );
 };

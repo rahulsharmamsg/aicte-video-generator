@@ -215,7 +215,8 @@ fetch(videourl)
   }
 
   const addImageToCanvas = (props) => {
-    console.log(props,"props")
+    console.log("props=======>>" ,props)
+
     editor.objects.add(props)
   }
 
@@ -224,7 +225,6 @@ fetch(videourl)
     if (file) {
       try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  
         // Create a FileReader to read the selected file
         const fileReader = new FileReader();
         fileReader.readAsArrayBuffer(file);
@@ -394,7 +394,6 @@ fetch(videourl)
       createAudio(file)
       setVideoCreateurl([...createVideoUrl,URL.createObjectURL(file)]);
       setVideo(file)
-      // checkVideoDuration(file);
   };
 
   const ShareData = () => {
@@ -417,8 +416,6 @@ fetch(videourl)
     }, 300);
   }
 
- 
-  console.log(studentData,"57890765890756789075678907658 studentData")
   return (
     <>
       <main className="contentarea">

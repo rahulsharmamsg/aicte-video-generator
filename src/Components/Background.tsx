@@ -81,9 +81,7 @@ export default function Background() {
       console.log("Search query is empty");
       return;
     }
-    console.log("running");
     const videos = await getPexelsVideos(query) as any
-    console.log(videos);
     setVideos(videos);
   };
 
@@ -95,7 +93,6 @@ export default function Background() {
   const handleSearch = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); // Prevent default form submission behavior
     loadPexelsVideos(searchTerm);
-    
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -152,7 +149,7 @@ export default function Background() {
       <button className="button orange mt-3 w-100" onClick={handleSearch}>Search</button>
      
     </div>
-  </form>
+    </form>
     <Block $style={{ flex: 1, display: "flex", flexDirection: "column" }}>
       <Block
         $style={{
@@ -164,11 +161,9 @@ export default function Background() {
         }}
       >
         <Block>Videos</Block>
-
-        
       </Block>
       {/* <Scrollable> */}
-      {console.log("videos", videos) }
+      {/* {console.log("videos", videos) } */}
         <Block padding={"0 1.5rem"}>
           <div style={{ display: "grid", gap: "8px", gridTemplateColumns: "1fr 1fr" }}>
             {videos.map((video, index) => {

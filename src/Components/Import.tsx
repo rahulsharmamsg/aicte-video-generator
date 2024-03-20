@@ -22,13 +22,10 @@ export default function Import() {
   const [uploads, setUploads] = React.useState<any[]>([])
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
-  console.log("uplodas", uploads    )
 
   const handleDropFiles = async (files: FileList) => {
     try {
       const file = files[0]
-  console.log("fileformatv ", file);
-  
       const base64 = (await toBase64(file)) as string
       const video = await loadVideoResource(base64)
       
@@ -52,7 +49,6 @@ export default function Import() {
   
   const handleInputFileRefClick = (e:any) => {
     e.preventDefault()
-
     inputFileRef.current?.click()
   }
 
@@ -62,8 +58,8 @@ export default function Import() {
 
   const addImageToCanvas = (props) => {
     editor.objects.add(props)
-    
   }
+  
   return (
     <DropZone handleDropFiles={handleDropFiles}>
       <Block $style={{ flex: 1, display: "flex", flexDirection: "column" }}>
@@ -76,7 +72,7 @@ export default function Import() {
             padding: "1.5rem",
           }}
         >
-          <Block>Uploads</Block>
+          <Block>Uploads</Block>          
         </Block>
         <div>
             <Button
@@ -93,6 +89,7 @@ export default function Import() {
               Computer
             </Button>
             <input onChange={handleFileInput} type="file" id="file" ref={inputFileRef} style={{ display: "none" }} />
+
             <div
               style={{
                 marginTop: "1rem",
@@ -101,6 +98,7 @@ export default function Import() {
                 gridTemplateColumns: "1fr 1fr",
               }}
             >
+                
               {uploads.map((upload) => (
                 <div
                   key={upload.id}

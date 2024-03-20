@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useEditor } from "@layerhub-io/react";
 import useDesignEditorContext from "../hooks/useDesignEditorContext.ts"
+import { nanoid } from "nanoid"
+
 let unwantedWords = [
     "bad",
     "sample",
@@ -9,7 +11,7 @@ let unwantedWords = [
     "modi",
     "prime",
     "minister",
-  ];
+];
 const loadVideoResource = (videoSrc) => {
     return new Promise(function (resolve, reject) {
         var video = document.createElement("video")
@@ -69,33 +71,14 @@ const VideoGeneration = () => {
     const [errorMessage, setErrorMessage] = useState("");
     // const [Text, setText] = useState("");
     const [TransText, setTransText] = useState("");
-    const [imageSrc, setImageSrc] = useState([]);
-    //   const formdata = new FormData();
-    //   formdata.append("prompt", text);
-    //   formdata.append("image", image);
+    const [imageSrc, setImageSrc] = useState();
+    const [generateVideo, setGenerateVideo] = useState();
+    const [videofetch, setVideosfetch] = useState();
 
-    //   const requestOptions = {
-    //     method: "POST",
-    //     body: formdata,
-    //     redirect: "follow"
-    //   };
-    const addObject = React.useCallback(
-        (url) => {
-          if (editor) {
-            console.log(editor, "editor");
-            const options = {
-              type: "StaticImage",
-              src: url,
-            };
-    
-           
-            editor.objects.add(options);
-           
-          }
-        },
-        [editor]
-      );
-    
+    const canvasRef = useRef(null);
+
+
+
     const handleTextChange = (e) => {
         setText(e.target.value);
     };
@@ -104,26 +87,24 @@ const VideoGeneration = () => {
         setImage(e.target.files[0]);
     };
 
-    function downloadBlobAsImage(blob, filename = 'image.jpg') {
-        // Create a temporary anchor element
-        const a = document.createElement('a');
-        document.body.appendChild(a);
-    
-        // Create a URL for the blob
-        const url = window.URL.createObjectURL(blob);
-    
-        // Set attributes for anchor element
-        a.href = url;
-        a.download = filename;
-    
-        // Simulate a click on the anchor element to trigger the download
-        a.click();
-    
-        // Clean up: remove the anchor element and revoke the URL
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
+
+    useEffect(() => {
+        fetchVideo()
+
+    }, [])
+
+    useEffect(() => {
+    }, [generateVideo]);
+
+    const fetchVideo = async (e) => {
+        try {
+            const res = await axios.get("https://bharatlive.aicte-india.org/api/results_list");
+            console.log("videofetchvideofetch===>", res.data.result_files);
+            setVideosfetch(res?.data?.result_files)
+        }
+        catch (error) { }
     }
-    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -135,15 +116,15 @@ const VideoGeneration = () => {
         formData.append("prompt", text);
         setLoading(true);
 
-
         try {
             const res = await axios.post("https://bharattube.aicte-india.org/api/generate-image/generate-image", formData);
-            setImageSrc(res?.data?.base64);
+            
 
-            console.log("image type =====?", res?.data?.base64);
+            // const base64Image = new Image();
+            // base64Image.src = "data:image/png;base64," + imageSrc; // replace with your base64 image
+            // canvasRef.current.src = base64Image.src;
             // setLoading(false);
-            // const videourl = URL.createObjectURL(imageSrc)
-            if (res.status === 200){               
+            if (res.status === 200) {
                 setLoading(false);
                 const formData = new FormData();
                 formData.append('prompt', text);
@@ -154,9 +135,9 @@ const VideoGeneration = () => {
                 }
                 const byteArray = new Uint8Array(byteNumbers);
                 const blob = new Blob([byteArray], { type: 'image/png' });
-                downloadBlobAsImage(blob)
+                // downloadBlobAsImage(blob)
+                setGenerateVideo(blob)
                 formData.append('image', blob, 'image.jpg');
-
                 try {
                     const response = await axios.post('https://bharatlive.aicte-india.org/api/generate-video', formData,
                         { responseType: 'blob' },
@@ -166,31 +147,14 @@ const VideoGeneration = () => {
                             },
                         },
                     );
-                    // Handle success response
-                    //   const videoBlob = new Blob([response.data], { type: 'video/mp4' });
-                    //   const videoUrl = URL.createObjectURL(videoBlob);
-                    const url = URL.createObjectURL(response?.data)
-        
-                    setVideoUrl(url);
-                    if (editor) {
-                        const video = await loadVideoResource(url)
-                        const frame = await captureFrame(video)
-                        const duration = await captureDuration(video)
-                        editor.objects.add({ duration, preview: frame })
-                        const updatedScenes = scenes.map((scn) => {
-                            if (scn.id === currentScene?.id) {
-                                return {
-                                    ...currentScene,
-                                    duration: duration * 1000 > currentScene.duration ? duration * 1000 : currentScene.duration,
-                                }
-                            }
-                            return scn
-                        })
-                        setScenes(updatedScenes)
-                    }
-        
-                    console.log('Response:', response, "videoUrl", videoUrl);
-                    //   setVideoUrl(response?.data)
+
+                    const reader = new FileReader();
+                    reader.readAsDataURL(response.data);
+                    reader.onloadend = () => {
+                        const base64data = reader.result;
+                        setVideoUrl(base64data);
+                    };
+
                 } catch (error) {
                     // Handle error
                     console.error('Error:', error);
@@ -201,8 +165,8 @@ const VideoGeneration = () => {
             setLoading(false);
         }
     };
-    
-// console.log("setImageSrc", setImageSrc);
+
+
     // const handleSubmit = async (e) => {
     //     e.preventDefault();
     //     generateImage();
@@ -253,18 +217,33 @@ const VideoGeneration = () => {
         // Use a regular expression to replace unwanted words with asterisks
         let NewinputString = inputString.replace(/[^a-zA-Z0-9 ]/g, "");
         unwantedWords.forEach((word) => {
-          const regex = new RegExp(`\\b${word}\\b`, "gi");
-          if (regex.test(inputString)) {
-            setText("");
-            alert("prompt not allowed");
-    
-            NewinputString = "";
-            return "";
-          }
+            const regex = new RegExp(`\\b${word}\\b`, "gi");
+            if (regex.test(inputString)) {
+                setText("");
+                alert("prompt not allowed");
+
+                NewinputString = "";
+                return "";
+            }
         });
-    
+
         return NewinputString;
-      }
+    }
+
+    const type = "StaticVideo";
+    const videoSrc = `${videoUrl}`;    
+
+    const upload = {
+        id: nanoid(),
+        src: videoSrc,
+        type: type,
+    };
+
+    const addImageToCanvas = (props) => {
+        editor.objects.add(props)
+    }
+    useEffect(() => {
+    }, [generateVideo]);
     return (
         <div>
             <form onSubmit={handleSubmit} className='mb-3'>
@@ -279,31 +258,32 @@ const VideoGeneration = () => {
                         placeholder="Enter Your Prompt"
                     />
                 </div>
-                {/* <div className='mt-2'>
-                    <label htmlFor="image">Upload Image</label>
-                    <div>
-                        <input
-                            type="file"
-                            id="image"
-                            className='form-control'
-                            style={{ height: "auto", fontSize: 16, padding: "7px 10px" }}
-                            accept="image/*"
-                            onChange={handleImageChange}
-                            required
-                        />
-                    </div>
-                </div> */}
-                <button class="button orange mt-3 w-100" onClick={handleSubmit}>Generate Video</button>
-            </form>
-            {videoUrl && (
-                <video controls onClick={() => addObject(videoUrl)}
-                >
-                    <source src={videoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-            )}
-        </div>
 
+                <button class="button orange mt-3 w-100" onClick={handleSubmit}>Generate Video</button>
+
+            </form>
+
+
+            {/* {generateVideo &&
+                <img src={generateVideo && URL.createObjectURL(generateVideo)} width={200} height={200}  />
+            } */}
+
+
+            {videoUrl && (
+                <>
+                    {/* <img src={imageSrc} onClick={() => addImageToCanvas(upload)}    /> */}
+                    <img src={generateVideo && URL.createObjectURL(generateVideo)} width={"100%"} height={200} onClick={() => addImageToCanvas(upload)} />
+                </>
+            )}
+
+            {videofetch?.map((video, index) => {
+                return (
+                    <div key={index} className='mt-3'  onClick={() => addImageToCanvas({ id: nanoid(), src: `https://bharatlive.aicte-india.org/api/results/${video}`, type: 'StaticVideo'})} >
+                        <video src={`https://bharatlive.aicte-india.org/api/results/${video}`}  />
+                    </div>
+                )
+            })}
+        </div>
     );
 };
 
