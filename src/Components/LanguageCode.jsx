@@ -26,7 +26,6 @@ const MyVerticallyCenteredModal = (props)=>{
       "ur-IN-SalmanNeural": "Urdu"
   })
     const selectLanguage = (lcode,index)=>{
-      console.log(lcode)
         props.seLanguageCode(lcode);
         setEnable(index)
     }

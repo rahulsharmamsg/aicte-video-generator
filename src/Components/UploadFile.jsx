@@ -256,7 +256,6 @@ fetch(videourl)
             
   
             // Do something with the audioBlob (e.g., upload it, process it, etc.)
-            console.log(audioBlob);
             setAud(audioBlob)
        
             if(audioBlob){

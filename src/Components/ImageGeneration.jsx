@@ -166,7 +166,6 @@ function ImageGeneration() {
           setImageSrc("");
           const promises = [];
           const resData =  await axios.post('https://bharattube.aicte-india.org/api/generate-image/generate-image', formData, { prompt });       
-         console.log(resData,'generate image')
          setLoading(false);
           promises.push(resData);
           const imageData = promises.map((response) => response.data.base64);

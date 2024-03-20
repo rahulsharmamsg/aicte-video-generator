@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
@@ -81,7 +81,7 @@ import VirtualKeyword from "../Components/VirtualKeyword.jsx";
 import TranslatorInput from "../Components/Translation.jsx";
 import TexttoVideo from "../Components/TexttoVideo.jsx"
 import TalkingAvatar from "../Components/TalkingAvatar.jsx";
-
+import { audioContext } from "./AudioBlobContext.jsx";
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
@@ -121,7 +121,7 @@ function CreatelandscapeVideo() {
 
 
   const editor = useEditor();
-
+  const { setAudioBlob } = useContext(audioContext);
   const onClickAvtar = () => {
     setTalkingAvtar(true)
   }
@@ -135,14 +135,13 @@ function CreatelandscapeVideo() {
     if (!editor) return;
 
     // Create audio object
-    const audioObject = await editor.objects.add({
+await editor.objects.add({
       type: 'audio',
       src: audioSrc, // Convert audio blob to object URL
       x: 100, // Example: Set initial position
       y: 100,
     });
 
-    console.log(audioObject, 'hello this is obj')
   };
 useEffect(()=>{
   setCurrentDesign("PRESENTATION")
@@ -169,7 +168,6 @@ useEffect(()=>{
   );
 
   const makeDownloadTemplate = ()=>{
-    console.log(parsePresentationJSON())
    return parsePresentationJSON()
 
   }
@@ -897,7 +895,7 @@ useEffect(()=>{
             ):""} */}
             </div>
             <div className="audioplayerDiv">
-              <Footer />
+              <Footer audioSrc={audioSrc}/>
             </div>
           </div>
         </div>

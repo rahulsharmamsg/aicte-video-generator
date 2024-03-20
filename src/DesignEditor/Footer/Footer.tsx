@@ -1,12 +1,13 @@
 import Timeline from "./Timeline.tsx"
 import Common from "./Common.tsx"
 import { Block } from "baseui/block"
-import React from "react"
+import React, { useState } from "react"
 
-const Footer = () =>{
+const Footer = ({audioSrc}) =>{
+
   return (
     <Block $style={{ background: "#ffe8ba" }}>
-      <Timeline />
+      <Timeline audioSrc={audioSrc}/>
       <Common />
     </Block>
   )

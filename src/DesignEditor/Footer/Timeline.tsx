@@ -15,7 +15,7 @@ import TimelineContextMenu from "./TimelineContextMenu.tsx"
 import useContextMenuTimelineRequest from "../../hooks/useContextMenuTimelineRequest.ts"
 import { findSceneIndexByTime } from "../../utils/scenes.ts"
 
-export default function Timeline () {
+export default function Timeline ({audioSrc}) {
   const { time, setTime, status } = useTimer()
   const { setScenes, setCurrentScene, currentScene, scenes, setCurrentPreview, setCurrentDesign, currentDesign } =
     React.useContext(DesignEditorContext)
@@ -143,7 +143,7 @@ export default function Timeline () {
 
   return (
     <Block $style={{ display: "flex", alignItems: "center" }}>
-      <TimelineControl />
+      <TimelineControl audioSrc={audioSrc}/>
       <Block $style={{ background: "#fff4de" }}>
         <div className={css({ display: "flex", alignItems: "center" })}>
           <Block
