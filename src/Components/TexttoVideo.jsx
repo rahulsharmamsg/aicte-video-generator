@@ -99,7 +99,6 @@ const VideoGeneration = () => {
     const fetchVideo = async (e) => {
         try {
             const res = await axios.get("https://bharatlive.aicte-india.org/api/results_list");
-            console.log("videofetchvideofetch===>", res.data.result_files);
             setVideosfetch(res?.data?.result_files)
         }
         catch (error) { }

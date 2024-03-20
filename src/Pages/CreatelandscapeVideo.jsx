@@ -81,6 +81,7 @@ import VirtualKeyword from "../Components/VirtualKeyword.jsx";
 import TranslatorInput from "../Components/Translation.jsx";
 import TexttoVideo from "../Components/TexttoVideo.jsx"
 import TalkingAvatar from "../Components/TalkingAvatar.jsx";
+import AddMusic from "../Components/AddMusic.tsx";
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
@@ -140,8 +141,6 @@ function CreatelandscapeVideo() {
       x: 100, // Example: Set initial position
       y: 100,
     });
-
-    console.log(audioObject, 'hello this is obj')
   };
 
   useEffect(() => {
@@ -156,15 +155,11 @@ function CreatelandscapeVideo() {
           type: "StaticImage",
           src: url,
         };
-
-
         editor.objects.add(options);
-
       }
     },
     [editor]
   );
-
 
   const youtubeExplainerContent = (
     <div className="popupOutline generateScrptDiv youtubeScriptvideoDiv">
@@ -785,7 +780,16 @@ function CreatelandscapeVideo() {
             </div>
           )
         }
-        {activePanel === "import" && (
+        {activePanel === "aimusic" && (
+          <div className="dashBrdLft">
+            <div className="dashBrdLftInScndLayer">
+              <h3 className="scndryHdng">Add Music</h3>
+                <AddMusic/>
+              <div className="avatarsTab"></div>
+            </div>
+          </div>
+        )}
+         {activePanel === "import" && (
           <div className="dashBrdLft">
             <div className="dashBrdLftInScndLayer">
               <h3 className="scndryHdng">Import</h3>
@@ -801,7 +805,6 @@ function CreatelandscapeVideo() {
             <ImageGeneration />
           </div>
         )}
-
         {
           activePanel === "aivideo" && (
             <div className="dashBrdLft">
