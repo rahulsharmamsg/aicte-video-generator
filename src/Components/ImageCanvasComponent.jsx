@@ -3,7 +3,6 @@ import aii from "../assets/images/Anuvadini.png";
 import { useEditor } from "@layerhub-io/react";
 const ImageCanvasComponent = ({ base64img }) => {
   const [dataUrl, setdataUrl] = useState([]);
-  console.log(dataUrl,'jjjjjjjjj')
   const canvasRef = useRef(null);
   // const handleDownloadPNG = () => {
   //   const canvas = canvasRef.current;

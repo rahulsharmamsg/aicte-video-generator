@@ -835,7 +835,7 @@ function CreatelandscapeVideo() {
         <div className="dashBrdRgt">
           <div className="">
             <div className="">
-              <Toolbox />
+              {/* <Toolbox /> */}
               <CanvasEditor />
               {/* 
               {audioSrc ?(
@@ -905,9 +905,6 @@ function CreatelandscapeVideo() {
                     <li onClick={() => createVirtualKeyword()}>
                       <TextT size={22} /> Virtual Keywords
                     </li>
-                    {/* <li onClick={() => generateScipt()}>
-                      <TextT size={22} /> Generate Script
-                    </li> */}
                   </ul>
                   <div className="voiceOverPpup">
                     <div className="voiceOverInpt">
@@ -930,7 +927,6 @@ function CreatelandscapeVideo() {
               </div>
               <div className="videoRgtBtmDivRgt">
                 <div className="sppedPitchVlmDiv">
-
                   {audioSrc ? (
                     <>
                       <PlayerProv {...{ audioCtx, gainNode }}>

@@ -60,7 +60,6 @@ export default function Background() {
   const { scenes, setScenes, currentScene } = useDesignEditorContext()
   const loadPixabayVideos = async () => {
     const videos = await getPixabayVideos("people")
-    console.log( videos )
     setVideos(videos)
   }
 

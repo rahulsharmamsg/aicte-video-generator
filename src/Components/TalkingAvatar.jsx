@@ -112,11 +112,8 @@ function TalkingAvatar() {
 
   useEffect(() => {
     setAudioUrl(audioURL); // Use audioURL directly
-    console.log("recorder");
     localStorage.setItem("audurl", audioURL);
-
     // Remove setSelectedTrack(audioUrl1) as it's not needed
-
     if (audioURL) {
       // Check audioURL instead of audioUrl1
       fetchWavBlob()

@@ -353,11 +353,11 @@ const [Text,setText] = useState("");
 
     const { text, start: begin, end } = getTextPosition;
     console.log(getTextPosition,'position')
-    // if ( begin == 0 && end == 0 ) {
-    //   setText( currentSelect + " " + transcript + " " );
-    // } else {
-    //   setText( text.slice( 0, begin ) + transcript + text.slice( end ) );
-    // }
+    if ( begin == 0 && end == 0 ) {
+      setText( currentSelect + " " + transcript + " " );
+    } else {
+      setText( text.slice( 0, begin ) + transcript + text.slice( end ) );
+    }
   }, [transcript] );
   if ( !browserSupportsSpeechRecognition ) {
     return <span>Browser doesn&apos;t support speech recognition.</span>;

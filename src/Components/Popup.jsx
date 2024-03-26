@@ -32,7 +32,6 @@ const shortenText = async()=>{
           });
           setVideoScript(response.data.data)
       // Extract and set the shortened text from the API response
-        console.log(response,'chatgbt response')
     } catch (error) {
         console.log(error);
     }
@@ -56,7 +55,6 @@ async function textTOAudio() {
     })
       .then((response) => response.json())
       .then((data) => {  
-        console.log(data,'hihi')  
         let ar = [];
         ar = data.data.audio.data;
         let bufferData = Buffer.from(ar, "binary");

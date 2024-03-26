@@ -98,7 +98,7 @@ function AvtarPopup({hidePopup,setShowContent}) {
                     //     setScenes(updatedScenes)
                     // }
         
-                    console.log('Response:', response, "videoUrl", videoUrl);
+                   
                     //   setVideoUrl(response?.data)
                 } catch (error) {
                     // Handle error
