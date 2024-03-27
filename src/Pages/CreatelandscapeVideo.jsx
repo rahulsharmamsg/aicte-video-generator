@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
@@ -82,6 +82,7 @@ import TranslatorInput from "../Components/Translation.jsx";
 import TexttoVideo from "../Components/TexttoVideo.jsx"
 import TalkingAvatar from "../Components/TalkingAvatar.jsx";
 import AddMusic from "../Components/AddMusic.tsx";
+import { audioContext } from "./AudioBlobContext.jsx";
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
@@ -100,8 +101,8 @@ function CreatelandscapeVideo() {
   const [talkingAvtar, setTalkingAvtar] = useState(false);
   const [buf, setBuf] = useState("");
   const [loading, setLoading] = useState(false);
+  const { setEditorType,setDisplayPreview, setScenes, setCurrentDesign, currentDesign, scenes } = useDesignEditorContext();
   const selectedEditor = "VIDEO";
-  const { setEditorType } = useDesignEditorContext();
   const [defaultLanguege, setdefaultLanguage] = useState({
     "en-IN-PrabhatNeural": "English",
     "hi-IN-MadhurNeural": "Hindi",
@@ -119,6 +120,7 @@ function CreatelandscapeVideo() {
   }, [selectedEditor, setEditorType]);
 
 
+  const { setAudioBlob } = useContext(audioContext);
 
   const editor = useEditor();
 
@@ -160,7 +162,54 @@ function CreatelandscapeVideo() {
     },
     [editor]
   );
+  const makeDownloadTemplate = ()=>{
+    return parsePresentationJSON()
+ 
+   }
+ 
+   const parsePresentationJSON = () => {
+     const currentScene = editor.scene.exportToJSON()
+ 
+     const updatedScenes = scenes.map((scn) => {
+       if (scn.id === currentScene.id) {
+         return {
+           id: currentScene.id,
+           duration: 5000,
+           layers: currentScene.layers,
+           name: currentScene.name,
+         }
+       }
+       return {
+         id: scn.id,
+         duration: 5000,
+         layers: scn.layers,
+         name: scn.name,
+       }
+     })
+ 
+ 
+       const presentationTemplate = {
+         id: currentDesign.id,
+         type: "PRESENTATION",
+         name: currentDesign.name,
+         frame: currentDesign.frame,
+         scenes: updatedScenes,
+         metadata: {},
+         preview: "",
+       }
+       makeDownload(presentationTemplate)
+ 
+   }
+   const makeDownload = (data) => {
 
+     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data))
+     
+     const a = document.createElement("a")
+     a.href = dataStr
+     a.download = "template.json"
+     a.click()
+    console.log(data)
+   }
   const youtubeExplainerContent = (
     <div className="popupOutline generateScrptDiv youtubeScriptvideoDiv">
       <div className="pop-up">
@@ -849,7 +898,7 @@ function CreatelandscapeVideo() {
             ):""} */}
             </div>
             <div className="audioplayerDiv">
-              <Footer />
+              <Footer  audioSrc={audioSrc}/>
             </div>
           </div>
         </div>
@@ -904,6 +953,9 @@ function CreatelandscapeVideo() {
                     </li>
                     <li onClick={() => createVirtualKeyword()}>
                       <TextT size={22} /> Virtual Keywords
+                    </li>
+                    <li onClick={() => makeDownloadTemplate()}>
+                      <TextT size={22} /> Exports
                     </li>
                   </ul>
                   <div className="voiceOverPpup">
