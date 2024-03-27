@@ -43,7 +43,7 @@ console.log(audioSrc,'hello audio url')
         }}
       >
         {status === "STOPPED" || status === "PAUSED" ? <PlaySolid size={24} /> : <Pause size={24} />}
-        <audio id="audioElement" controls></audio>
+        <audio id="audioElement"></audio>
       </Block>
     </Block>
   )
