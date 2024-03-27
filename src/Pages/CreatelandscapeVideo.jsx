@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
@@ -81,7 +81,8 @@ import VirtualKeyword from "../Components/VirtualKeyword.jsx";
 import TranslatorInput from "../Components/Translation.jsx";
 import TexttoVideo from "../Components/TexttoVideo.jsx"
 import TalkingAvatar from "../Components/TalkingAvatar.jsx";
-import { audioContext } from "./AudioBlobContext.jsx";
+import AddMusic from "../Components/AddMusic.tsx";
+
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
@@ -100,8 +101,7 @@ function CreatelandscapeVideo() {
   const [buf, setBuf] = useState("");
   const [loading, setLoading] = useState(false);
   const selectedEditor = "VIDEO";
-  
-  const { setEditorType,setDisplayPreview, setScenes, setCurrentDesign, currentDesign, scenes } = useDesignEditorContext();
+  const { setEditorType } = useDesignEditorContext();
   const [defaultLanguege, setdefaultLanguage] = useState({
     "en-IN-PrabhatNeural": "English",
     "hi-IN-MadhurNeural": "Hindi",
@@ -121,7 +121,7 @@ function CreatelandscapeVideo() {
 
 
   const editor = useEditor();
-  const { setAudioBlob } = useContext(audioContext);
+
   const onClickAvtar = () => {
     setTalkingAvtar(true)
   }
@@ -135,17 +135,14 @@ function CreatelandscapeVideo() {
     if (!editor) return;
 
     // Create audio object
-await editor.objects.add({
+    const audioObject = await editor.objects.add({
       type: 'audio',
       src: audioSrc, // Convert audio blob to object URL
       x: 100, // Example: Set initial position
       y: 100,
     });
-
   };
-useEffect(()=>{
-  setCurrentDesign("PRESENTATION")
-},[editor])
+
   useEffect(() => {
     handleAddAudio(audioSrc);
   }, [audioSrc])
@@ -158,61 +155,12 @@ useEffect(()=>{
           type: "StaticImage",
           src: url,
         };
-
-
         editor.objects.add(options);
-
       }
     },
     [editor]
   );
 
-  const makeDownloadTemplate = ()=>{
-   return parsePresentationJSON()
-
-  }
-
-  const parsePresentationJSON = () => {
-    const currentScene = editor.scene.exportToJSON()
-
-    const updatedScenes = scenes.map((scn) => {
-      if (scn.id === currentScene.id) {
-        return {
-          id: currentScene.id,
-          duration: 5000,
-          layers: currentScene.layers,
-          name: currentScene.name,
-        }
-      }
-      return {
-        id: scn.id,
-        duration: 5000,
-        layers: scn.layers,
-        name: scn.name,
-      }
-    })
-
-
-      const presentationTemplate = {
-        id: currentDesign.id,
-        type: "PRESENTATION",
-        name: currentDesign.name,
-        frame: currentDesign.frame,
-        scenes: updatedScenes,
-        metadata: {},
-        preview: "",
-      }
-      makeDownload(presentationTemplate)
-  
-  }
-  const makeDownload = (data) => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data))
-    const a = document.createElement("a")
-    a.href = dataStr
-    a.download = "template.json"
-    a.click()
-   console.log(data)
-  }
   const youtubeExplainerContent = (
     <div className="popupOutline generateScrptDiv youtubeScriptvideoDiv">
       <div className="pop-up">
@@ -532,8 +480,6 @@ useEffect(()=>{
     setVirtualShow(false);
   };
 
-
-
   return (
     <>
       {showContent === "Youtube_Explainer" && youtubeExplainerContent}
@@ -834,7 +780,16 @@ useEffect(()=>{
             </div>
           )
         }
-        {activePanel === "import" && (
+        {activePanel === "aimusic" && (
+          <div className="dashBrdLft">
+            <div className="dashBrdLftInScndLayer">
+              <h3 className="scndryHdng">Add Music</h3>
+                <AddMusic/>
+              <div className="avatarsTab"></div>
+            </div>
+          </div>
+        )}
+         {activePanel === "import" && (
           <div className="dashBrdLft">
             <div className="dashBrdLftInScndLayer">
               <h3 className="scndryHdng">Import</h3>
@@ -850,7 +805,6 @@ useEffect(()=>{
             <ImageGeneration />
           </div>
         )}
-
         {
           activePanel === "aivideo" && (
             <div className="dashBrdLft">
@@ -881,7 +835,7 @@ useEffect(()=>{
         <div className="dashBrdRgt">
           <div className="">
             <div className="">
-              <Toolbox />
+              {/* <Toolbox /> */}
               <CanvasEditor />
               {/* 
               {audioSrc ?(
@@ -895,7 +849,7 @@ useEffect(()=>{
             ):""} */}
             </div>
             <div className="audioplayerDiv">
-              <Footer audioSrc={audioSrc}/>
+              <Footer />
             </div>
           </div>
         </div>
@@ -951,9 +905,6 @@ useEffect(()=>{
                     <li onClick={() => createVirtualKeyword()}>
                       <TextT size={22} /> Virtual Keywords
                     </li>
-                    <li onClick={() => makeDownloadTemplate()}>
-                      <TextT size={22} /> Exports
-                    </li>
                   </ul>
                   <div className="voiceOverPpup">
                     <div className="voiceOverInpt">
@@ -976,7 +927,6 @@ useEffect(()=>{
               </div>
               <div className="videoRgtBtmDivRgt">
                 <div className="sppedPitchVlmDiv">
-
                   {audioSrc ? (
                     <>
                       <PlayerProv {...{ audioCtx, gainNode }}>

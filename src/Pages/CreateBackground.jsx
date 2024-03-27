@@ -129,7 +129,6 @@ function CreateBackground() {
               </div>  
               </div>   
              <div className='videoRgtBtmDivRgt'>
-             
             <div className='sppedPitchVlmDiv'>
             <div className='speedDiv'>
             <p className='sppedDivtxt'>Speed <span>1.00x</span></p>

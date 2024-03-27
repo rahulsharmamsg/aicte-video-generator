@@ -2626,7 +2626,8 @@ footer center{
 .femaleCntDiv ul li:hover img{border-color: #ef8114;}
 .avatarsName{width: 100%; float: left; font-size: 15px; font-weight: 500;}
 .avatarVideoDiv{width: 100%; float: left; text-align: center;}
-.audioplayerDiv{width: 100%;}
+.audioplayerDiv{width: 100%;    position: fixed;
+    bottom: 0px;}
 .audioplayerDiv audio{width: 100%;}
 .videoRgtBtmDiv{width: 100%; float: left; margin-top: 20px; margin-bottom: 0px;} 
 .videoRgtBtmDivLft{width: 100%; float: left;}
@@ -2694,7 +2695,8 @@ footer center{
 .dashBrdLftIn{position: fixed; height: 48px; bottom: 0; background: #ffefe5;}
 .dashBrdLftIn .dashbrdMenu li{display: inline-block; width: auto; padding-bottom: 0; margin-bottom: 0;}
 
-.createVideoDashbrdSec .dashBrdLft.dashBrdLftRgt{width: 20%; float: right;}
+.createVideoDashbrdSec .dashBrdLft.dashBrdLftRgt{width: 20%; float: right;     z-index: 0;
+    position: relative;}
 .dashBrdLftRgt .videoRgtBtmDivLftIn{width: 100%;}
 .videoRgtBtmDivLftIn ul{width: 100%;}
 .dashBrdLftRgt .videoRgtBtmDivLftIn ul li{float: left; padding: 5px 5px; margin-bottom: 8px;}
