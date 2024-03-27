@@ -36,6 +36,7 @@ export default function TimelineControl () {
         }}
       >
         {status === "STOPPED" || status === "PAUSED" ? <PlaySolid size={24} /> : <Pause size={24} />}
+        <audio id="audioElement"></audio>
       </Block>
     </Block>
   )

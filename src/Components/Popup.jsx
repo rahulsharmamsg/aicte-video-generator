@@ -62,7 +62,7 @@ async function textTOAudio() {
         let blob = new Blob([bufferData], { type: "audio/wav" });
         props.setBuf(blob);
         let url = URL.createObjectURL(blob);
-        console.log(url,'audio url')
+        console.log(url,'blob url ...........')
         props.setAudioSrc(url);
 
       })
