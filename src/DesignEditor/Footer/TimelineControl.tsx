@@ -5,10 +5,10 @@ import Pause from "../../assets/Icons/Pause.tsx"
 import PlaySolid from "../../assets/Icons/PlaySolid.tsx"
 import useDesignEditorContext from "../../hooks/useDesignEditorContext.ts"
 
-export default function TimelineControl () {
+export default function TimelineControl ({audioSrc}) {
   const { pause, status } = useTimer()
   const { setDisplayPlayback } = useDesignEditorContext()
-
+console.log(audioSrc,'hihihi')
   return (
     <Block id={"EditorPlayControl"} $style={{ padding: "0 1rem" }}>
       <Block
@@ -16,11 +16,18 @@ export default function TimelineControl () {
           status === "STOPPED" || status === "PAUSED"
             ? () => {
               console.log("hello this is test");
+
+              const audioElement = document.getElementById('audioElement');
+              console.log(audioElement)
+              audioElement.src = audioSrc;
+              audioElement.play();
+
                 setDisplayPlayback(true)
               }
             : () => {
               console.log("hello ");
                 pause()
+                audioElement.pause();
                 setDisplayPlayback(false)
               }
         }
