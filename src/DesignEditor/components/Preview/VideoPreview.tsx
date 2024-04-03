@@ -2,10 +2,10 @@ import React from "react"
 import { Block } from "baseui/block"
 import ReactPlayer from "react-player"
 import { useEditor } from "@layerhub-io/react"
-import Loading from "../Loading"
+import Loading from "../Loading/index.ts"
 import useDesignEditorPages from "../../../hooks/useDesignEditorScenes.tsx"
 
-function Video() {
+function VideoPreview() {
   const editor = useEditor()
   const pages = useDesignEditorPages()
   const [loading, setLoading] = React.useState(true)
@@ -38,7 +38,7 @@ function Video() {
       dimension: template.frame,
       clips: clips,
     }
-    fetch("https://render.layerhub.io/render", {
+    fetch("http://localhost:8080/render", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(options),
@@ -60,7 +60,7 @@ function Video() {
   return (
     <Block $style={{ flex: 1, alignItems: "center", justifyContent: "center", display: "flex", padding: "5rem" }}>
       {loading ? (
-        <Loading text="Generating preview" />
+        <div > kartik </div>
       ) : (
         <ReactPlayer
           muted={false}
@@ -76,4 +76,4 @@ function Video() {
   )
 }
 
-export default Video
+export default VideoPreview

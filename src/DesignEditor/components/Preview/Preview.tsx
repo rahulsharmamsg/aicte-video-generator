@@ -2,7 +2,7 @@ import React from "react"
 import { Modal, ModalBody, SIZE, ROLE } from "baseui/modal"
 import useEditorType from "~/hooks/useEditorType"
 import { Block } from "baseui/block"
-import Video from "./Video"
+import Video from "./VideoPreview"
 import Presentation from "./Presentation"
 import Graphic from "./Graphic"
 

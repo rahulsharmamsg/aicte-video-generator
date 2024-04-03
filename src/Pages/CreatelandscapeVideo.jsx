@@ -83,7 +83,7 @@ import TexttoVideo from "../Components/TexttoVideo.jsx"
 import TalkingAvatar from "../Components/TalkingAvatar.jsx";
 import AddMusic from "../Components/AddMusic.tsx";
 import { audioContext } from "./AudioBlobContext.jsx";
-
+import VideoPreview from "../DesignEditor/components/Preview/VideoPreview.tsx"
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const gainNode = audioCtx.createGain();
 function CreatelandscapeVideo() {
@@ -101,6 +101,7 @@ function CreatelandscapeVideo() {
   const [talkingAvtar, setTalkingAvtar] = useState(false);
   const [buf, setBuf] = useState("");
   const [loading, setLoading] = useState(false);
+  const [previewPopup, srtPreviewPopup] = useState(false);
   const { setEditorType,setDisplayPreview, setScenes, setCurrentDesign, currentDesign, scenes } = useDesignEditorContext();
   const selectedEditor = "VIDEO";
   const [defaultLanguege, setdefaultLanguage] = useState({
@@ -921,6 +922,7 @@ function CreatelandscapeVideo() {
           />
         ) : null}
         {textAi ? <AiTranslation hidePopup={closePopupAi} /> : null}
+        {previewPopup? <VideoPreview /> : null}
         <div className="dashBrdLft dashBrdLftRgt">
           <div className="dashBrdLftInScndLayer">
             <div className="videoRgtBtmDiv">
@@ -957,6 +959,23 @@ function CreatelandscapeVideo() {
                     <li onClick={() => makeDownloadTemplate()}>
                       <TextT size={22} /> Exports
                     </li>
+                    {/* <li onClick={() => makeDownloadTemplate()}>
+                      <TextT size={22} /> Preview
+                    </li> */}
+                     <Button
+            size="compact"
+            onClick={() => srtPreviewPopup(true)}
+            // kind={KIND.tertiary}
+            overrides={{
+              StartEnhancer: {
+                style: {
+                  marginRight: "4px",
+                },
+              },
+            }}
+          >
+            {/* <Play size={24} /> */}Preview
+          </Button>
                   </ul>
                   <div className="voiceOverPpup">
                     <div className="voiceOverInpt">
