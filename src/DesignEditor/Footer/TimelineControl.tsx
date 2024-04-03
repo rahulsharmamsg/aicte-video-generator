@@ -16,18 +16,21 @@ console.log(audioSrc,'hihihi')
           status === "STOPPED" || status === "PAUSED"
             ? () => {
               console.log("hello this is test");
-
-              const audioElement = document.getElementById('audioElement');
-              console.log(audioElement)
-              audioElement.src = audioSrc;
-              audioElement.play();
+              if(audioSrc){
+                const audioElement = document.getElementById('audioElement');              
+                audioElement.src = audioSrc;
+                audioElement.play();
+              }           
 
                 setDisplayPlayback(true)
               }
             : () => {
               console.log("hello ");
                 pause()
-                audioElement.pause();
+                if(audioSrc){
+                  audioElement.pause();
+                }
+               
                 setDisplayPlayback(false)
               }
         }
